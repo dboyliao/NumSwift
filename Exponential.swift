@@ -1,4 +1,3 @@
-#!/usr/bin/env swift
 import Accelerate
 
 func exp(x:[Float]) -> [Float] {

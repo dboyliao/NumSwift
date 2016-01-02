@@ -1,4 +1,3 @@
-#!/usr/bin/env swift
 import Accelerate
 
 func pow(x: [Float], power: Float) -> [Float] {
