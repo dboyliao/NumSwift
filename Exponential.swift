@@ -4,12 +4,12 @@ import Accelerate
 func exp(x:[Float]) -> [Float] {
 
     /*
-    Comput e^(x). (Vectorized)
+    Compute e^(x). (Vectorized)
 
     input:
-        `x`: An array of floating number
+        `x`: An array of floating numbers.
     return:
-        `y`: An array of floating number where its i-th elements are e^(x[i]).
+        `y`: An array of floating number where its i-th element is e^(x[i]).
     */
 
      var y = [Float](count: x.count, repeatedValue: 0.0)
@@ -19,6 +19,14 @@ func exp(x:[Float]) -> [Float] {
 }
 
 func exp(x: [Double]) -> [Double] {
+    /*
+    Compute e^(x). (Vectorized)
+
+    input:
+        `x`: An array of double-precision floating numbers.
+    return:
+        `y`: An array of double-precision floating numbers where its i-th element is e^(x[i])
+    */
 
     var y = [Double](count: x.count, repeatedValue: 0.0)
     var N = Int32(x.count)
@@ -29,6 +37,17 @@ func exp(x: [Double]) -> [Double] {
 }
 
 func log(x: [Float], base: Float? = nil) -> [Float] {
+
+    /*
+    Compute logrithm with base.
+
+    input:
+        `x`: An array of floating numbers.
+        `base`: Optional floating number. It is natural exponential by default.
+    return:
+        `y`: An array of floating numbers. Its i-th element is the logrithm of x[i] 
+             with base as given by `base`.
+    */
 
     var y = [Float](count: x.count, repeatedValue: 0.0)
     var N = Int32(x.count)
@@ -50,6 +69,18 @@ func log(x: [Float], base: Float? = nil) -> [Float] {
 }
 
 func log(x: [Double], base: Double? = nil) -> [Double] {
+
+    /*
+    Compute logrithm with base.
+
+    input:
+        `x`: An array of double-precision floating numbers.
+        `base`: Optional double-precision floating number. It is natural exponential
+                by default.
+    return:
+        `y`: An array of double-precision floating numbers. Its i-th element is the 
+            logrithm of x[i] with base as given by `base`.
+    */
 
     var y = [Double](count: x.count, repeatedValue: 0.0)
     var N = Int32(x.count)
