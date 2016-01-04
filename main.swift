@@ -19,3 +19,28 @@ print("cot(xf): \(cot(xf))")
 print("cot(xd): \(cot(xd))")
 print("csc(xf): \(csc(xf))")
 print("csc(xd): \(csc(xd))")
+
+// Testing fft
+print("=== testing fft for [Float] ===")
+var sigf = [Float](count:17, repeatedValue:0.0)
+for i in 0..<17 {
+    sigf[i] = Float(i+1)
+}
+print("sigf: \(sigf)")
+
+let coeff = fft(sigf)
+for i in 0..<16 {
+    print(coeff.realp[i], coeff.imagp[i])
+}
+
+print("=== testing fft for [Double] ===")
+var sigd = [Double](count:17, repeatedValue:0.0)
+for i in 0..<17 {
+    sigd[i] = Double(i+1)
+}
+print("sigd: \(sigd)")
+
+let coefd = fft(sigd)
+for i in 0..<16 {
+    print(coefd.realp[i], coefd.imagp[i])
+}
