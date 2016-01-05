@@ -128,7 +128,6 @@ func ifft(realp:[Float], imagp:[Float]) -> ([Float], [Float]){
 
     // normalization of ifft
     var scale = Float(fftN)
-    print(scale)
     let normalizedOutputRealp = [Float](count: fftN, repeatedValue:0.0)
     let normalizedOutputImagp = [Float](count: fftN, repeatedValue:0.0)
     let ptrNormalizedOutputRealp = UnsafeMutablePointer<Float>(normalizedOutputRealp)

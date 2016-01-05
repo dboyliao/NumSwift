@@ -1,3 +1,8 @@
+test-osx:
+	make test-complex-osx
+	make test-trigonometry-osx
+	make test-fft-osx
+
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
 	xcrun -sdk macosx swiftc tests/main.swift Complex.swift -o test
