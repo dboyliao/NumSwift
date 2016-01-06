@@ -23,3 +23,10 @@ test-fft-osx:
 	echo 'Running test on FFT.'
 	./test
 	rm test tests/main.swift
+
+test-convolve-osx:
+	cp tests/test_convolve.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift Convolution.swift -o test
+	echo 'Running test on Convolution.'
+	./test
+	rm test tests/main.swift

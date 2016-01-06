@@ -11,7 +11,7 @@ func main(){
 
     let (coeff_realp, coeff_imagp) = fft(sigf, imagp:zerosf)
     for i in 0..<N {
-        print("\(i): \(coeff_realp[i])+\(coeff_imagp[i])j")
+        print("\(i): \(coeff_realp[i]) \(coeff_imagp[i])j")
     }
 
     print("== inverse fft [Float] ===")
