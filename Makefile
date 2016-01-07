@@ -2,6 +2,7 @@ test-osx:
 	make test-complex-osx
 	make test-trigonometry-osx
 	make test-fft-osx
+	make test-convolve-osx
 
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
@@ -19,14 +20,21 @@ test-trigonometry-osx:
 
 test-fft-osx:
 	cp tests/test_fft.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/main.swift Utilities.swift FFT.swift -o test
+	xcrun -sdk macosx swiftc tests/main.swift FFT.swift -o test
 	echo 'Running test on FFT.'
 	./test
 	rm test tests/main.swift
 
 test-convolve-osx:
 	cp tests/test_convolve.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/main.swift Convolution.swift -o test
+	xcrun -sdk macosx swiftc tests/main.swift Utilities.swift FFT.swift Convolution.swift -o test
 	echo 'Running test on Convolution.'
+	./test
+	rm test tests/main.swift
+
+test-fft-convolve-osx:
+	cp tests/test_fft_convolve.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift Utilities.swift Convolution.swift FFT.swift -o test
+	echo 'Running test on FFT-Convolution.'
 	./test
 	rm test tests/main.swift
