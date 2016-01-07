@@ -6,7 +6,6 @@ var yd:[Double] = [5, 4, 3, 2, 1]
 print("xd: \(xd)")
 print("yd: \(yd)")
 
-print("=== common convolution ===")
 print("full:", convolve(xd, y:yd)!)
 print("same:", convolve(xd, y:yd, mode: "same")!)
 print("valid:", convolve(xd, y:yd, mode: "valid")!)

@@ -27,7 +27,7 @@ func pad(x:[Double], value:Double = 0.0, toLength length: Int) -> [Double] {
     return result
 }
 
-func pad(x:[Float], value:Float = 0.0, length: Int) -> [Float] {
+func pad(x:[Float], value:Float = 0.0, toLength length: Int) -> [Float] {
 
     let result:[Float]
 
