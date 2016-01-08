@@ -36,14 +36,18 @@ func equal<T:Equatable>(label: String, test: () -> [T], expect:[T]) throws {
 
     let result = test()
 
+    if result.count != expect.count {
+        throw TestingError.LengthError(message:"Array length do not match.")
+    }
+
     if result != expect {
+
         throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
     }
 
     colorPrint("[\(label)] pass.", color:"blue")
     colorPrint("Output: \(result)", color:"cyan")
     colorPrint("Expect: \(expect)", color:"cyan")
-
 }
 
 func testEqual<T:Equatable>(label: String, test:() -> T, expect: T) {
