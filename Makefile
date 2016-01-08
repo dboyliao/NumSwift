@@ -7,10 +7,10 @@ test-osx:
 
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/main.swift Complex.swift -o test
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Complex.swift -o complex_test
 	echo 'Running test on Complex.'
-	./test
-	rm test tests/main.swift
+	./complex_test
+	rm complex_test tests/main.swift
 
 test-trigonometry-osx:
 	cp tests/test_trigonometry.swift tests/main.swift
@@ -28,14 +28,14 @@ test-fft-osx:
 
 test-convolve-osx:
 	cp tests/test_convolve.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/main.swift Utilities.swift FFT.swift Convolution.swift -o test
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Utilities.swift FFT.swift Convolution.swift -o convolve_test
 	echo 'Running test on Convolution.'
-	./test
-	rm test tests/main.swift
+	./convolve_test
+	rm convolve_test tests/main.swift
 
 test-fft-convolve-osx:
 	cp tests/test_fft_convolve.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/main.swift Utilities.swift Convolution.swift FFT.swift -o test
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Utilities.swift Convolution.swift FFT.swift -o test
 	echo 'Running test on FFT-Convolution.'
 	./test
 	rm test tests/main.swift
