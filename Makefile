@@ -21,7 +21,7 @@ test-trigonometry-osx:
 
 test-fft-osx:
 	cp tests/test_fft.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/main.swift Sources/FFT.swift -o test_fft
+	xcrun -sdk macosx swiftc tests/SwiftTest/*.swift tests/main.swift Sources/FFT.swift -o test_fft
 	echo 'Running test on FFT.'
 	./test_fft
 	rm test_fft tests/main.swift
