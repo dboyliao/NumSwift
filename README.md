@@ -7,6 +7,11 @@ I personally am a `python` lover. In this project, you can find many of the func
 
 I hope you enjoy this package. Cheers.
 
+# Dependency
+
+- `Accelerate` framework
+- `Foundation` framework
+
 # Testing
 Run `make test-osx` on Mac OSX.
 

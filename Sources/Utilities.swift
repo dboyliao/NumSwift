@@ -1,44 +1,45 @@
-import Foundation
 import Accelerate
 
-let ColorCodes = [
-    "red": 31,
-    "green": 32,
-    "yellow": 33,
-    "blue": 34,
-    "magenta": 35,
-    "cyan": 36,
-    "white": 37 
-]
+func leastPowerOfTwo(N:Int) -> Int {
+    /*
+    Find the least power of two greater than `N`.
+    */ 
 
-func colorPrint(args:AnyObject..., color:String) {
+    let log2N = Int(log2(Double(N)))
+    var NPowTwo = 1 << log2N
 
-    let colorCode = ColorCodes[color]
-
-    if let colorCode = colorCode {
-
-        for arg in args {
-            print("\u{001B}[1;\(colorCode)m\(arg)\u{001B}[0m")
-        }
-
-    } else {
-        colorPrint("==== [\(color)] not supported ===", color:"red")
-        for arg in args {
-            print(arg)
-        }
+    if NPowTwo < N {
+        NPowTwo = NPowTwo << 1
     }
 
+    return NPowTwo
 }
 
-func testAllClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
+func pad(x:[Double], value:Double = 0.0, toLength length: Int) -> [Double] {
 
-    /*
-    Return `true` if x and y are element-wise equal within a tolerance.
+    let result:[Double]
 
-    params:
-        `x`, `y`: double-precision array.
-        `tol`: tolerance. 
-    */
+    if length <= x.count {
+        result = [Double](x)
+    } else {
+        result = [Double](x) + [Double](count:length - x.count, repeatedValue:value)
+    }
+    return result
+}
+
+func pad(x:[Float], value:Float = 0.0, toLength length: Int) -> [Float] {
+
+    let result:[Float]
+
+    if length <= x.count {
+        result = [Float](x)
+    } else {
+        result = [Float](x) + [Float](count:length - x.count, repeatedValue:value)
+    }
+    return result
+}
+
+func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
 
     var inputX = [Double](x)
     var inputY = [Double](y)
@@ -68,15 +69,7 @@ func testAllClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
 
 }
 
-func testAllClose(x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
-
-    /*
-    Return `true` if x and y are element-wise equal within a tolerance.
-
-    params:
-        `x`, `y`: double-precision array.
-        `tol`: tolerance. 
-    */
+func allClose(x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
 
     var inputX = [Float](x)
     var inputY = [Float](y)

@@ -1,3 +1,4 @@
+#!/usr/bin/env swift
 import Accelerate
 
 var N = 6

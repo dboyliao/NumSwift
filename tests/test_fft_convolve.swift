@@ -42,17 +42,20 @@ let answerSameLengthFullD:[Double] = [5, 14, 26, 40, 55, 40, 26, 14, 5]
 let answerSameLengthSameD:[Double] = [26, 40, 55, 40, 26]
 let answerSameLengthValidD:[Double] = [55]
 
-testEqual("Double Same Length Array Full Mode", 
-          test:testDoubleSameLengthFullMode, 
-          expect:answerSameLengthFullD)
+testEqualInTol("Double Same Length Array Full Mode", 
+               test:testDoubleSameLengthFullMode, 
+               expect:answerSameLengthFullD,
+               tol:1e-13)
 
-testEqual("Double Same Length Array Same Mode",
+testEqualInTol("Double Same Length Array Same Mode",
           test:testDoubleSameLengthSameMode,
-          expect:answerSameLengthSameD)
+          expect:answerSameLengthSameD,
+          tol:1e-13)
 
-testEqual("Double Same Length Array Valid Mode",
+testEqualInTol("Double Same Length Array Valid Mode",
           test:testDoubleSameLengthValidMode,
-          expect:answerSameLengthValidD)
+          expect:answerSameLengthValidD,
+          tol:1e-13)
 
 func testDoubleDifferentLengthFullMode() -> [Double]{
 
@@ -94,17 +97,20 @@ let answerDifferentLengthFullD:[Double] = [1, 4, 10, 16, 22, 28, 27, 18]
 let answerDifferentLengthSameD:[Double] = [4, 10, 16, 22, 28, 27]
 let answerDifferentLengthValidD:[Double] = [10, 16, 22, 28]
 
-testEqual("Double Different Length Array Full Mode",
+testEqualInTol("Double Different Length Array Full Mode",
           test: testDoubleDifferentLengthFullMode,
-          expect: answerDifferentLengthFullD)
+          expect: answerDifferentLengthFullD,
+          tol:1e-13)
 
-testEqual("Double Different Length Array Same Mode",
+testEqualInTol("Double Different Length Array Same Mode",
           test: testDoubleDifferentLengthSameMode,
-          expect: answerDifferentLengthSameD)
+          expect: answerDifferentLengthSameD,
+          tol:1e-13)
 
-testEqual("Double Different Length Array Valid Mode",
+testEqualInTol("Double Different Length Array Valid Mode",
          test: testDoubleDifferentLengthValidMode,
-         expect: answerDifferentLengthValidD)
+         expect: answerDifferentLengthValidD,
+         tol:1e-13)
 
 func testSingleElementFullModeD() -> [Double] {
 
@@ -143,16 +149,21 @@ func testSingleElementValidModeD() -> [Double] {
 }
 
 let answerSingleElementD:[Double] = [5]
-testEqual("Double Single Element Array Full Mode",
-          test: testSingleElementFullModeD,
-          expect: answerSingleElementD)
-testEqual("Double Single Element Array Same Mode",
-          test: testSingleElementSameModeD,
-          expect: answerSingleElementD)
 
-testEqual("Double Single Element Array Valid Mode",
+testEqualInTol("Double Single Element Array Full Mode",
+          test: testSingleElementFullModeD,
+          expect: answerSingleElementD,
+          tol:1e-13)
+
+testEqualInTol("Double Single Element Array Same Mode",
+          test: testSingleElementSameModeD,
+          expect: answerSingleElementD,
+          tol:1e-13)
+
+testEqualInTol("Double Single Element Array Valid Mode",
           test: testSingleElementValidModeD,
-          expect: answerSingleElementD)
+          expect: answerSingleElementD,
+          tol:1e-13)
 
 
 func testDoubleBadMode() -> String {
@@ -214,17 +225,20 @@ let answerSameLengthFull:[Float] = [5, 14, 26, 40, 55, 40, 26, 14, 5]
 let answerSameLengthSame:[Float] = [26, 40, 55, 40, 26]
 let answerSameLengthValid:[Float] = [55]
 
-testEqual("Float Same Length Array Full Mode",
-         test: testFloatSameLengthFullMode,
-         expect: answerSameLengthFull)
+testEqualInTol("Float Same Length Array Full Mode",
+               test: testFloatSameLengthFullMode,
+               expect: answerSameLengthFull,
+               tol:1e-5)
 
-testEqual("Float Same Length Array Same Mode",
-         test: testFloatSameLengthSameMode,
-         expect: answerSameLengthSame)
+testEqualInTol("Float Same Length Array Same Mode",
+               test: testFloatSameLengthSameMode,
+               expect: answerSameLengthSame,
+               tol:1e-5)
 
-testEqual("Float Same Length Array Valid Mode",
-         test: testFloatSameLengthValidMode,
-         expect: answerSameLengthValid)
+testEqualInTol("Float Same Length Array Valid Mode",
+               test: testFloatSameLengthValidMode,
+               expect: answerSameLengthValid,
+               tol:1e-5)
 
 func testFloatDifferentLengthFullMode() -> [Float]{
 
@@ -266,17 +280,20 @@ let answerDifferentLengthFull:[Float] = [1, 4, 10, 16, 22, 28, 27, 18]
 let answerDifferentLengthSame:[Float] = [4, 10, 16, 22, 28, 27]
 let answerDifferentLengthValid:[Float] = [10, 16, 22, 28]
 
-testEqual("Float Different Length Array Full Mode",
-          test: testFloatDifferentLengthFullMode,
-          expect: answerDifferentLengthFull)
+testEqualInTol("Float Different Length Array Full Mode",
+                test: testFloatDifferentLengthFullMode,
+                expect: answerDifferentLengthFull,
+                tol:1e-5)
 
-testEqual("Float Different Length Array Same Mode",
-          test: testFloatDifferentLengthSameMode,
-          expect: answerDifferentLengthSame)
+testEqualInTol("Float Different Length Array Same Mode",
+                test: testFloatDifferentLengthSameMode,
+                expect: answerDifferentLengthSame,
+                tol:1e-5)
 
-testEqual("Float Different Length Array Valid Mode",
-          test: testFloatDifferentLengthValidMode,
-          expect: answerDifferentLengthValid)
+testEqualInTol("Float Different Length Array Valid Mode",
+                test: testFloatDifferentLengthValidMode,
+                expect: answerDifferentLengthValid,
+                tol:1e-5)
 
 
 func testSingleElementFullMode() -> [Float] {
@@ -317,17 +334,20 @@ func testSingleElementValidMode() -> [Float] {
 
 let answerSingleElement:[Float] = [5]
 
-testEqual("Float Single Element Array Full Mode",
-          test: testSingleElementFullMode,
-          expect: answerSingleElement)
+testEqualInTol("Float Single Element Array Full Mode",
+              test: testSingleElementFullMode,
+              expect: answerSingleElement,
+              tol:1e-5)
 
-testEqual("Float Single Element Array Same Mode",
-          test: testSingleElementSameMode,
-          expect: answerSingleElement)
+testEqualInTol("Float Single Element Array Same Mode",
+              test: testSingleElementSameMode,
+              expect: answerSingleElement,
+              tol:1e-5)
 
-testEqual("Float Single Element Array Valid Mode",
-          test: testSingleElementValidMode,
-          expect: answerSingleElement)
+testEqualInTol("Float Single Element Array Valid Mode",
+              test: testSingleElementValidMode,
+              expect: answerSingleElement,
+              tol:1e-5)
 
 
 func testFloatBadMode() -> String {

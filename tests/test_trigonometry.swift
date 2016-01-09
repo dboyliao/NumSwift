@@ -52,8 +52,8 @@ func testCosD() -> [Double] {
 let answerCos = generateAnswer(Foundation.cos, count:N)
 let answerCosD = generateAnswerD(Foundation.cos, count:N)
 
-testEqual("Cosine Float", test: testCos, expect: answerCos)
-testEqual("Cosine Double", test: testCosD, expect: answerCosD)
+testEqualInTol("Cosine Float", test: testCos, expect: answerCos, tol:1e-5)
+testEqualInTol("Cosine Double", test: testCosD, expect: answerCosD, tol:1e-13)
 
 // sin
 func testSin() -> [Float] {
@@ -76,8 +76,8 @@ func testSinD() -> [Double] {
 let answerSin = generateAnswer(Foundation.sin, count:N)
 let answerSinD = generateAnswerD(Foundation.sin, count:N)
 
-testEqual("Sin Float", test: testSin, expect: answerSin)
-testEqual("Sin Double", test: testSinD, expect: answerSinD)
+testEqualInTol("Sin Float", test: testSin, expect: answerSin, tol:1e-5)
+testEqualInTol("Sin Double", test: testSinD, expect: answerSinD, tol:1e-13)
 
 // sec
 func sec(x:Float) -> Float {
@@ -107,8 +107,8 @@ func testSecD() -> [Double] {
 let answerSec = generateAnswer(sec, count:N)
 let answerSecD = generateAnswerD(sec, count:N)
 
-testEqual("Secant Float", test: testSec, expect: answerSec)
-testEqual("Secant Double", test: testSecD, expect: answerSecD)
+testEqualInTol("Secant Float", test: testSec, expect: answerSec, tol:1e-5)
+testEqualInTol("Secant Double", test: testSecD, expect: answerSecD, tol:1e-13)
 
 // csc
 func csc(x:Float) -> Float {
@@ -137,8 +137,8 @@ func testCscD() -> [Double] {
 let answerCsc = generateAnswer(csc, count:N)
 let answerCscD = generateAnswerD(csc, count:N)
 
-testEqual("Cosecant Float", test:testCsc, expect:answerSec)
-testEqual("Cosecant Double", test:testCscD, expect:answerSecD)
+testEqualInTol("Cosecant Float", test:testCsc, expect:answerCsc, tol:1e-5)
+testEqualInTol("Cosecant Double", test:testCscD, expect:answerCscD, tol:1e-13)
 
 // tan
 func testTan() -> [Float] {
@@ -159,8 +159,8 @@ func testTanD() -> [Double] {
 let answerTan = generateAnswer(Foundation.tan, count:N)
 let answerTanD = generateAnswerD(Foundation.tan, count:N)
 
-testEqual("Tangent Float", test:testTan, expect:answerTan)
-testEqual("Tangent Double", test:testTanD, expect:answerTanD)
+testEqualInTol("Tangent Float", test:testTan, expect:answerTan, tol:1e-5)
+testEqualInTol("Tangent Double", test:testTanD, expect:answerTanD, tol:1e-13)
 
 // cot
 func testCot() -> [Float] {
@@ -190,5 +190,5 @@ func cot(x:Double) -> Double {
 let answerCot = generateAnswer(cot, count:N)
 let answerCotD = generateAnswerD(cot, count:N)
 
-testEqual("Test Cotangent Float", test:testCot, expect:answerCot)
-testEqual("Test Cotangent Double", test:testCotD, expect:answerCotD)
+testEqualInTol("Test Cotangent Float", test:testCot, expect:answerCot, tol:1e-5)
+testEqualInTol("Test Cotangent Double", test:testCotD, expect:answerCotD, tol:1e-13)
