@@ -1,23 +1,154 @@
-let a = Complex(real:1.0, imag:2.0)
-let b = Complex(real:1.0, imag:2.0)
-let c = a + b
+import Accelerate
 
-func testRealPart() -> Double {
+colorPrint("===== tests on DSPComplex arithmetic====\n", color:"yellow")
+
+var af = DSPComplex(real:1, imag:2)
+var bf = DSPComplex(real:3, imag:4)
+
+// +
+func testPlusFloatReal() -> Float {
+
+    let c = af + bf
 
     return c.real
-
 }
 
-func testImagPart() -> Double {
+func testPlusFloatImag() -> Float {
+
+    let c = af + bf
 
     return c.imag
 }
 
-func main(){
-    // Testing Complex number
-    testEqual("Test Addition on Real Part", test:testRealPart, expect:2.0)
-    testEqual("Test Addition on Imag Part", test:testImagPart, expect:4.0)
+// -
+func testMinusFloatReal() -> Float {
 
+    let c = af - bf
+
+    return c.real
 }
 
-main()
+func testMinusFloatImag() -> Float {
+
+    let c = af - bf
+
+    return c.imag
+}
+
+// *
+func testMulFloatReal() -> Float {
+
+    let c = af*bf
+
+    return c.real
+}
+
+func testMulFloatImag() -> Float {
+
+    let c = af*bf
+
+    return c.imag
+}
+
+// /
+func testDivFloatReal() -> Float {
+
+    let c = af/bf
+
+    return c.real
+}
+
+func testDivFloatImag() -> Float {
+    let c = af/bf
+
+    return c.imag
+}
+
+// Testing Complex number
+testEqual("Float: Test Addition on Real Part", test:testPlusFloatReal, expect:4.0)
+testEqual("Float: Test Addition on Imag Part", test:testPlusFloatImag, expect:6.0)
+
+testEqual("Float: Test Minus on Real Part", test:testMinusFloatReal, expect:-2.0)
+testEqual("Float: Test Minus on Imag Part", test:testMinusFloatReal, expect:-2.0)
+
+testEqual("Float: Test Multiplication on Real Part", test:testMulFloatReal, expect:-5.0)
+testEqual("Float: Test Multiplication on Imag Part", test:testMulFloatImag, expect:10.0)
+
+testEqual("Float: Test Division on Real Part", test:testDivFloatReal, expect:0.44)
+testEqual("Float: Test Division on Imag Part", test:testDivFloatImag, expect:0.08)
+
+colorPrint("===== tests on DSPDoubleComplex arithmetic====\n", color:"yellow")
+
+let ad = DSPDoubleComplex(real:1, imag:2)
+let bd = DSPDoubleComplex(real:3, imag:4)
+
+func testPlusDoubleReal() -> Double {
+
+    let c = ad + bd
+
+    return c.real
+}
+
+func testPlusDoubleImag() -> Double {
+
+    let c = ad + bd
+
+    return c.imag
+}
+
+// -
+func testMinusDoubleReal() -> Double {
+
+    let c = ad - bd
+
+    return c.real
+}
+
+func testMinusDoubleImag() -> Double {
+
+    let c = ad - bd
+
+    return c.imag
+}
+
+// *
+func testMulDoubleReal() -> Double {
+
+    let c = ad*bd
+
+    return c.real
+}
+
+func testMulDoubleImag() -> Double {
+
+    let c = ad*bd
+
+    return c.imag
+}
+
+// /
+func testDivDoubleReal() -> Double {
+
+    let c = ad/bd
+
+    return c.real
+}
+
+func testDivDoubleImag() -> Double {
+    let c = ad/bd
+
+    return c.imag
+}
+
+// Testing Complex number
+testEqual("Double: Test Addition on Real Part", test:testPlusDoubleReal, expect:4.0)
+testEqual("Double: Test Addition on Imag Part", test:testPlusDoubleImag, expect:6.0)
+
+testEqual("Double: Test Minus on Real Part", test:testMinusDoubleReal, expect:-2.0)
+testEqual("Double: Test Minus on Imag Part", test:testMinusDoubleReal, expect:-2.0)
+
+testEqual("Double: Test Multiplication on Real Part", test:testMulDoubleReal, expect:-5.0)
+testEqual("Double: Test Multiplication on Imag Part", test:testMulDoubleImag, expect:10.0)
+
+testEqual("Double: Test Division on Real Part", test:testDivDoubleReal, expect:0.44)
+testEqual("Double: Test Division on Imag Part", test:testDivDoubleImag, expect:0.08)

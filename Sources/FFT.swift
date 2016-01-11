@@ -1,6 +1,6 @@
 import Accelerate
 
-func fft(realp:[Double], imagp: [Double]) -> ([Double], [Double]) {
+func fft(realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Double]) {
 
     /*
     Complex-to-Complex Fast Fourier Transform.
@@ -26,10 +26,10 @@ func fft(realp:[Double], imagp: [Double]) -> ([Double], [Double]) {
     // destroy setup.
     vDSP_DFT_DestroySetupD(setup)
 
-    return (realp: fftCoefRealp, imagp: fftCoefImagp)
+    return (fftCoefRealp, fftCoefImagp)
 }
 
-func fft(realp:[Float], imagp:[Float]) -> ([Float], [Float]){
+func fft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
 
     /*
     Complex-to-Complex Fast Fourier Transform.
@@ -54,12 +54,12 @@ func fft(realp:[Float], imagp:[Float]) -> ([Float], [Float]){
     // destroy setup.
     vDSP_DFT_DestroySetup(setup)
 
-    return (realp: fftCoefRealp, imagp: fftCoefImagp)
+    return (fftCoefRealp, fftCoefImagp)
 
 }
 
 // TODOs:
-func ifft(realp:[Double], imagp:[Double]) -> ([Double], [Double]){
+func ifft(realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Double]){
     /*
     Complex-to-Complex Inverse Fast Fourier Transform.
     */
@@ -92,10 +92,10 @@ func ifft(realp:[Double], imagp:[Double]) -> ([Double], [Double]){
     // destroy setup.
     vDSP_DFT_DestroySetupD(setup)
 
-    return (realp: normalizedOutputRealp, imagp:normalizedOutputImagp)
+    return (normalizedOutputRealp, normalizedOutputImagp)
 }
 
-func ifft(realp:[Float], imagp:[Float]) -> ([Float], [Float]){
+func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
     /*
     Complex-to-Complex Inverse Fast Fourier Transform.
     */
@@ -133,5 +133,5 @@ func ifft(realp:[Float], imagp:[Float]) -> ([Float], [Float]){
     vDSP_vsdiv(&outputRealp, 1, &scale, &normalizedOutputRealp, 1, vDSP_Length(fftN))
     vDSP_vsdiv(&outputImagp, 1, &scale, &normalizedOutputImagp, 1, vDSP_Length(fftN))
 
-    return (realp: normalizedOutputRealp, imagp:normalizedOutputImagp)
+    return (normalizedOutputRealp, normalizedOutputImagp)
 }

@@ -1,6 +1,23 @@
 import Foundation
 
-func equal<T:Equatable>(label: String, test: () -> T, expect:T) throws {
+func execute_test<T:Equatable>(label: String, test:() -> T) -> T {
+    
+    NSLog("%@", label)
+
+    let start = NSDate()
+
+    defer {
+        let end = NSDate()
+        let duration = end.timeIntervalSinceDate(start)
+        NSLog("%@ takes %5.3g seconds.", label, duration)
+    }
+
+    let result = test()
+
+    return result
+}
+
+func execute_test<T:Equatable>(label: String, test:() -> [T]) -> [T] {
 
     NSLog("%@", label)
 
@@ -13,6 +30,13 @@ func equal<T:Equatable>(label: String, test: () -> T, expect:T) throws {
     }
 
     let result = test()
+
+    return result
+}
+
+func equal<T:Equatable>(label: String, test: () -> T, expect:T) throws {
+
+    let result = execute_test(label, test:test)
 
     if result != expect {
         throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
@@ -24,17 +48,7 @@ func equal<T:Equatable>(label: String, test: () -> T, expect:T) throws {
 
 func equal<T:Equatable>(label: String, test: () -> [T], expect:[T]) throws {
 
-    NSLog("%@", label)
-
-    let start = NSDate()
-
-    defer {
-        let end = NSDate()
-        let duration = end.timeIntervalSinceDate(start)
-        NSLog("%@ takes %5.3g seconds.", label, duration)
-    }
-
-    let result = test()
+    let result = execute_test(label, test:test)
 
     if result.count != expect.count {
         throw TestingError.LengthError(message:"Array length do not match.")
@@ -94,17 +108,7 @@ func testEqual<T:Equatable>(label: String, test:() -> [T], expect: [T]) {
 
 func equalInTol(label: String, test:() -> [Double], expect: [Double], tol:Double) throws {
 
-    NSLog("%@", label)
-
-    let start = NSDate()
-
-    defer {
-        let end = NSDate()
-        let duration = end.timeIntervalSinceDate(start)
-        NSLog("%@ takes %5.3g seconds.", label, duration)
-    }
-
-    let result = test()
+    let result = execute_test(label, test:test)
 
     if result.count != expect.count {
         throw TestingError.LengthError(message:"Array length do not match.")
@@ -146,17 +150,7 @@ func testEqualInTol(label: String, test:() -> [Double], expect: [Double], tol: D
 
 func equalInTol(label: String, test:() -> [Float], expect: [Float], tol:Float) throws {
 
-    NSLog("%@", label)
-
-    let start = NSDate()
-
-    defer {
-        let end = NSDate()
-        let duration = end.timeIntervalSinceDate(start)
-        NSLog("%@ takes %5.3g seconds.", label, duration)
-    }
-
-    let result = test()
+    let result = execute_test(label, test:test)
 
     if result.count != expect.count {
         throw TestingError.LengthError(message:"Array length do not match.")

@@ -2,32 +2,33 @@ import Foundation
 import Accelerate
 
 let ColorCodes = [
-    "red": 31,
-    "green": 32,
-    "yellow": 33,
-    "blue": 34,
-    "magenta": 35,
-    "cyan": 36,
-    "white": 37 
+    "black": "1;30",
+    "red": "1;31",
+    "green": "1;32",
+    "yellow": "1;33",
+    "blue": "1;34",
+    "magenta": "1;35",
+    "cyan": "1;36",
+    "white": "1;37" 
 ]
 
 func colorPrint(args:AnyObject..., color:String) {
 
-    let colorCode = ColorCodes[color]
+    switch color {
 
-    if let colorCode = colorCode {
+        case "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white":
 
-        for arg in args {
-            print("\u{001B}[1;\(colorCode)m\(arg)\u{001B}[0m")
-        }
+            let colorCode = ColorCodes[color]!
 
-    } else {
-        colorPrint("==== [\(color)] not supported ===", color:"red")
-        for arg in args {
-            print(arg)
-        }
+            for arg in args {
+                print("\u{001B}[\(colorCode)m\(arg)\u{001B}[0m")
+            }
+
+        default:
+            for arg in args {
+                print(arg)
+            }
     }
-
 }
 
 func testAllClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
