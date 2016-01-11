@@ -4,6 +4,7 @@ test-osx:
 	make test-fft-osx
 	make test-convolve-osx
 	make test-fft-convolve-osx
+	make test-hilbert-osx
 
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
@@ -39,3 +40,10 @@ test-fft-convolve-osx:
 	echo 'Running test on FFT-Convolution.'
 	./test_fft_convolve
 	rm test_fft_convolve tests/main.swift
+
+test-hilbert-osx:
+	cp tests/test_hilbert.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Signal/Hilbert.swift Sources/Utilities.swift Sources/FFT.swift -o test_hilbert
+	echo 'Running test on Hilber Transform.'
+	./test_hilbert
+	rm test_hilbert tests/main.swift

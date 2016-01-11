@@ -1,6 +1,7 @@
 
 let N: Int = 16
 
+// Tests for FFT (float signal)
 colorPrint("======== Test on FFT Float =======", color:"yellow")
 
 var sigf = [Float](count:N, repeatedValue:0.0)
@@ -11,7 +12,8 @@ for i in 0..<N {
 }
 
 func testFFTRealpFloat() -> [Float] {
-    let (coeff_realp, _) = fft(sigf, imagp:zerosf)
+    let coeff = fft(sigf, imagp:zerosf)
+    let coeff_realp = coeff.realp
     return coeff_realp
 }
 
@@ -31,7 +33,7 @@ let answerCoefFloatImagp:[Float] = [0, 40.218715, 19.313708, 11.972846,
 testEqualInTol("FFT Float Real Part", test:testFFTRealpFloat, expect:answerCoefFloatRealp, tol:1e-5)
 testEqualInTol("FFT Float Imag Part", test:testFFTImagpFloat, expect:answerCoefFloatImagp, tol:1e-5)
 
-
+// Tests for inverse FFT (float signal)
 colorPrint("======== Test on Inverse FFT Float =======", color:"yellow")
 
 let (coeff_realp, coeff_imagp) = fft(sigf, imagp:zerosf)
@@ -53,6 +55,8 @@ func testInverseFFTImagpFloat() -> [Float] {
 testEqualInTol("Test iFFT Float Realp", test:testInverseFFTRealpFloat, expect:sigf, tol:1e-6)
 testEqualInTol("Test iFFT Float Imagp", test:testInverseFFTImagpFloat, expect:zerosf, tol:1e-6)
 
+
+// Tests for FFT (Double Signal)
 colorPrint("======== Test on FFT Double =======", color:"yellow")
 
 var sigd = [Double](count:N, repeatedValue:0.0)
@@ -86,6 +90,7 @@ let answerCoefDoubleImagp:[Double] = [0, 40.218715937, 19.313708499, 11.97284610
 testEqualInTol("Test FFT Double Realp", test:testFFTRealpDouble, expect:answerCoefDoubleRealp, tol:1e-9)
 testEqualInTol("Test FFT Double Imagp", test:testFFTImagpDouble, expect:answerCoefDoubleImagp, tol:1e-9)
 
+// Tests for inverse FFT (Double signal)
 colorPrint("======== Test on Inverse FFT Double =======", color:"yellow")
 
 let (coefd_realp, coefd_imagp) = fft(sigd, imagp:zerosd)
