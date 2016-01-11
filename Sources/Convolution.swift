@@ -1,7 +1,7 @@
 import Accelerate
 import Foundation
 
-func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double]? {
+func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
 
     var longArray:[Double]
     var shortArray:[Double]
@@ -33,41 +33,31 @@ func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double]? {
     vDSP_convD(ptr_longArrayFirstElement, 1, ptr_shortArrayLastElement, -1, 
                ptr_output, 1, vDSP_Length(convN), vDSP_Length(M))
 
-    let finalOutput:[Double]?
+    let finalOutput:[Double]
 
-    if mode == "full" {
+    switch (mode) {
 
-        finalOutput = output
+        case "same":
+            let numOfResultToBeRemoved = convN - N
+            let toBeRemovedHalf = numOfResultToBeRemoved / 2
 
-    } else if mode == "same" {
+            if numOfResultToBeRemoved % 2 == 0 {
+                finalOutput = [Double](output[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
+            } else {
+                finalOutput = [Double](output[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
+            }
 
-        let numOfResultToBeRemoved = convN - N
-        let toBeRemovedHalf = numOfResultToBeRemoved / 2
+        case "valid":
+            finalOutput = [Double](output[(M-1)..<(convN-M+1)])
 
-        if numOfResultToBeRemoved % 2 == 0 {
-
-            finalOutput = [Double](output[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
-        
-        } else {
-
-            finalOutput = [Double](output[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
-        
-        }
-
-    } else if mode == "valid" {
-
-        finalOutput = [Double](output[(M-1)..<(convN-M+1)])
-
-    } else {
-
-        finalOutput = nil
-
+        default:
+            finalOutput = output
     }
 
     return finalOutput
 }
 
-func convolve(x:[Float], y:[Float], mode: String = "full") -> [Float]? {
+func convolve(x:[Float], y:[Float], mode: String = "full") -> [Float] {
 
     var longArray:[Float]
     var shortArray:[Float]
@@ -99,41 +89,32 @@ func convolve(x:[Float], y:[Float], mode: String = "full") -> [Float]? {
     vDSP_conv(ptr_longArrayFirstElement, 1, ptr_shortArrayLastElement, -1, 
                ptr_output, 1, vDSP_Length(convN), vDSP_Length(M))
 
-    let finalOutput:[Float]?
+    let finalOutput:[Float]
 
-    if mode == "full" {
+    switch (mode) {
 
-        finalOutput = output
+        case "same":
+            let numOfResultToBeRemoved = convN - N
+            let toBeRemovedHalf = numOfResultToBeRemoved / 2
 
-    } else if mode == "same" {
+            if numOfResultToBeRemoved % 2 == 0 {
+                finalOutput = [Float](output[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
+            } else {
+                finalOutput = [Float](output[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
+            }
 
-        let numOfResultToBeRemoved = convN - N
-        let toBeRemovedHalf = numOfResultToBeRemoved / 2
+        case "valid":
+            finalOutput = [Float](output[(M-1)..<(convN-M+1)])
 
-        if numOfResultToBeRemoved % 2 == 0 {
-
-            finalOutput = [Float](output[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
-        
-        } else {
-
-            finalOutput = [Float](output[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
-        
-        }
-    } else if mode == "valid" {
-        
-        finalOutput = [Float](output[(M-1)..<(convN-M+1)])
-
-    } else {
-
-        finalOutput = nil
-
+        default:
+            finalOutput = output
     }
 
     return finalOutput
 
 }
 
-func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double]? {
+func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
 
     var longArray:[Double]
     var shortArray:[Double]
@@ -186,40 +167,35 @@ func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double]? {
     convResult = [Double](convResult[0..<convN])
     
     // ======== modify the result according mode before return =======
-    let finalResult:[Double]?
+    let finalResult:[Double]
 
-    if mode == "full" {
+    switch mode {
 
-        finalResult = convResult
+        case "same":
+            let numOfResultToBeRemoved = convN - N
+            let toBeRemovedHalf = numOfResultToBeRemoved / 2
 
-    } else if mode == "same" {
+            if numOfResultToBeRemoved % 2 == 0 {
 
-        let numOfResultToBeRemoved = convN - N
-        let toBeRemovedHalf = numOfResultToBeRemoved / 2
+                finalResult = [Double](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
+            
+            } else {
 
-        if numOfResultToBeRemoved % 2 == 0 {
+                finalResult = [Double](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
+            
+            }
 
-            finalResult = [Double](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
-        
-        } else {
+        case "valid":
+            finalResult = [Double](convResult[(M-1)..<(convN-M+1)])
 
-            finalResult = [Double](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
-        
-        }
-    } else if mode == "valid" {
-        
-        finalResult = [Double](convResult[(M-1)..<(convN-M+1)])
-
-    } else {
-
-        finalResult = nil
-
+        default:
+            finalResult = convResult
     }
 
     return finalResult
 }
 
-func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float]? {
+func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float] {
 
     var longArray:[Float]
     var shortArray:[Float]
@@ -272,34 +248,29 @@ func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float]? {
     convResult = [Float](convResult[0..<convN])
     
     // ======== modify the result according mode before return =======
-    let finalResult:[Float]?
+    let finalResult:[Float]
 
-    if mode == "full" {
+    switch mode {
 
-        finalResult = convResult
+        case "same":
+            let numOfResultToBeRemoved = convN - N
+            let toBeRemovedHalf = numOfResultToBeRemoved / 2
 
-    } else if mode == "same" {
+            if numOfResultToBeRemoved % 2 == 0 {
 
-        let numOfResultToBeRemoved = convN - N
-        let toBeRemovedHalf = numOfResultToBeRemoved / 2
+                finalResult = [Float](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
+            
+            } else {
 
-        if numOfResultToBeRemoved % 2 == 0 {
+                finalResult = [Float](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
+            
+            }
 
-            finalResult = [Float](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf)])
-        
-        } else {
+        case "valid":
+            finalResult = [Float](convResult[(M-1)..<(convN-M+1)])
 
-            finalResult = [Float](convResult[toBeRemovedHalf..<(convN-toBeRemovedHalf-1)])
-        
-        }
-    } else if mode == "valid" {
-        
-        finalResult = [Float](convResult[(M-1)..<(convN-M+1)])
-
-    } else {
-
-        finalResult = nil
-
+        default:
+            finalResult = convResult
     }
 
     return finalResult

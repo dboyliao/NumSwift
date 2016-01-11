@@ -1,4 +1,6 @@
 
+colorPrint("======== Double Array Tests Start ========", color: "yellow")
+
 func testDoubleSameLengthFullMode() -> [Double] {
 
     let xd:[Double] = [1, 2, 3, 4, 5]
@@ -7,7 +9,7 @@ func testDoubleSameLengthFullMode() -> [Double] {
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd)!
+    return convolve(xd, y:yd)
 
 }
 
@@ -19,7 +21,7 @@ func testDoubleSameLengthSameMode() -> [Double] {
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd, mode:"same")!
+    return convolve(xd, y:yd, mode:"same")
 
 }
 
@@ -32,11 +34,9 @@ func testDoubleSameLengthValidMode() -> [Double] {
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd, mode:"valid")!
+    return convolve(xd, y:yd, mode:"valid")
 
 }
-
-colorPrint("======== Double Array Tests Start ========", color: "yellow")
 
 let answerSameLengthFullD:[Double] = [5, 14, 26, 40, 55, 40, 26, 14, 5]
 let answerSameLengthSameD:[Double] = [26, 40, 55, 40, 26]
@@ -63,7 +63,7 @@ func testDoubleDifferentLengthFullMode() -> [Double]{
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd)!
+    return convolve(xd, y:yd)
 }
 
 func testDoubleDifferentLengthSameMode() -> [Double]{
@@ -75,7 +75,7 @@ func testDoubleDifferentLengthSameMode() -> [Double]{
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd, mode:"same")!
+    return convolve(xd, y:yd, mode:"same")
 }
 
 func testDoubleDifferentLengthValidMode() -> [Double]{
@@ -87,7 +87,7 @@ func testDoubleDifferentLengthValidMode() -> [Double]{
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd, mode:"valid")!
+    return convolve(xd, y:yd, mode:"valid")
 }
 
 let answerDifferentLengthFullD:[Double] = [1, 4, 10, 16, 22, 28, 27, 18]
@@ -115,7 +115,7 @@ func testSingleElementFullModeD() -> [Double] {
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd)!
+    return convolve(xd, y:yd)
 }
 
 func testSingleElementSameModeD() -> [Double] {
@@ -127,7 +127,7 @@ func testSingleElementSameModeD() -> [Double] {
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd, mode:"same")!
+    return convolve(xd, y:yd, mode:"same")
 }
 
 func testSingleElementValidModeD() -> [Double] {
@@ -139,7 +139,7 @@ func testSingleElementValidModeD() -> [Double] {
     print("xd: \(xd)")
     print("yd: \(yd)")
 
-    return convolve(xd, y:yd, mode:"valid")!
+    return convolve(xd, y:yd, mode:"valid")
 }
 
 let answerSingleElementD:[Double] = [5]
@@ -155,22 +155,22 @@ testEqual("Double Single Element Array Valid Mode",
           expect: answerSingleElementD)
 
 
-func testDoubleBadMode() -> String {
+func testDoubleBadMode() -> [Double] {
 
     let xd:[Double] = [1, 2, 3]
     let yd:[Double] = [1, 2]
 
-    if let _ = convolve(xd, y:yd, mode:"bad mode") {
-        return "sucess!?"
-    } else {
-        return "nil"
-    }
+    return convolve(xd, y:yd, mode:"bad mode")
 }
+
+let answerBadModeDouble:[Double] = [1, 4, 7, 6]
 
 testEqual("Double Bad Mode",
           test: testDoubleBadMode,
-          expect: "nil")
+          expect: answerBadModeDouble)
 
+
+colorPrint("======== Float Array Tests Start ========", color: "yellow")
 
 func testFloatSameLengthFullMode() -> [Float] {
 
@@ -181,7 +181,7 @@ func testFloatSameLengthFullMode() -> [Float] {
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf)!
+    return convolve(xf, y:yf)
 }
 
 func testFloatSameLengthSameMode() -> [Float] {
@@ -193,7 +193,7 @@ func testFloatSameLengthSameMode() -> [Float] {
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf, mode:"same")!
+    return convolve(xf, y:yf, mode:"same")
 }
 
 func testFloatSameLengthValidMode() -> [Float] {
@@ -205,10 +205,9 @@ func testFloatSameLengthValidMode() -> [Float] {
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf, mode:"valid")!
+    return convolve(xf, y:yf, mode:"valid")
 }
 
-colorPrint("======== Float Array Tests Start ========", color: "yellow")
 
 let answerSameLengthFull:[Float] = [5, 14, 26, 40, 55, 40, 26, 14, 5]
 let answerSameLengthSame:[Float] = [26, 40, 55, 40, 26]
@@ -235,7 +234,7 @@ func testFloatDifferentLengthFullMode() -> [Float]{
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf)!
+    return convolve(xf, y:yf)
 }
 
 func testFloatDifferentLengthSameMode() -> [Float]{
@@ -247,7 +246,7 @@ func testFloatDifferentLengthSameMode() -> [Float]{
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf, mode:"same")!
+    return convolve(xf, y:yf, mode:"same")
 }
 
 func testFloatDifferentLengthValidMode() -> [Float]{
@@ -259,7 +258,7 @@ func testFloatDifferentLengthValidMode() -> [Float]{
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf, mode:"valid")!
+    return convolve(xf, y:yf, mode:"valid")
 }
 
 let answerDifferentLengthFull:[Float] = [1, 4, 10, 16, 22, 28, 27, 18]
@@ -288,7 +287,7 @@ func testSingleElementFullMode() -> [Float] {
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf)!
+    return convolve(xf, y:yf)
 }
 
 func testSingleElementSameMode() -> [Float] {
@@ -300,7 +299,7 @@ func testSingleElementSameMode() -> [Float] {
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf, mode:"same")!
+    return convolve(xf, y:yf, mode:"same")
 }
 
 func testSingleElementValidMode() -> [Float] {
@@ -312,7 +311,7 @@ func testSingleElementValidMode() -> [Float] {
     print("xf: \(xf)")
     print("yf: \(yf)")
 
-    return convolve(xf, y:yf, mode:"valid")!
+    return convolve(xf, y:yf, mode:"valid")
 }
 
 let answerSingleElement:[Float] = [5]
@@ -330,18 +329,17 @@ testEqual("Float Single Element Array Valid Mode",
           expect: answerSingleElement)
 
 
-func testFloatBadMode() -> String {
+func testFloatBadMode() -> [Float] {
 
     let xd:[Float] = [1, 2, 3]
     let yd:[Float] = [1, 2]
 
-    if let _ = convolve(xd, y:yd, mode:"bad mode") {
-        return "sucess!?"
-    } else {
-        return "nil"
-    }
+    return convolve(xd, y:yd, mode:"bad mode")
 }
+
+let answerBadModeFloat:[Float] = [1, 4, 7, 6]
 
 testEqual("Float Bad Mode",
           test: testFloatBadMode,
-          expect: "nil")
+          expect: answerBadModeFloat)
+
