@@ -3,7 +3,7 @@
 This project is just a simple practice on Swift and Accelerate framework.
 The swift files contain some basic function used in numeric computation. The main functionality is build upon Accelearate framework which leaverages SIMD of the CPU, which make the codes run faster than native Swift code.
 
-I personally am a `python` lover. In this project, you can find many of the functions mimic the API from `numpy` which is a popular package for scientific computation.
+I am a big fan of `python`. In this project, you can find many of the functions mimic the API from `numpy` which is a popular package for scientific computation.
 
 I hope you enjoy this package. Cheers.
 
@@ -14,6 +14,10 @@ I hope you enjoy this package. Cheers.
 
 # Testing
 Run `make test-osx` on Mac OSX.
+
+# Examples
+
+Go to `Examples` for more example codes.
 
 # References
 
