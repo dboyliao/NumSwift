@@ -22,17 +22,10 @@ test-trigonometry-osx:
 
 test-fft-osx:
 	cp tests/test_fft.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/SwiftTest/*.swift tests/main.swift Sources/FFT.swift -o test_fft
+	xcrun -sdk macosx swiftc tests/SwiftTest/*.swift tests/main.swift Sources/Utilities.swift Sources/FFT.swift -o test_fft
 	echo 'Running test on FFT.'
 	./test_fft
 	rm test_fft tests/main.swift
-
-test-convolve-osx:
-	cp tests/test_convolve.swift tests/main.swift
-	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/FFT.swift Sources/Convolution.swift -o test_convolve
-	echo 'Running test on Convolution.'
-	./test_convolve
-	rm test_convolve tests/main.swift
 
 test-fft-convolve-osx:
 	cp tests/test_fft_convolve.swift tests/main.swift
@@ -47,3 +40,40 @@ test-hilbert-osx:
 	echo 'Running test on Hilber Transform.'
 	./test_hilbert
 	rm test_hilbert tests/main.swift
+
+test-convolve-osx:
+	cp tests/test_convolve.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/Convolution.swift -o test_convolve
+	echo 'Running test on Convolution.'
+	./test_convolve
+	rm test_convolve tests/main.swift
+
+performance:
+	make performance-fft
+	make performance-fft-convolve
+	make performance-hilbert
+	make performance-convolve
+
+performance-fft:
+	cp tests/performance_fft.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/FFT.swift -o performance-fft
+	./performance-fft
+	rm performance-fft tests/main.swift
+
+performance-fft-convolve:
+	cp tests/performance_fft_convolve.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/FFT.swift -o performance-fft-convolve
+	./performance-fft-convolve
+	rm performance-fft-convolve tests/main.swift
+
+performance-hilbert:
+	cp tests/performance_hilbert.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/FFT.swift Sources/Signal/Hilbert.swift -o performance_hilbert
+	./performance_hilbert
+	rm performance_hilbert tests/main.swift
+
+performance-convolve:
+	cp tests/performance_convolve.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Convolution.swift -o performance-convolve
+	./performance-convolve
+	rm performance-convolve tests/main.swift
