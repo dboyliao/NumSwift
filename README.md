@@ -30,6 +30,7 @@ Go to `Examples` for more example codes.
 - [DFT v.s FFT](https://forums.developer.apple.com/thread/23321)
 - [vDSP Guide - DFT](https://developer.apple.com/library/ios/documentation/Performance/Conceptual/vDSP_Programming_Guide/USingDFTFunctions/USingDFTFunctions.html#//apple_ref/doc/uid/TP40005147-CH4-SW1)
     + That is why we use `vDSP_DFT_XXX` rather than `vDSP_fft_XXX`.
+    + The header file which states you should prefer `DFT` over `fft` is located in `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Kernel.framework/Versions/Current/Headers/vecLib` on my computer. Go see it for yourself. 
 
 # Licence
 

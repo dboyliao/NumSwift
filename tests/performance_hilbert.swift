@@ -1,7 +1,7 @@
 import Foundation
 
-var N = Int(1 << 19) // input size
-let repeatTime = 1000
+var N = Int(1 << 23) // input size
+let repeatTime = 10
 
 colorPrint("==== Start Python Hilbert Transform Performace Test ===", color:"blue")
 system("python3 tests/hilbert_scipy.py \(N) \(repeatTime)")

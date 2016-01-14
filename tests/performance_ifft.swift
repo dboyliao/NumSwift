@@ -1,28 +1,19 @@
 import Foundation
 
-let M = 1000001 // input size
-let N = 48576  // input size
-let repeatTime = 500
+var N = Int(1 << 22) // input size
+let repeatTime = 5
 
-colorPrint("M: \(M)", color:"white")
-colorPrint("N: \(N)", color:"white")
-colorPrint("repeatTime: \(repeatTime)", color:"white")
+colorPrint("==== Start Python Inverse FFT Performace Test ===", color:"blue")
+system("python3 tests/ifft_scipy.py \(N) \(repeatTime)")
 
-colorPrint("==== Start Python FFT Convolution performace Test ===", color:"blue")
-system("python3 tests/fftconvolve_scipy.py \(M) \(N) \(repeatTime)")
+colorPrint("\n==== Start Swift Inverse FFT Performance Test ===", color:"blue")
 
-colorPrint("\n==== Start Swift FFt Convolution Performance Test ===", color:"blue")
+var sig = [Double](count:N, repeatedValue:0.0)
+let zeros = [Double](sig)
 
-var x = [Double](count:M, repeatedValue:0.0)
-var y = [Double](count:N, repeatedValue:0.0)
-
-// initialize x and y.
-for i in 0..<M {
-    x[i] = Double(i+1)
-}
-
+// initialize sig.
 for i in 0..<N {
-    y[i] = Double(N+1)
+    sig[i] = Double(i+1)
 }
 
 var durations = [Double]()
@@ -32,7 +23,7 @@ var end:NSDate
 for _ in 0..<repeatTime {
 
     start = NSDate()
-    fft_convolve(x, y:y)
+    ifft(sig, imagp:zeros)
     end = NSDate()
 
     durations.append(Double(end.timeIntervalSinceDate(start)))
@@ -52,7 +43,8 @@ let mean = durations.reduce(0.0) {
 let std = standardDeviation(durations)
 
 
-print("input size: \nx:\(M)\ny:\(N)")
+print("input size: \(N)")
 colorPrint("best of \(repeatTime): \(durations.minElement()!) secs.", color:"cyan")
 colorPrint("mean time: \(mean)", color:"magenta")
 colorPrint("std: \(std)", color:"magenta")
+

@@ -27,6 +27,7 @@ test-fft-osx:
 	./test_fft
 	rm test_fft tests/main.swift
 
+
 test-fft-convolve-osx:
 	cp tests/test_fft_convolve.swift tests/main.swift
 	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/Convolution.swift Sources/FFT.swift -o test_fft_convolve
@@ -59,6 +60,12 @@ performance-fft:
 	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/FFT.swift -o performance-fft
 	./performance-fft
 	rm performance-fft tests/main.swift
+
+performance-ifft:
+	cp tests/performance_ifft.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift Sources/FFT.swift -o performance-ifft
+	./performance-ifft
+	rm performance-ifft tests/main.swift
 
 performance-fft-convolve:
 	cp tests/performance_fft_convolve.swift tests/main.swift

@@ -1,7 +1,7 @@
 #!/usr/bin/env swift
 import Accelerate
 
-var sigN = 17
+var sigN = 16
 var sigf = [Float](count: sigN, repeatedValue: 0.0)
 var sigd = [Double](count: sigN, repeatedValue: 0.0)
 
@@ -15,8 +15,8 @@ print("sigd: \(sigd)")
 print("=== using vDSP_fft_zipD ===")
 
 // Reusable setup
-var N = Float(sigd.count)
-var log2N = vDSP_Length(ceil(log2(N)))
+var N = sigd.count
+var log2N = vDSP_Length(floor(log2(Float(N))))
 print(log2N)
 var radix = FFTRadix(kFFTRadix2)
 var setup = vDSP_create_fftsetupD(log2N, radix)
@@ -28,25 +28,25 @@ var splitComplex = DSPDoubleSplitComplex(realp:&realp, imagp:&imagp)
 
 vDSP_fft_zipD(setup, &splitComplex, 1, log2N, forward)
 
-for i in 0..<N/2{
+for i in 0..<N{
     print(splitComplex.realp[i], splitComplex.imagp[i])
 }
 
-// vDSP_destroy_fftsetupD(setup)
+vDSP_destroy_fftsetupD(setup)
 
-// print("=== using vDSP_fft_zip ===")
-// var setupf = vDSP_create_fftsetup(log2N, radix)
+print("=== using vDSP_fft_zip ===")
+var setupf = vDSP_create_fftsetup(log2N, radix)
 
-// var realpf = [Float](sigf)
-// var imagpf = [Float](count: sigf.count, repeatedValue:0.0)
-// var splitComplexf = DSPSplitComplex(realp: &realpf, imagp: &imagpf)
+var realpf = [Float](sigf)
+var imagpf = [Float](count: sigf.count, repeatedValue:0.0)
+var splitComplexf = DSPSplitComplex(realp: &realpf, imagp: &imagpf)
 
-// vDSP_fft_zip(setupf, &splitComplexf, 1, log2N, forward)
-// vDSP_destroy_fftsetup(setupf)
+vDSP_fft_zip(setupf, &splitComplexf, 1, log2N, forward)
+vDSP_destroy_fftsetup(setupf)
 
-// for i in 0..<sigN{
-//     print(splitComplexf.realp[i], splitComplexf.imagp[i])
-// }
+for i in 0..<N{
+    print(splitComplexf.realp[i], splitComplexf.imagp[i])
+}
 
 
 // func getEvenOddArray<T>(array:[T]) -> ([T], [T]){
