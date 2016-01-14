@@ -15,6 +15,27 @@ func leastPowerOfTwo(N:Int) -> Int {
     return NPowTwo
 }
 
+func abs(x:[Double]) -> [Double] {
+
+    var input = [Double](x)
+    var output = [Double](count:x.count, repeatedValue:0.0)
+
+    vDSP_vabsD(&input, 1, &output, 1, vDSP_Length(x.count))
+
+    return output
+}
+
+func abs(x:[Float]) -> [Float] {
+
+    var input = [Float](x)
+    var output = [Float](count:x.count, repeatedValue:0.0)
+
+    vDSP_vabs(&input, 1, &output, 1, vDSP_Length(x.count))
+
+    return output
+
+}
+
 func pad(x:[Double], value:Double = 0.0, toLength length: Int) -> [Double] {
 
     let result:[Double]

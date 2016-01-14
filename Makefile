@@ -5,6 +5,7 @@ test-osx:
 	make test-convolve-osx
 	make test-fft-convolve-osx
 	make test-hilbert-osx
+	make test-abs
 
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
@@ -48,6 +49,13 @@ test-convolve-osx:
 	echo 'Running test on Convolution.'
 	./test_convolve
 	rm test_convolve tests/main.swift
+
+test-abs:
+	cp tests/test_abs.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_abs
+	echo 'Running test on abs'
+	./test_abs
+	rm test_abs tests/main.swift
 
 performance:
 	make performance-fft
