@@ -88,6 +88,13 @@ test-linspace:
 	./test_linspace
 	rm test_linspace tests/main.swift
 
+test-round:
+	cp tests/test_round.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_round
+	echo 'Running test on rounding to zero'
+	./test_round
+	rm test_round tests/main.swift
+
 performance:
 	make performance-fft
 	make performance-fft-convolve

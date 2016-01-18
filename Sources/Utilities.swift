@@ -1,5 +1,39 @@
 import Accelerate
 
+func normalize(x:[Double], _ from:Double, _ to:Double) -> [Double]{
+    return [1.1]
+}
+
+func normalize(x:[Float], _ from:Float, _ to:Float) -> [Float]{
+    return [1.1]
+}
+
+func roundToZero(x:[Double]) -> [Double]{
+
+    var input = [Double](x)
+    var fracPart = [Double](count:x.count, repeatedValue:0.0)
+    vDSP_vfracD(&input, 1, &fracPart, 1, vDSP_Length(x.count))
+
+    var result = [Double](count:x.count, repeatedValue:0.0)
+    vDSP_vsubD(&fracPart, 1, &input, 1, &result, 1, vDSP_Length(x.count))
+
+    return result
+
+}
+
+func roundToZero(x:[Float]) -> [Float]{
+
+    var input = [Float](x)
+    var fracPart = [Float](count:x.count, repeatedValue:0.0)
+    vDSP_vfrac(&input, 1, &fracPart, 1, vDSP_Length(x.count))
+
+    var result = [Float](count:x.count, repeatedValue:0.0)
+    vDSP_vsub(&fracPart, 1, &input, 1, &result, 1, vDSP_Length(x.count))
+
+    return result
+
+}
+
 func arangeD(N:Int, start:Int = 1) -> [Double]{
 
     var startDouble = Double(start)
@@ -23,12 +57,10 @@ func arange(N:Int, start:Int = 1) -> [Float] {
 func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
 
     var startDouble = Double(start)
-    let endDouble = Double(end)
-    var dx = (endDouble - startDouble)/Double(num-1)
-
+    var endDouble = Double(end)
     var result = [Double](count:num, repeatedValue:0.0)
 
-    vDSP_vrampD(&startDouble, &dx, &result, 1, vDSP_Length(num))
+    vDSP_vgenD(&startDouble, &endDouble, &result, 1, vDSP_Length(num))
 
     return result
 
@@ -36,13 +68,11 @@ func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
 
 func linspace(start:Float, _ end:Float, num:Int) -> [Float]{
 
-    var startDouble = Float(start)
-    let endDouble = Float(end)
-    var dx = (endDouble - startDouble)/Float(num-1)
-
+    var startFloat = Float(start)
+    var endFloat = Float(end)
     var result = [Float](count:num, repeatedValue:0.0)
 
-    vDSP_vramp(&startDouble, &dx, &result, 1, vDSP_Length(num))
+    vDSP_vgen(&startFloat, &endFloat, &result, 1, vDSP_Length(num))
 
     return result
 }
@@ -189,7 +219,7 @@ func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
         var xMinusY = [Double](count:N, repeatedValue:0.0)
         
         // Compute x - y (vectorized)
-        vDSP_vsubD(&inputX, 1, &inputY, 1, &xMinusY, 1, vDSP_Length(N))
+        vDSP_vsubD(&inputY, 1, &inputX, 1, &xMinusY, 1, vDSP_Length(N))
 
         // Take abs value
         vDSP_vabsD(&xMinusY, 1, &xMinusY, 1, vDSP_Length(N))
@@ -219,7 +249,7 @@ func allClose(x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
         var xMinusY = [Float](count:N, repeatedValue:0.0)
         
         // Compute x - y (vectorized)
-        vDSP_vsub(&inputX, 1, &inputY, 1, &xMinusY, 1, vDSP_Length(N))
+        vDSP_vsub(&inputY, 1, &inputX, 1, &xMinusY, 1, vDSP_Length(N))
 
         // Take abs value
         vDSP_vabs(&xMinusY, 1, &xMinusY, 1, vDSP_Length(N))
