@@ -1,3 +1,4 @@
+#!/usr/bin/env swift
 import Accelerate
 
 // var signal:[Double] = [1, 2, 3, 4]

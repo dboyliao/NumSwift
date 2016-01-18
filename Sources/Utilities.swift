@@ -1,5 +1,45 @@
 import Accelerate
 
+func arangeD(N:Int, start:Int = 1) -> [Double]{
+
+    var result = [Double](count:N, repeatedValue:0.0)
+    for i in 0..<N {
+        result[i] = Double(start + i)
+    }
+
+    return result
+}
+
+func arange(N:Int, start:Int = 1) -> [Float] {
+
+    var result = [Float](count:N, repeatedValue:0.0)
+    for i in 0..<N {
+        result[i] = Float(start + i)
+    }
+
+    return result
+}
+
+func mean(x:[Double]) -> Double {
+
+    let ptr_x = UnsafePointer<Double>(x)
+    var value:Double = 0.0
+    vDSP_meanvD(ptr_x, 1, &value, vDSP_Length(x.count))
+
+    return value
+
+}
+
+func mean(x:[Float]) -> Float {
+
+    let ptr_x = UnsafePointer<Float>(x)
+    var value:Float = 0.0
+    vDSP_meanv(ptr_x, 1, &value, vDSP_Length(x.count))
+
+    return value
+}
+
+
 func leastPowerOfTwo(N:Int) -> Int {
     /*
     Find the least power of two greater than `N`.

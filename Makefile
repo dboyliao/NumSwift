@@ -6,6 +6,8 @@ test-osx:
 	make test-fft-convolve-osx
 	make test-hilbert-osx
 	make test-abs
+	make test-arange
+	make test-mean
 
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
@@ -56,6 +58,20 @@ test-abs:
 	echo 'Running test on abs'
 	./test_abs
 	rm test_abs tests/main.swift
+
+test-arange:
+	cp tests/test_arange.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_arange
+	echo 'Running test arange'
+	./test_arange
+	rm test_arange tests/main.swift
+
+test-mean:
+	cp tests/test_mean.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_mean
+	echo 'Running test mean'
+	./test_mean
+	rm test_mean tests/main.swift
 
 performance:
 	make performance-fft
