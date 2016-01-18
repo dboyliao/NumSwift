@@ -1,12 +1,13 @@
 import Accelerate
 
-func normalize(x:[Double], _ from:Double, _ to:Double) -> [Double]{
-    return [1.1]
-}
+// func normalize(x:[Double], _ minValue:Double, _ maxValue:Double) -> [Double]{
+    
+//     return [1.1]
+// }
 
-func normalize(x:[Float], _ from:Float, _ to:Float) -> [Float]{
-    return [1.1]
-}
+// func normalize(x:[Float], _ from:Float, _ to:Float) -> [Float]{
+//     return [1.1]
+// }
 
 func roundToZero(x:[Double]) -> [Double]{
 
@@ -182,7 +183,7 @@ func abs(x:[Float]) -> [Float] {
 
 }
 
-func pad(x:[Double], value:Double = 0.0, toLength length: Int) -> [Double] {
+func pad(x:[Double], toLength length: Int, value:Double = 0.0) -> [Double] {
 
     let result:[Double]
 
@@ -194,7 +195,7 @@ func pad(x:[Double], value:Double = 0.0, toLength length: Int) -> [Double] {
     return result
 }
 
-func pad(x:[Float], value:Float = 0.0, toLength length: Int) -> [Float] {
+func pad(x:[Float], toLength length: Int, value:Float = 0.0) -> [Float] {
 
     let result:[Float]
 

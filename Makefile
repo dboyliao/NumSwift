@@ -95,6 +95,13 @@ test-round:
 	./test_round
 	rm test_round tests/main.swift
 
+test-sqrt:
+	cp tests/test_sqrt.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Power.swift -o test_sqrt
+	echo 'Running test on sqrt'
+	./test_sqrt
+	rm test_sqrt tests/main.swift
+
 performance:
 	make performance-fft
 	make performance-fft-convolve

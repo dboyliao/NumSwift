@@ -41,3 +41,25 @@ func pow(x:[Double], power: Double) -> [Double] {
     vvpow(&y, x, powers, &N)
     return y
 }
+
+func sqrt(x:[Double]) -> [Double] {
+
+    var input = [Double](x)
+    var output = [Double](count:x.count, repeatedValue:0.0)
+    var N = Int32(x.count)
+    vvsqrt(&output, &input, &N)
+
+    return output
+
+}
+
+func sqrt(x:[Float]) -> [Float] {
+
+    var input = [Float](x)
+    var output = [Float](count:x.count, repeatedValue:0.0)
+    var N = Int32(x.count)
+    vvsqrtf(&output, &input, &N)
+
+    return output
+
+}
