@@ -34,6 +34,23 @@ func execute_test<T:Equatable>(label: String, test:() -> [T]) -> [T] {
     return result
 }
 
+func execute_test<T:Equatable>(label: String, test:() -> [[T]]) -> [[T]] {
+
+    NSLog("%@", label)
+
+    let start = NSDate()
+
+    defer {
+        let end = NSDate()
+        let duration = end.timeIntervalSinceDate(start)
+        NSLog("%@ takes %5.3g seconds.", label, duration)
+    }
+
+    let result = test()
+
+    return result
+}
+
 func equal<T:Equatable>(label: String, test: () -> T, expect:T) throws {
 
     let result = execute_test(label, test:test)
@@ -43,6 +60,8 @@ func equal<T:Equatable>(label: String, test: () -> T, expect:T) throws {
     }
 
     colorPrint("[\(label)] pass.", color:"blue")
+    colorPrint("Output: \(result)", color:"cyan")
+    colorPrint("Expect: \(expect)", color:"cyan")
 
 }
 
@@ -64,6 +83,25 @@ func equal<T:Equatable>(label: String, test: () -> [T], expect:[T]) throws {
     colorPrint("Expect: \(expect)", color:"cyan")
 }
 
+func equal<T:Equatable>(label: String, test: () -> [[T]], expect:[[T]]) throws {
+
+    let result = execute_test(label, test:test)
+
+    if result.count != expect.count {
+        throw TestingError.LengthError(message:"Array length do not match.")
+    }
+
+    for i in 0..<expect.count {
+        if result[i] != expect[i]{
+            throw TestingError.NotEqualError(message:"\(i)th Output: \(result)\n\(i)th Expect: \(expect).")
+        }
+    }
+
+    colorPrint("[\(label)] pass.", color:"blue")
+    colorPrint("Output: \(result)", color:"cyan")
+    colorPrint("Expect: \(expect)", color:"cyan")
+}
+
 func testEqual<T:Equatable>(label: String, test:() -> T, expect: T) {
 
     do {
@@ -75,7 +113,7 @@ func testEqual<T:Equatable>(label: String, test:() -> T, expect: T) {
         colorPrint("[\(label)] fail.", color:"red")
         colorPrint(message, color:"magenta")
 
-    } catch {
+    } catch{
 
         colorPrint("Uncatched Error....", color:"red")
 
@@ -94,6 +132,37 @@ func testEqual<T:Equatable>(label: String, test:() -> [T], expect: [T]) {
     } catch TestingError.NotEqualError(let message){
 
         colorPrint("[\(label)] fail.", color:"red")
+        colorPrint(message, color:"magenta")
+
+    } catch TestingError.LengthError(let message) {
+
+        colorPrint("[\(label)] fail", color:"red")
+        colorPrint(message, color:"magenta")
+
+    } catch {
+
+        colorPrint("Uncatched Error....", color:"red")
+
+    }
+
+    colorPrint("\n============\n", color: "yellow")
+
+}
+
+func testEqual<T:Equatable>(label: String, test:() -> [[T]], expect: [[T]]) {
+
+    do {
+
+        try equal(label, test:test, expect:expect)
+
+    } catch TestingError.NotEqualError(let message){
+
+        colorPrint("[\(label)] fail.", color:"red")
+        colorPrint(message, color:"magenta")
+
+    } catch TestingError.LengthError(let message) {
+
+        colorPrint("[\(label)] fail", color:"red")
         colorPrint(message, color:"magenta")
 
     } catch {

@@ -2,20 +2,47 @@ import Accelerate
 
 func arangeD(N:Int, start:Int = 1) -> [Double]{
 
+    var startDouble = Double(start)
+    var one = Double(1)
     var result = [Double](count:N, repeatedValue:0.0)
-    for i in 0..<N {
-        result[i] = Double(start + i)
-    }
+    vDSP_vrampD(&startDouble, &one, &result, 1, vDSP_Length(N))
 
     return result
 }
 
 func arange(N:Int, start:Int = 1) -> [Float] {
 
+    var startFloat = Float(start)
+    var one = Float(1)
     var result = [Float](count:N, repeatedValue:0.0)
-    for i in 0..<N {
-        result[i] = Float(start + i)
-    }
+    vDSP_vramp(&startFloat, &one, &result, 1, vDSP_Length(N))
+
+    return result
+}
+
+func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
+
+    var startDouble = Double(start)
+    let endDouble = Double(end)
+    var dx = (endDouble - startDouble)/Double(num-1)
+
+    var result = [Double](count:num, repeatedValue:0.0)
+
+    vDSP_vrampD(&startDouble, &dx, &result, 1, vDSP_Length(num))
+
+    return result
+
+}
+
+func linspace(start:Float, _ end:Float, num:Int) -> [Float]{
+
+    var startDouble = Float(start)
+    let endDouble = Float(end)
+    var dx = (endDouble - startDouble)/Float(num-1)
+
+    var result = [Float](count:num, repeatedValue:0.0)
+
+    vDSP_vramp(&startDouble, &dx, &result, 1, vDSP_Length(num))
 
     return result
 }
@@ -39,6 +66,55 @@ func mean(x:[Float]) -> Float {
     return value
 }
 
+func splitArrayIntoParts(x:[Double], _ numberOfParts: Int) -> [[Double]] {
+
+    var parts = [[Double]]()
+    let input = [Double](x)
+    let samplesPerSplit = Int(round(Double(x.count)/Double(numberOfParts)))
+
+    var startIndex:Int
+    var endIndex:Int
+    var slice:ArraySlice<Double>
+    for i in 1..<numberOfParts {
+        startIndex = (i-1)*samplesPerSplit
+        endIndex = i*samplesPerSplit
+        slice = input[startIndex..<endIndex]
+        parts.append([Double](slice))
+    }
+
+    startIndex = (numberOfParts-1)*samplesPerSplit
+    endIndex = x.count
+    slice = input[startIndex..<endIndex]
+    parts.append([Double](slice))
+
+    return parts
+
+}
+
+func splitArrayIntoParts(x:[Float], _ numberOfParts: Int) -> [[Float]] {
+
+    var parts = [[Float]]()
+    let input = [Float](x)
+    let samplesPerSplit = Int(round(Double(x.count)/Double(numberOfParts)))
+
+    var startIndex:Int
+    var endIndex:Int
+    var slice:ArraySlice<Float>
+    for i in 1..<numberOfParts {
+        startIndex = (i-1)*samplesPerSplit
+        endIndex = i*samplesPerSplit
+        slice = input[startIndex..<endIndex]
+        parts.append([Float](slice))
+    }
+
+    startIndex = (numberOfParts-1)*samplesPerSplit
+    endIndex = x.count
+    slice = input[startIndex..<endIndex]
+    parts.append([Float](slice))
+
+    return parts
+
+}
 
 func leastPowerOfTwo(N:Int) -> Int {
     /*

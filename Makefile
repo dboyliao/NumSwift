@@ -8,6 +8,7 @@ test-osx:
 	make test-abs
 	make test-arange
 	make test-mean
+	make test-split-array
 
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
@@ -72,6 +73,20 @@ test-mean:
 	echo 'Running test mean'
 	./test_mean
 	rm test_mean tests/main.swift
+
+test-split-array:
+	cp tests/test_split_array.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_split_array
+	echo 'Running test on array spliting'
+	./test_split_array
+	rm test_split_array tests/main.swift
+
+test-linspace:
+	cp tests/test_linspace.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_linspace
+	echo 'Running test on linspace'
+	./test_linspace
+	rm test_linspace tests/main.swift
 
 performance:
 	make performance-fft
