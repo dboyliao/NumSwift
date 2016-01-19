@@ -9,6 +9,55 @@ import Accelerate
 //     return [1.1]
 // }
 
+func norm(x:[Double], _ y:[Double]) -> [Double]{
+    /*
+    2D vector norm
+    */
+
+    var inputX = [Double](x)
+    var inputY = [Double](y)
+    var xSquare = [Double](count:x.count, repeatedValue:0.0)
+    var ySquare = [Double](count:y.count, repeatedValue:0.0)
+
+    vDSP_vsqD(&inputX, 1, &xSquare, 1, vDSP_Length(x.count))
+    vDSP_vsqD(&inputY, 1, &ySquare, 1, vDSP_Length(y.count))
+
+    var squareSum = [Double](count:x.count, repeatedValue:0.0)
+
+    vDSP_vaddD(&xSquare, 1, &ySquare, 1, &squareSum, 1, vDSP_Length(x.count))
+
+    var N = Int32(squareSum.count)
+    var vectorNorm = [Double](count:squareSum.count, repeatedValue:0.0)
+    vvsqrt(&vectorNorm, &squareSum, &N)
+
+    return vectorNorm
+}
+
+func norm(x:[Float], _ y:[Float]) -> [Float]{
+    /*
+    2D vector norm.
+    */
+
+    var inputX = [Float](x)
+    var inputY = [Float](y)
+    var xSquare = [Float](count:x.count, repeatedValue:0.0)
+    var ySquare = [Float](count:y.count, repeatedValue:0.0)
+
+    vDSP_vsq(&inputX, 1, &xSquare, 1, vDSP_Length(x.count))
+    vDSP_vsq(&inputY, 1, &ySquare, 1, vDSP_Length(y.count))
+
+    var squareSum = [Float](count:x.count, repeatedValue:0.0)
+
+    vDSP_vadd(&xSquare, 1, &ySquare, 1, &squareSum, 1, vDSP_Length(x.count))
+
+    var N = Int32(squareSum.count)
+    var vectorNorm = [Float](count:squareSum.count, repeatedValue:0.0)
+
+    vvsqrtf(&vectorNorm, &squareSum, &N)
+
+    return vectorNorm
+}
+
 func roundToZero(x:[Double]) -> [Double]{
 
     var input = [Double](x)

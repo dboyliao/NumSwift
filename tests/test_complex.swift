@@ -5,6 +5,18 @@ colorPrint("===== tests on DSPComplex arithmetic====\n", color:"yellow")
 var af = DSPComplex(real:1, imag:2)
 var bf = DSPComplex(real:3, imag:4)
 
+// norm
+
+func testNormFloat() -> Float {
+    return norm(bf)
+}
+
+// abs
+
+func testAbsoluteFloat() -> Float {
+    return abs(bf)
+}
+
 // +
 func testPlusFloatReal() -> Float {
 
@@ -65,6 +77,9 @@ func testDivFloatImag() -> Float {
 }
 
 // Testing Complex number
+testEqual("Float: Test Norm", test:testNormFloat, expect:25.0)
+testEqual("Float: Test Absolute", test:testAbsoluteFloat, expect:5.0)
+
 testEqual("Float: Test Addition on Real Part", test:testPlusFloatReal, expect:4.0)
 testEqual("Float: Test Addition on Imag Part", test:testPlusFloatImag, expect:6.0)
 
@@ -81,6 +96,18 @@ colorPrint("===== tests on DSPDoubleComplex arithmetic====\n", color:"yellow")
 
 let ad = DSPDoubleComplex(real:1, imag:2)
 let bd = DSPDoubleComplex(real:3, imag:4)
+
+// norm
+
+func testNormDouble() -> Double {
+    return norm(bd)
+}
+
+// abs
+
+func testAbsoluteDouble() -> Double {
+    return abs(bd)
+}
 
 func testPlusDoubleReal() -> Double {
 
@@ -141,6 +168,9 @@ func testDivDoubleImag() -> Double {
 }
 
 // Testing Complex number
+testEqual("Double: Test Norm", test:testNormDouble, expect:25.0)
+testEqual("Double: Test Absolute", test:testAbsoluteDouble, expect:5.0)
+
 testEqual("Double: Test Addition on Real Part", test:testPlusDoubleReal, expect:4.0)
 testEqual("Double: Test Addition on Imag Part", test:testPlusDoubleImag, expect:6.0)
 

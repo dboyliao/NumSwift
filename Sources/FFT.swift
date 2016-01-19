@@ -158,8 +158,8 @@ func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
     let convN = N+M-1
     let convNPowTwo = leastPowerOfTwo(convN)
 
-    longArray = pad(longArray, value:0.0, toLength:convNPowTwo)
-    shortArray = pad(shortArray, value:0.0, toLength:convNPowTwo)
+    longArray = pad(longArray, toLength:convNPowTwo, value:0.0)
+    shortArray = pad(shortArray, toLength:convNPowTwo, value:0.0)
 
     let zeros = [Double](count:convNPowTwo, repeatedValue:0.0)
 
@@ -239,8 +239,8 @@ func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float] {
     let convN = N+M-1
     let convNPowTwo = leastPowerOfTwo(convN)
 
-    longArray = pad(longArray, value:0.0, toLength:convNPowTwo)
-    shortArray = pad(shortArray, value:0.0, toLength:convNPowTwo)
+    longArray = pad(longArray, toLength:convNPowTwo, value:0.0)
+    shortArray = pad(shortArray, toLength:convNPowTwo, value:0.0)
 
     let zeros = [Float](count:convNPowTwo, repeatedValue:0.0)
 

@@ -9,6 +9,7 @@ test-osx:
 	make test-arange
 	make test-mean
 	make test-split-array
+	make test-norm
 
 test-complex-osx:
 	cp tests/test_complex.swift tests/main.swift
@@ -101,6 +102,13 @@ test-sqrt:
 	echo 'Running test on sqrt'
 	./test_sqrt
 	rm test_sqrt tests/main.swift
+
+test-norm:
+	cp tests/test_norm.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_norm
+	echo 'Running test on norm'
+	./test_norm
+	rm test_norm tests/main.swift
 
 performance:
 	make performance-fft
