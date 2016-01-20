@@ -1,13 +1,5 @@
 import Accelerate
-
-// func normalize(x:[Double], _ minValue:Double, _ maxValue:Double) -> [Double]{
-    
-//     return [1.1]
-// }
-
-// func normalize(x:[Float], _ from:Float, _ to:Float) -> [Float]{
-//     return [1.1]
-// }
+import Foundation
 
 func norm(x:[Double], _ y:[Double]) -> [Double]{
     /*
@@ -144,6 +136,72 @@ func mean(x:[Float]) -> Float {
     vDSP_meanv(ptr_x, 1, &value, vDSP_Length(x.count))
 
     return value
+}
+
+func variance(x:[Double]) -> Double {
+
+    let N = vDSP_Length(x.count)
+    var output_buffer = [Double](count:x.count, repeatedValue:0.0)
+    var neg_mean_x = -mean(x)
+
+    vDSP_vsaddD(x, 1, &neg_mean_x, &output_buffer, 1, N)
+    vDSP_vsqD(&output_buffer, 1, &output_buffer, 1, N)
+
+    let result = output_buffer.reduce(0, combine:{$0 + $1})
+
+    return result/Double(x.count)
+}
+
+func variance(x:[Float]) -> Float {
+
+    let N = vDSP_Length(x.count)
+    var output_buffer = [Float](count:x.count, repeatedValue:0.0)
+    var neg_mean_x = -mean(x)
+
+    vDSP_vsadd(x, 1, &neg_mean_x, &output_buffer, 1, N)
+    vDSP_vsq(&output_buffer, 1, &output_buffer, 1, N)
+
+    let result = output_buffer.reduce(0, combine:{$0 + $1})
+
+    return result/Float(x.count)
+}
+
+func std(x:[Double]) -> Double {
+
+    return sqrt(variance(x))
+
+}
+
+func std(x:[Float]) -> Float {
+
+    return sqrt(variance(x))
+
+}
+
+func normalize(x:[Double]) -> [Double] {
+
+    var mean_x = mean(x)
+    var std_x = std(x)
+
+    var x_normalized = [Double](count:x.count, repeatedValue:0.0)
+
+    vDSP_normalizeD(x, 1, &x_normalized, 1, &mean_x, &std_x, vDSP_Length(x.count))
+
+    return x_normalized
+
+}
+
+func normalize(x:[Float]) -> [Float]{
+
+    var mean_x = mean(x)
+    var std_x = std(x)
+
+    var x_normalized = [Float](count:x.count, repeatedValue:0.0)
+
+    vDSP_normalize(x, 1, &x_normalized, 1, &mean_x, &std_x, vDSP_Length(x.count))
+
+    return x_normalized
+
 }
 
 func splitArrayIntoParts(x:[Double], _ numberOfParts: Int) -> [[Double]] {

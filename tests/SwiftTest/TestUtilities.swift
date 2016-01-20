@@ -12,6 +12,30 @@ let ColorCodes = [
     "white": "1;37" 
 ]
 
+func getShorterString<T:Equatable>(x:[T]) -> String {
+
+    var result:String
+
+    if x.count < 20 {
+
+        result = String(x)
+        
+    } else {
+        result = "["
+        for i in 0..<5 {
+            result += (String(x[i]) + ", ")
+        }
+        result += "..., "
+
+        for i in 0..<4 {
+            result += (String(x[x.count-5+i]) + ", ")
+        }
+        result += (String(x[x.count-1]) + "]")
+    }
+
+    return result
+}
+
 func colorPrint(args:AnyObject..., color:String) {
 
     switch color {

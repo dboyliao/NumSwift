@@ -110,6 +110,20 @@ test-norm:
 	./test_norm
 	rm test_norm tests/main.swift
 
+test-std:
+	cp tests/test_std.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_std
+	echo 'Running test on std'
+	./test_std
+	rm test_std tests/main.swift
+
+test-normalize:
+	cp tests/test_normalize.swift tests/main.swift
+	xcrun -sdk macosx swiftc tests/main.swift tests/SwiftTest/*.swift Sources/Utilities.swift -o test_normalize
+	echo 'Running test on normalize'
+	./test_normalize
+	rm test_normalize tests/main.swift
+
 performance:
 	make performance-fft
 	make performance-fft-convolve

@@ -56,6 +56,7 @@ func equal<T:Equatable>(label: String, test: () -> T, expect:T) throws {
     let result = execute_test(label, test:test)
 
     if result != expect {
+
         throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
     }
 
@@ -75,7 +76,12 @@ func equal<T:Equatable>(label: String, test: () -> [T], expect:[T]) throws {
 
     if result != expect {
 
-        throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
+        if result.count < 20 {
+            throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
+        } else {
+
+            throw TestingError.NotEqualError(message:"Output: \(getShorterString(result))\nExpect: \(getShorterString(expect)).")
+        }
     }
 
     colorPrint("[\(label)] pass.", color:"blue")
@@ -185,13 +191,24 @@ func equalInTol(label: String, test:() -> [Double], expect: [Double], tol:Double
 
     if !testAllClose(result, y:expect, tol:tol) {
 
-        throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
+        if result.count < 20 {
+            throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
+        } else {
+            throw TestingError.NotEqualError(message:"Output: \(getShorterString(result))\nExpect: \(getShorterString(expect)).")
+        }
     }
 
-    colorPrint("[\(label)] pass.", color:"blue")
-    colorPrint("Output: \(result)", color:"cyan")
-    colorPrint("Expect: \(expect)", color:"cyan")
-    colorPrint("Tolerance: \(tol)", color:"cyan")
+    if result.count < 20 {
+        colorPrint("[\(label)] pass.", color:"blue")
+        colorPrint("Output: \(result)", color:"cyan")
+        colorPrint("Expect: \(expect)", color:"cyan")
+        colorPrint("Tolerance: \(tol)", color:"cyan")
+    } else {
+        colorPrint("[\(label)] pass.", color:"blue")
+        colorPrint("Output: \(getShorterString(result))", color:"cyan")
+        colorPrint("Expect: \(getShorterString(expect))", color:"cyan")
+        colorPrint("Tolerance: \(tol)", color:"cyan")
+    }
 
 }
 
@@ -202,6 +219,12 @@ func testEqualInTol(label: String, test:() -> [Double], expect: [Double], tol: D
         try equalInTol(label, test:test, expect:expect, tol:tol)
 
     } catch TestingError.NotEqualError(let message){
+
+        colorPrint("[\(label)] fail.", color:"red")
+        colorPrint(message, color:"magenta")
+        colorPrint("Tolerance: \(tol)", color:"magenta")
+
+    } catch TestingError.LengthError(let message) {
 
         colorPrint("[\(label)] fail.", color:"red")
         colorPrint(message, color:"magenta")
@@ -227,13 +250,25 @@ func equalInTol(label: String, test:() -> [Float], expect: [Float], tol:Float) t
 
     if !testAllClose(result, y:expect, tol:tol) {
 
-        throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
+        if result.count < 20 {
+            throw TestingError.NotEqualError(message:"Output: \(result)\nExpect: \(expect).")
+        } else {
+            throw TestingError.NotEqualError(message:"Output: \(getShorterString(result))\nExpect: \(getShorterString(expect)).")
+        }
     }
 
-    colorPrint("[\(label)] pass.", color:"blue")
-    colorPrint("Output: \(result)", color:"cyan")
-    colorPrint("Expect: \(expect)", color:"cyan")
-    colorPrint("Tolerance: \(tol)", color:"cyan")
+    if result.count < 20 {
+        colorPrint("[\(label)] pass.", color:"blue")
+        colorPrint("Output: \(result)", color:"cyan")
+        colorPrint("Expect: \(expect)", color:"cyan")
+        colorPrint("Tolerance: \(tol)", color:"cyan")
+    } else {
+
+        colorPrint("[\(label)] pass.", color:"blue")
+        colorPrint("Output: \(getShorterString(result))", color:"cyan")
+        colorPrint("Expect: \(getShorterString(expect))", color:"cyan")
+        colorPrint("Tolerance: \(tol)", color:"cyan")
+    }
 
 }
 
@@ -245,6 +280,12 @@ func testEqualInTol(label: String, test:() -> [Float], expect: [Float], tol: Flo
 
     } catch TestingError.NotEqualError(let message){
 
+        colorPrint("[\(label)] fail.", color:"red")
+        colorPrint(message, color:"magenta")
+        colorPrint("Tolerance: \(tol)", color:"magenta")
+
+    } catch TestingError.LengthError(let message) {
+        
         colorPrint("[\(label)] fail.", color:"red")
         colorPrint(message, color:"magenta")
         colorPrint("Tolerance: \(tol)", color:"magenta")
