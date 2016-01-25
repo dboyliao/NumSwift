@@ -2,10 +2,6 @@ SOURCES=$$(pwd)/Sources
 MODULE_NAME=NumSwift
 BUILD_DIR=NumSwiftModule
 
-temp:
-	echo $(SOURCES)
-	xcrun -sdk macosx swift -I "$$($(SOURCES))"
-
 module:
 	mkdir -p $(BUILD_DIR)
 	xcrun -sdk macosx swiftc -I $(SOURCES) -L $(SOURCES) -emit-module-path $(BUILD_DIR)/$(MODULE_NAME).swiftmodule -module-link-name $(MODULE_NAME) -module-name $(MODULE_NAME) $(SOURCES)/*.swift $(SOURCES)/Signal/*.swift -emit-library -o $(BUILD_DIR)/libNumSwift.dylib
