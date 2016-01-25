@@ -14,7 +14,7 @@ DESC
 
 s.homepage     = "https://github.com/dboyliao/NumSwift"
 
-s.license      = { :type => "MIT" }
+s.license      = 'MIT'
 
 
 s.authors      = { "Dboy Liao" => "qmalliao@gmail.com" }
@@ -26,7 +26,7 @@ s.platform     = :ios, "8.0"
 s.ios.deployment_target = "8.0"
 
 #s.source = { :git => "git@github.com:dboyliao/NumSwift.git", :sha1 =>  '3d30d2a6afef3e1060bf0a825c4415ad0d453ab8'}
-s.source       = { :git => "git@github.com:dboyliao/NumSwift.git", :tag => s.version }
+s.source       = { :git => "https://github.com/dboyliao/NumSwift.git", :tag => s.version }
 
 
 s.source_files  = "Sources/*.swift", "Sources/Signal/*.swift"
