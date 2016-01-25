@@ -1,6 +1,6 @@
 import Accelerate
 
-func sort(x: [Double], order:Int) -> [Double]{
+public func sort(x: [Double], order:Int) -> [Double]{
 
     /*
     Return sorted array in ascending or descending order.
@@ -17,7 +17,7 @@ func sort(x: [Double], order:Int) -> [Double]{
     return input
 }
 
-func sort(x: [Float], order:Int) -> [Float]{
+public func sort(x: [Float], order:Int) -> [Float]{
 
     /*
     Return sorted array ascending or descending order.

@@ -1,6 +1,6 @@
 import Accelerate
 
-func pow(x: [Float], power: Float) -> [Float] {
+public func pow(x: [Float], power: Float) -> [Float] {
 
     /*
     Raise each element in x to higher power.
@@ -21,7 +21,7 @@ func pow(x: [Float], power: Float) -> [Float] {
     return y
 }
 
-func pow(x:[Double], power: Double) -> [Double] {
+public func pow(x:[Double], power: Double) -> [Double] {
 
     /*
     Raise each element in x to higher power.
@@ -42,7 +42,7 @@ func pow(x:[Double], power: Double) -> [Double] {
     return y
 }
 
-func sqrt(x:[Double]) -> [Double] {
+public func sqrt(x:[Double]) -> [Double] {
 
     var input = [Double](x)
     var output = [Double](count:x.count, repeatedValue:0.0)
@@ -53,7 +53,7 @@ func sqrt(x:[Double]) -> [Double] {
 
 }
 
-func sqrt(x:[Float]) -> [Float] {
+public func sqrt(x:[Float]) -> [Float] {
 
     var input = [Float](x)
     var output = [Float](count:x.count, repeatedValue:0.0)

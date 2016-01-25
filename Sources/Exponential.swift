@@ -1,6 +1,6 @@
 import Accelerate
 
-func exp(x:[Float]) -> [Float] {
+public func exp(x:[Float]) -> [Float] {
 
     /*
     Compute e^(x). (Vectorized)
@@ -17,7 +17,7 @@ func exp(x:[Float]) -> [Float] {
      return y
 }
 
-func exp(x: [Double]) -> [Double] {
+public func exp(x: [Double]) -> [Double] {
     /*
     Compute e^(x). (Vectorized)
 
@@ -35,7 +35,7 @@ func exp(x: [Double]) -> [Double] {
 
 }
 
-func log(x: [Float], base: Float? = nil) -> [Float] {
+public func log(x: [Float], base: Float? = nil) -> [Float] {
 
     /*
     Compute logrithm with base.
@@ -67,7 +67,7 @@ func log(x: [Float], base: Float? = nil) -> [Float] {
     return y
 }
 
-func log(x: [Double], base: Double? = nil) -> [Double] {
+public func log(x: [Double], base: Double? = nil) -> [Double] {
 
     /*
     Compute logrithm with base.

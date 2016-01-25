@@ -1,7 +1,7 @@
 import Accelerate
 import Foundation
 
-func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
+public func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
 
     var longArray:[Double]
     var shortArray:[Double]
@@ -57,7 +57,7 @@ func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
     return finalOutput
 }
 
-func convolve(x:[Float], y:[Float], mode: String = "full") -> [Float] {
+public func convolve(x:[Float], y:[Float], mode: String = "full") -> [Float] {
 
     var longArray:[Float]
     var shortArray:[Float]

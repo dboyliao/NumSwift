@@ -1,6 +1,6 @@
 import Accelerate
 
-func hilbert(x:[Double]) -> (realp:[Double], imagp:[Double]) {
+public func hilbert(x:[Double]) -> (realp:[Double], imagp:[Double]) {
     /*
     Compute the analytic signal, using the Hilbert transform.
     (1D signal)
@@ -44,7 +44,7 @@ func hilbert(x:[Double]) -> (realp:[Double], imagp:[Double]) {
 
 }
 
-func hilbert(x:[Float]) -> (realp:[Float], imagp:[Float]) {
+public func hilbert(x:[Float]) -> (realp:[Float], imagp:[Float]) {
     /*
     Compute the analytic signal, using the Hilbert transform.
     (1D signal)

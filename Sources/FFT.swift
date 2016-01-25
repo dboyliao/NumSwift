@@ -1,6 +1,6 @@
 import Accelerate
 
-func fft(realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Double]) {
+public func fft(realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Double]) {
 
     /*
     Complex-to-Complex Fast Fourier Transform.
@@ -29,7 +29,7 @@ func fft(realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Double]) {
     return (fftCoefRealp, fftCoefImagp)
 }
 
-func fft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
+public func fft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
 
     /*
     Complex-to-Complex Fast Fourier Transform.
@@ -58,8 +58,7 @@ func fft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
 
 }
 
-// TODOs:
-func ifft(realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Double]){
+public func ifft(realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Double]){
     /*
     Complex-to-Complex Inverse Fast Fourier Transform.
     */
@@ -95,7 +94,7 @@ func ifft(realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Double]){
     return (normalizedOutputRealp, normalizedOutputImagp)
 }
 
-func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
+public func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
     /*
     Complex-to-Complex Inverse Fast Fourier Transform.
     */

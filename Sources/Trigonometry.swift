@@ -1,6 +1,6 @@
 import Accelerate
 
-func sin(x:[Double]) -> [Double] {
+public func sin(x:[Double]) -> [Double] {
     var N = Int32(x.count)
     var y = [Double](count:x.count, repeatedValue: 0.0)
 
@@ -8,7 +8,7 @@ func sin(x:[Double]) -> [Double] {
     return y
 }
 
-func sin(x:[Float]) -> [Float] {
+public func sin(x:[Float]) -> [Float] {
     var N = Int32(x.count)
     var y = [Float](count: x.count, repeatedValue: 0.0)
 
@@ -16,7 +16,7 @@ func sin(x:[Float]) -> [Float] {
     return y
 }
 
-func csc(x:[Double]) -> [Double]{
+public func csc(x:[Double]) -> [Double]{
 
     var y = sin(x)
     var output = [Double](count: y.count, repeatedValue:0.0)
@@ -27,7 +27,7 @@ func csc(x:[Double]) -> [Double]{
     return output
 }
 
-func csc(x:[Float]) -> [Float]{
+public func csc(x:[Float]) -> [Float]{
 
     var y = sin(x)
     var output = [Float](count: y.count, repeatedValue:0.0)
@@ -38,7 +38,7 @@ func csc(x:[Float]) -> [Float]{
     return output
 }
 
-func cos(x:[Double]) -> [Double]{
+public func cos(x:[Double]) -> [Double]{
     var N = Int32(x.count)
     var y = [Double](count: x.count, repeatedValue: 0.0)
 
@@ -46,7 +46,7 @@ func cos(x:[Double]) -> [Double]{
     return y
 }
 
-func cos(x:[Float]) -> [Float]{
+public func cos(x:[Float]) -> [Float]{
     var N = Int32(x.count)
     var y = [Float](count: x.count, repeatedValue: 0.0)
 
@@ -54,7 +54,7 @@ func cos(x:[Float]) -> [Float]{
     return y
 }
 
-func sec(x:[Double]) -> [Double]{
+public func sec(x:[Double]) -> [Double]{
 
     var y = cos(x)
     var output = [Double](count: y.count, repeatedValue:0.0)
@@ -65,7 +65,7 @@ func sec(x:[Double]) -> [Double]{
     return output
 }
 
-func sec(x:[Float]) -> [Float]{
+public func sec(x:[Float]) -> [Float]{
 
     var y = cos(x)
     var output = [Float](count: y.count, repeatedValue:0.0)
@@ -76,7 +76,7 @@ func sec(x:[Float]) -> [Float]{
     return output
 }
 
-func tan(x:[Double]) -> [Double] {
+public func tan(x:[Double]) -> [Double] {
     var N = Int32(x.count)
     var y = [Double](count: x.count, repeatedValue: 0.0)
 
@@ -84,7 +84,7 @@ func tan(x:[Double]) -> [Double] {
     return y
 }
 
-func tan(x:[Float]) -> [Float] {
+public func tan(x:[Float]) -> [Float] {
     var N = Int32(x.count)
     var y = [Float](count: x.count, repeatedValue: 0.0)
 
@@ -92,7 +92,7 @@ func tan(x:[Float]) -> [Float] {
     return y
 }
 
-func cot(x:[Double]) -> [Double]{
+public func cot(x:[Double]) -> [Double]{
     var y = tan(x)
     var output = [Double](count:y.count, repeatedValue:0.0)
     var one = 1.0
@@ -102,7 +102,7 @@ func cot(x:[Double]) -> [Double]{
     return output
 }
 
-func cot(x:[Float]) -> [Float]{
+public func cot(x:[Float]) -> [Float]{
     var y = tan(x)
     var output = [Float](count:y.count, repeatedValue:0.0)
     var one:Float = 1.0

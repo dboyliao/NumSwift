@@ -1,7 +1,7 @@
 import Accelerate
 import Foundation
 
-func norm(x:[Double], _ y:[Double]) -> [Double]{
+public func norm(x:[Double], _ y:[Double]) -> [Double]{
     /*
     2D vector norm
     */
@@ -25,7 +25,7 @@ func norm(x:[Double], _ y:[Double]) -> [Double]{
     return vectorNorm
 }
 
-func norm(x:[Float], _ y:[Float]) -> [Float]{
+public func norm(x:[Float], _ y:[Float]) -> [Float]{
     /*
     2D vector norm.
     */
@@ -50,7 +50,7 @@ func norm(x:[Float], _ y:[Float]) -> [Float]{
     return vectorNorm
 }
 
-func roundToZero(x:[Double]) -> [Double]{
+public func roundToZero(x:[Double]) -> [Double]{
 
     var input = [Double](x)
     var fracPart = [Double](count:x.count, repeatedValue:0.0)
@@ -63,7 +63,7 @@ func roundToZero(x:[Double]) -> [Double]{
 
 }
 
-func roundToZero(x:[Float]) -> [Float]{
+public func roundToZero(x:[Float]) -> [Float]{
 
     var input = [Float](x)
     var fracPart = [Float](count:x.count, repeatedValue:0.0)
@@ -76,7 +76,7 @@ func roundToZero(x:[Float]) -> [Float]{
 
 }
 
-func arangeD(N:Int, start:Int = 1) -> [Double]{
+public func arangeD(N:Int, start:Int = 1) -> [Double]{
 
     var startDouble = Double(start)
     var one = Double(1)
@@ -86,7 +86,7 @@ func arangeD(N:Int, start:Int = 1) -> [Double]{
     return result
 }
 
-func arange(N:Int, start:Int = 1) -> [Float] {
+public func arange(N:Int, start:Int = 1) -> [Float] {
 
     var startFloat = Float(start)
     var one = Float(1)
@@ -96,7 +96,7 @@ func arange(N:Int, start:Int = 1) -> [Float] {
     return result
 }
 
-func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
+public func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
 
     var startDouble = Double(start)
     var endDouble = Double(end)
@@ -108,7 +108,7 @@ func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
 
 }
 
-func linspace(start:Float, _ end:Float, num:Int) -> [Float]{
+public func linspace(start:Float, _ end:Float, num:Int) -> [Float]{
 
     var startFloat = Float(start)
     var endFloat = Float(end)
@@ -119,7 +119,7 @@ func linspace(start:Float, _ end:Float, num:Int) -> [Float]{
     return result
 }
 
-func mean(x:[Double]) -> Double {
+public func mean(x:[Double]) -> Double {
 
     let ptr_x = UnsafePointer<Double>(x)
     var value:Double = 0.0
@@ -129,7 +129,7 @@ func mean(x:[Double]) -> Double {
 
 }
 
-func mean(x:[Float]) -> Float {
+public func mean(x:[Float]) -> Float {
 
     let ptr_x = UnsafePointer<Float>(x)
     var value:Float = 0.0
@@ -138,7 +138,7 @@ func mean(x:[Float]) -> Float {
     return value
 }
 
-func variance(x:[Double]) -> Double {
+public func variance(x:[Double]) -> Double {
 
     let N = vDSP_Length(x.count)
     var output_buffer = [Double](count:x.count, repeatedValue:0.0)
@@ -152,7 +152,7 @@ func variance(x:[Double]) -> Double {
     return result/Double(x.count)
 }
 
-func variance(x:[Float]) -> Float {
+public func variance(x:[Float]) -> Float {
 
     let N = vDSP_Length(x.count)
     var output_buffer = [Float](count:x.count, repeatedValue:0.0)
@@ -166,19 +166,19 @@ func variance(x:[Float]) -> Float {
     return result/Float(x.count)
 }
 
-func std(x:[Double]) -> Double {
+public func std(x:[Double]) -> Double {
 
     return sqrt(variance(x))
 
 }
 
-func std(x:[Float]) -> Float {
+public func std(x:[Float]) -> Float {
 
     return sqrt(variance(x))
 
 }
 
-func normalize(x:[Double]) -> [Double] {
+public func normalize(x:[Double]) -> [Double] {
 
     var mean_x = mean(x)
     var std_x = std(x)
@@ -191,7 +191,7 @@ func normalize(x:[Double]) -> [Double] {
 
 }
 
-func normalize(x:[Float]) -> [Float]{
+public func normalize(x:[Float]) -> [Float]{
 
     var mean_x = mean(x)
     var std_x = std(x)
@@ -204,7 +204,7 @@ func normalize(x:[Float]) -> [Float]{
 
 }
 
-func splitArrayIntoParts(x:[Double], _ numberOfParts: Int) -> [[Double]] {
+public func splitArrayIntoParts(x:[Double], _ numberOfParts: Int) -> [[Double]] {
 
     var parts = [[Double]]()
     let input = [Double](x)
@@ -229,7 +229,7 @@ func splitArrayIntoParts(x:[Double], _ numberOfParts: Int) -> [[Double]] {
 
 }
 
-func splitArrayIntoParts(x:[Float], _ numberOfParts: Int) -> [[Float]] {
+public func splitArrayIntoParts(x:[Float], _ numberOfParts: Int) -> [[Float]] {
 
     var parts = [[Float]]()
     let input = [Float](x)
@@ -254,7 +254,7 @@ func splitArrayIntoParts(x:[Float], _ numberOfParts: Int) -> [[Float]] {
 
 }
 
-func leastPowerOfTwo(N:Int) -> Int {
+public func leastPowerOfTwo(N:Int) -> Int {
     /*
     Find the least power of two greater than `N`.
     */ 
@@ -269,7 +269,7 @@ func leastPowerOfTwo(N:Int) -> Int {
     return NPowTwo
 }
 
-func abs(x:[Double]) -> [Double] {
+public func abs(x:[Double]) -> [Double] {
 
     var input = [Double](x)
     var output = [Double](count:x.count, repeatedValue:0.0)
@@ -279,7 +279,7 @@ func abs(x:[Double]) -> [Double] {
     return output
 }
 
-func abs(x:[Float]) -> [Float] {
+public func abs(x:[Float]) -> [Float] {
 
     var input = [Float](x)
     var output = [Float](count:x.count, repeatedValue:0.0)
@@ -290,7 +290,7 @@ func abs(x:[Float]) -> [Float] {
 
 }
 
-func pad(x:[Double], toLength length: Int, value:Double = 0.0) -> [Double] {
+public func pad(x:[Double], toLength length: Int, value:Double = 0.0) -> [Double] {
 
     let result:[Double]
 
@@ -302,7 +302,7 @@ func pad(x:[Double], toLength length: Int, value:Double = 0.0) -> [Double] {
     return result
 }
 
-func pad(x:[Float], toLength length: Int, value:Float = 0.0) -> [Float] {
+public func pad(x:[Float], toLength length: Int, value:Float = 0.0) -> [Float] {
 
     let result:[Float]
 
@@ -314,7 +314,7 @@ func pad(x:[Float], toLength length: Int, value:Float = 0.0) -> [Float] {
     return result
 }
 
-func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
+public func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
 
     var inputX = [Double](x)
     var inputY = [Double](y)
@@ -344,7 +344,7 @@ func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
 
 }
 
-func allClose(x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
+public func allClose(x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
 
     var inputX = [Float](x)
     var inputY = [Float](y)
