@@ -1,3 +1,5 @@
+import NumSwift
+
 func testLinspaceDouble() -> [Double]{
 
     return linspace(1.0, 10.0, num:10)

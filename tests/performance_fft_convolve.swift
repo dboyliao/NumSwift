@@ -1,4 +1,5 @@
 import Foundation
+import NumSwift
 
 let M = 1000001 // input size
 let N = 48576  // input size
@@ -9,9 +10,9 @@ colorPrint("N: \(N)", color:"white")
 colorPrint("repeatTime: \(repeatTime)", color:"white")
 
 colorPrint("==== Start Python FFT Convolution performace Test ===", color:"blue")
-system("python3 tests/fftconvolve_scipy.py \(M) \(N) \(repeatTime)")
+system("python3 tests/scripts/fftconvolve_scipy.py \(M) \(N) \(repeatTime)")
 
-colorPrint("\n==== Start Swift FFt Convolution Performance Test ===", color:"blue")
+colorPrint("\n==== Start Swift FFT Convolution Performance Test ===", color:"blue")
 
 var x = [Double](count:M, repeatedValue:0.0)
 var y = [Double](count:N, repeatedValue:0.0)

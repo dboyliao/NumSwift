@@ -1,10 +1,11 @@
 import Foundation
+import NumSwift
 
 var N = Int(1 << 18) // input size
 let repeatTime = 1000
 
 colorPrint("==== Start Python FFT Performace Test ===", color:"blue")
-system("python3 tests/fft_numpy.py \(N) \(repeatTime)")
+system("python3 tests/scripts/fft_numpy.py \(N) \(repeatTime)")
 
 colorPrint("\n==== Start Swift FFT Performance Test ===", color:"blue")
 

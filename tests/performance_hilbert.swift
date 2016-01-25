@@ -1,10 +1,11 @@
 import Foundation
+import NumSwift
 
 var N = Int(1 << 23) // input size
 let repeatTime = 10
 
 colorPrint("==== Start Python Hilbert Transform Performace Test ===", color:"blue")
-system("python3 tests/hilbert_scipy.py \(N) \(repeatTime)")
+system("python3 tests/scripts/hilbert_scipy.py \(N) \(repeatTime)")
 
 colorPrint("\n==== Start Swift Hilbert Transform Performance Test ===", color:"blue")
 

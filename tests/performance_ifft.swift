@@ -1,10 +1,11 @@
 import Foundation
+import NumSwift
 
 var N = Int(1 << 22) // input size
 let repeatTime = 5
 
 colorPrint("==== Start Python Inverse FFT Performace Test ===", color:"blue")
-system("python3 tests/ifft_scipy.py \(N) \(repeatTime)")
+system("python3 tests/scripts/ifft_scipy.py \(N) \(repeatTime)")
 
 colorPrint("\n==== Start Swift Inverse FFT Performance Test ===", color:"blue")
 

@@ -1,4 +1,5 @@
 import Foundation
+import NumSwift
 
 // Arrays
 let N = 5

@@ -1,3 +1,5 @@
+import NumSwift
+
 func testArangeDoubleNoStart() -> [Double] {
 
     let result = arangeD(5)

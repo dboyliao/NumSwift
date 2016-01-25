@@ -1,4 +1,5 @@
 import Accelerate
+import NumSwift
 
 colorPrint("===== tests on DSPComplex arithmetic====\n", color:"yellow")
 

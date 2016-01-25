@@ -1,3 +1,5 @@
+import NumSwift
+
 let xd:[Double] = [1.1, -2.3, 5.6, 2.7, -3.1415926]
 let xf:[Float] = [1.1, -2.3, 5.6, 2.7, -3.1415926]
 

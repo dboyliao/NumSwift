@@ -1,3 +1,4 @@
+import NumSwift
 
 colorPrint("======== Double Array Tests Start ========", color: "yellow")
 

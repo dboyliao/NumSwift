@@ -1,3 +1,5 @@
+import NumSwift
+
 let xd:[Double] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 let xf:[Float] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

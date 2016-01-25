@@ -1,11 +1,12 @@
 import Foundation
+import NumSwift
 
 let M = 400000 // input size
 let N = 8820  // input size
 let repeatTime = 100
 
 colorPrint("==== Start Python Convolution Performace Test ===", color:"blue")
-system("python3 tests/fftconvolve_scipy.py \(M) \(N) \(repeatTime)")
+system("python3 tests/scripts/fftconvolve_scipy.py \(M) \(N) \(repeatTime)")
 
 colorPrint("\n==== Start Swift Convolution Performance Test ===", color:"blue")
 
