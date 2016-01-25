@@ -135,7 +135,7 @@ public func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float])
     return (normalizedOutputRealp, normalizedOutputImagp)
 }
 
-func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
+public func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
 
     var longArray:[Double]
     var shortArray:[Double]
@@ -216,7 +216,7 @@ func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
     return finalResult
 }
 
-func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float] {
+public func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float] {
 
     var longArray:[Float]
     var shortArray:[Float]
