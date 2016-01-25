@@ -1,4 +1,5 @@
 import Foundation
+import NumSwift
 
 let N = 10
 var x = [Double](count:N+1, repeatedValue:0.0)

@@ -10,6 +10,8 @@
 ## Example Code
 
 ```{swift}
+import NumSwift
+
 let x:[Double] = [1, 2, 3, 4, 5, 6, 7, 8]
 
 let (x_recovered, x_hilbert) = hilbert(x)

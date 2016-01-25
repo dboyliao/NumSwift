@@ -1,3 +1,5 @@
+import NumSwift
+
 let N_radix2 = 16 // 2 to 4-th power.
 var x = [Double](count:N_radix2, repeatedValue:0.0)
 var zeros = [Double](x)
