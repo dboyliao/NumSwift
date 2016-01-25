@@ -1,6 +1,10 @@
-SOURCES=/Users/DboyLiao/Documents/Dboy_Packages/Swift/NumSwift/Sources
+SOURCES=$$(pwd)/Sources
 MODULE_NAME=NumSwift
 BUILD_DIR=NumSwiftModule
+
+temp:
+	echo $(SOURCES)
+	xcrun -sdk macosx swift -I "$$($(SOURCES))"
 
 module:
 	mkdir -p $(BUILD_DIR)
