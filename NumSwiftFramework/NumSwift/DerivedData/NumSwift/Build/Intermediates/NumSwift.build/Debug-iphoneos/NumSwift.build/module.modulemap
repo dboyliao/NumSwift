@@ -1,0 +1,10 @@
+framework module NumSwift {
+  umbrella header "NumSwift.h"
+
+  export *
+  module * { export * }
+}
+
+module NumSwift.Swift {
+    header "NumSwift-Swift.h"
+}

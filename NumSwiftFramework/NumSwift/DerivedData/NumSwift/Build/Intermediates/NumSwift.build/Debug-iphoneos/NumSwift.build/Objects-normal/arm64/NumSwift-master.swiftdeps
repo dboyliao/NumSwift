@@ -1,0 +1,13 @@
+version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
+options: "34df6fa4df0eb552e11ae070bc6861ae"
+build_time: [507107741, 76975000]
+inputs:
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Signal/Hilbert.swift": [507008127, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Exponential.swift": [507008165, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/FFT.swift": [507028522, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Complex.swift": [507008118, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Sort.swift": [507008604, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Convolution.swift": [507008142, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Utilities.swift": [507008706, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Power.swift": [507008594, 0]
+  "/Users/DboyLiao/Works/Projects/lipsync_tools/mobile/NumSwift/NumSwiftFramework/NumSwift/Trigonometry.swift": [507008656, 0]

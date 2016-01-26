@@ -15,13 +15,23 @@ I hope you enjoy this package. Cheers.
 # Testing
 Run `make test-osx` on Mac OSX.
 
-# Build (Importable Module)
+# Build 
+
+## Importable Module
+
 - Run `make module`
 - You will see a directory named `NumSwiftModule`
     + There are three files in that directory: `NumSwift.swiftmodule`, `NumSwift.swiftdoc` and `libNumSwift.dylib`
 - Include files generated in `NumSwiftModule` in you XCode Project.
     + If you hate XCode just like me, you can use `swiftc` instead with flags `-I` and `-L`
     + ex: Suppose you have a `main.swift` and import `NumSwift` in it, you can run `xcrun -sdk macosx swiftc -I /path/to/NumSwiftModule -L /path/to/NumSwiftModule -lNumSwift -o main`. 
+
+## Importable Framework
+
+- Open `NumSwift.xcodeproj` under `NumSwiftFramework/NumSwift/` directory.
+- Press `Build`.
+- View `Products/NumSwift.framework` in Finder. Drag the framework file to any project you'd like to use it.
+- You should be able to import `NumSwift` in your project.
 
 # Examples
 
