@@ -1,0 +1,97 @@
+import Accelerate
+
+/**
+ Compute e^(x). (Vectorized)
+ 
+ - Parameters:
+    - x: array of single precision floating numbers.
+ 
+ - Returns: An array of single precision floating number where its i-th element is e^(x[i]).
+*/
+public func exp(x:[Float]) -> [Float] {
+    
+     var y = [Float](count: x.count, repeatedValue: 0.0)
+     var N = Int32(x.count)
+     vvexpf(&y, x, &N)
+     return y
+}
+
+
+/**
+ Compute e^(x). (Vectorized)
+ 
+ - Parameters:
+    - x: array of double precision floating numbers.
+ 
+ - Returns: An array of double precision floating number where its i-th element is e^(x[i]).
+*/
+public func exp(x: [Double]) -> [Double] {
+    
+    var y = [Double](count: x.count, repeatedValue: 0.0)
+    var N = Int32(x.count)
+
+    vvexp(&y, x, &N)
+    return y
+
+}
+
+/**
+ Logrithm with Base
+ 
+ - Parameters:
+    - x: array of single precision floating numbers.
+    - base: the base of the logrithm (default: `e`).
+ 
+ - Returns: An array of single precision floating numbers. Its i-th element is the logrithm of x[i]
+            with base as given by `base`.
+*/
+public func log(x: [Float], base: Float? = nil) -> [Float] {
+
+    var y = [Float](count: x.count, repeatedValue: 0.0)
+    var N = Int32(x.count)
+
+    vvlogf(&y, x, &N)
+
+    if base != nil {
+        var base = base!
+        var scale:Float = 0.0
+        var one = Int32(1)
+        var tempArray = [Float](count: y.count, repeatedValue: 0.0)
+
+        vvlogf(&scale, &base, &one)
+        vDSP_vsdiv(&y, 1, &scale, &tempArray, 1, vDSP_Length(y.count))
+        y = tempArray
+    }
+
+    return y
+}
+
+/**
+ Logrithm with Base
+ 
+ - Parameters:
+    - x: array of double precision floating numbers.
+    - base: the base of the logrithm (default: `e`).
+ 
+    - Returns: An array of double precision floating numbers. Its i-th element is the logrithm of x[i]
+               with base as given by `base`.
+*/
+public func log(x: [Double], base: Double? = nil) -> [Double] {
+
+    var y = [Double](count: x.count, repeatedValue: 0.0)
+    var N = Int32(x.count)
+
+    vvlog(&y, x, &N)
+    if base != nil {
+        var base = base!
+        var scale: Double = 0.0
+        var one = Int32(1)
+        var tempArray = [Double](count: y.count, repeatedValue: 0.0)
+
+        vvlog(&scale, &base, &one)
+        vDSP_vsdivD(&y, 1, &scale, &tempArray, 1, vDSP_Length(y.count))
+        y = tempArray
+    }
+
+    return y
+}

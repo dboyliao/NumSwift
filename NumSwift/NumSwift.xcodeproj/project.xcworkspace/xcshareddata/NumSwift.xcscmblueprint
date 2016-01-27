@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0EB37104EFA1057BAE180D9A3F5A74CBE61933C3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0EB37104EFA1057BAE180D9A3F5A74CBE61933C3" : 0,
+    "0CF7CD4DFA927588E442E415B75898E7A1C952FF" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A6DB6C7E-8B70-4316-BF38-62214F56C987",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0EB37104EFA1057BAE180D9A3F5A74CBE61933C3" : "NumSwift\/",
+    "0CF7CD4DFA927588E442E415B75898E7A1C952FF" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NumSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "NumSwift\/NumSwift.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/spe3d\/lipsync_tools.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0CF7CD4DFA927588E442E415B75898E7A1C952FF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dboyliao\/NumSwift",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0EB37104EFA1057BAE180D9A3F5A74CBE61933C3"
+    }
+  ]
+}

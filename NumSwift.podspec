@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "NumSwift"
-s.version      = "1.0.1"
+s.version      = "1.0.4"
 s.summary      = "Numeric Operations for Swift"
 
 s.description  = <<-DESC

@@ -13,12 +13,14 @@ I hope you enjoy this package. Cheers.
 - `Foundation` framework
 
 # Testing
-Run `make test-osx` on Mac OSX.
+- change working directory to `NumSwift`
+- Run `make test-osx` on Mac OSX.
 
 # Build 
 
 ## Importable Module
 
+- change working directory to `NumSwift`
 - Run `make module`
 - You will see a directory named `NumSwiftModule`
     + There are three files in that directory: `NumSwift.swiftmodule`, `NumSwift.swiftdoc` and `libNumSwift.dylib`
@@ -28,14 +30,10 @@ Run `make test-osx` on Mac OSX.
 
 ## Importable Framework
 
-- Open `NumSwift.xcodeproj` under `NumSwiftFramework/NumSwift/` directory.
+- Open `NumSwift.xcodeproj` under `NumSwift/NumSwift/` directory.
 - Press `Build`.
-- View `Products/NumSwift.framework` in Finder. Drag the framework file to any project you'd like to use it.
+- You should be able to see `NumSwift.framework` under `NumSwift/NumSwift/`. Drag the framework file to any project you'd like to use it.
 - You should be able to import `NumSwift` in your project.
-
-# Examples
-
-Go to `Examples` for more example codes.
 
 # References
 
