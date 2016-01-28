@@ -29,7 +29,7 @@ s.ios.deployment_target = "8.0"
 s.source       = { :git => "https://github.com/dboyliao/NumSwift.git", :tag => s.version }
 
 
-s.source_files  = "Sources/*.swift", "Sources/Signal/*.swift"
+s.source_files  = "NumSwift/Source/*.swift", "NumSwift/Source/Signal/*.swift"
 
 s.frameworks = "Accelerate"
 
