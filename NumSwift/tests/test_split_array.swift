@@ -1,27 +1,58 @@
+import Foundation
 import NumSwift
 
-let xd:[Double] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-let xf:[Float] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+let numOfSplits = 20
 
-func testArraySplitDouble() -> [[Double]]{
+let xd = read_csvD("./tests/data/test_split_array.csv")
+let xf = read_csv("./tests/data/test_split_array.csv")
 
-    let result = splitArrayIntoParts(xd, 5)
-    print(result)
+let splitsDouble = splitArrayIntoParts(xd, numOfSplits)
+let splitsFloat = splitArrayIntoParts(xf, numOfSplits)
 
-    return result
+func genTestCaseDouble(i:Int) -> (() -> [Double]) {
+
+    func testCase() -> [Double] {
+
+        return splitsDouble[i]
+    }
+
+    return testCase
+
 }
 
-func testArraySplitFloat() -> [[Float]]{
+func genTestCaseFloat(i:Int) -> (() -> [Float]) {
 
-    let result = splitArrayIntoParts(xf, 5)
-    print(result)
-    
-    return result
+    func testCase() -> [Float] {
+
+        return splitsFloat[i]
+    }
+
+    return testCase
 
 }
 
-let answerD:[[Double]] = [[1, 2], [3, 4], [5, 6], [7, 8], [9]]
-let answer:[[Float]] = [[1, 2], [3, 4], [5, 6], [7, 8], [9]]
 
-testEqual("Split Array Double", test:testArraySplitDouble, expect:answerD)
-testEqual("Split Array Float", test:testArraySplitFloat, expect:answer)
+system("./tests/scripts/gen_split_array_test_cases.py -n \(numOfSplits)")
+
+var testCaseDouble:()->[Double]
+var testCaseFloat:()->[Float]
+var answerDouble:[Double]
+var answerFloat:[Float]
+
+for i in 0..<numOfSplits {
+
+    answerDouble = read_csvD("./tests/data/output_split_array_\(i+1).csv")
+    testCaseDouble = genTestCaseDouble(i)
+
+    testEqualInTol("Test on \(i+1)th Split Double", test:testCaseDouble, expect:answerDouble, tol:1e-9)
+}
+
+for i in 0..<numOfSplits {
+
+    answerFloat = read_csv("./tests/data/output_split_array_\(i+1).csv")
+    testCaseFloat = genTestCaseFloat(i)
+
+    testEqualInTol("Test on \(i+1)th Split Float", test:testCaseFloat, expect:answerFloat, tol:1e-3)
+}
+
+system("rm ./tests/data/output_split_array_*.csv")
