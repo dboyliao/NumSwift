@@ -2,11 +2,19 @@ SOURCE=$$(pwd)/Source
 MODULE_NAME=NumSwift
 BUILD_DIR=NumSwiftModule
 
+.PHONY: clean
+clean:
+	rm -rf $(BUILD_DIR)
+
 module:
 	mkdir -p $(BUILD_DIR)
 	xcrun -sdk macosx swiftc -I $(SOURCE) -L $(SOURCE) -emit-module-path $(BUILD_DIR)/$(MODULE_NAME).swiftmodule -module-link-name $(MODULE_NAME) -module-name $(MODULE_NAME) $(SOURCE)/*.swift $(SOURCE)/Signal/*.swift -emit-library -o $(BUILD_DIR)/libNumSwift.dylib
 
 test-osx:
+	# if there is no module available, build one.
+	if [ ! -d $(BUILD_DIR) ]; then \
+		make module; \
+	fi
 	make test-complex-osx
 	make test-trigonometry-osx
 	make test-fft-osx

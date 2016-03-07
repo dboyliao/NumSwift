@@ -13,7 +13,26 @@ I hope you enjoy this package. Cheers.
 - `Foundation` framework
 
 # Testing
-- change working directory to `NumSwift`
+
+First, change working directory to `NumSwift`.
+
+## Setup Testing Environment
+
+We use `numpy` (`python` package for numeric computation) as reference. Please setup the python environment by following steps:
+
+- Instll `python` and `virtualenv`.
+    + See this [guide](http://docs.python-guide.org/en/latest/dev/virtualenvs/) for detail of `virtualenv`
+- Activate a testing virtual environment.
+    ```{bash}
+    virtualenv venv_test
+    source venv_test/bin/activate
+    ```
+- Install required python packages
+    + run `pip install -r requirements.txt`
+
+You are ready to go!
+
+## Running Tests for Swift
 - Run `make test-osx` on Mac OSX.
 
 # Build 
