@@ -1,0 +1,3 @@
+[submodule "NumSwift/tests/SwiftTest"]
+	path = NumSwift/tests/SwiftTest
+	url = https://github.com/dboyliao/SwiftTest.git
