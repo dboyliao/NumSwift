@@ -41,6 +41,8 @@ I hope you enjoy this package. Cheers.
 - [Framework Reference](https://developer.apple.com/library/mac/documentation/Accelerate/Reference/vDSPRef/)
 - [Simple Tutorial by admsyn](https://forum.openframeworks.cc/t/a-guide-to-speeding-up-your-of-app-with-accelerate-osx-ios/10560)
 - [Surge](https://github.com/mattt/Surge)
+- [UpSurge](https://github.com/aleph7/Upsurge/)
+- [Recursive Type](https://forums.developer.apple.com/thread/19412)
 
 ## Fourier Transform
 - [DFT v.s FFT](https://forums.developer.apple.com/thread/23321)
