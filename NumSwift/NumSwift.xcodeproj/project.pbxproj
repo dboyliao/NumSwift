@@ -17,6 +17,8 @@
 		C733B6351C58BDE800B7DC04 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733B62C1C58BDE800B7DC04 /* Sort.swift */; };
 		C733B6361C58BDE800B7DC04 /* Trigonometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733B62D1C58BDE800B7DC04 /* Trigonometry.swift */; };
 		C733B6371C58BDE800B7DC04 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733B62E1C58BDE800B7DC04 /* Utilities.swift */; };
+		C7AAF8581CAB6FE1007A0912 /* MatrixArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AAF8561CAB6FE1007A0912 /* MatrixArithmetic.swift */; };
+		C7AAF8591CAB6FE1007A0912 /* MatrixErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AAF8571CAB6FE1007A0912 /* MatrixErrorType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		C733B62C1C58BDE800B7DC04 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		C733B62D1C58BDE800B7DC04 /* Trigonometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigonometry.swift; sourceTree = "<group>"; };
 		C733B62E1C58BDE800B7DC04 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C7AAF8561CAB6FE1007A0912 /* MatrixArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixArithmetic.swift; sourceTree = "<group>"; };
+		C7AAF8571CAB6FE1007A0912 /* MatrixErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixErrorType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 				C733B6271C58BDE800B7DC04 /* Exponential.swift */,
 				C733B6281C58BDE800B7DC04 /* FFT.swift */,
 				C733B6291C58BDE800B7DC04 /* Power.swift */,
+				C7AAF8551CAB6FE1007A0912 /* Matrix */,
 				C733B62A1C58BDE800B7DC04 /* Signal */,
 				C733B62C1C58BDE800B7DC04 /* Sort.swift */,
 				C733B62D1C58BDE800B7DC04 /* Trigonometry.swift */,
@@ -93,6 +98,15 @@
 				C733B62B1C58BDE800B7DC04 /* Hilbert.swift */,
 			);
 			path = Signal;
+			sourceTree = "<group>";
+		};
+		C7AAF8551CAB6FE1007A0912 /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				C7AAF8561CAB6FE1007A0912 /* MatrixArithmetic.swift */,
+				C7AAF8571CAB6FE1007A0912 /* MatrixErrorType.swift */,
+			);
+			path = Matrix;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +205,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7AAF8581CAB6FE1007A0912 /* MatrixArithmetic.swift in Sources */,
 				C733B6361C58BDE800B7DC04 /* Trigonometry.swift in Sources */,
+				C7AAF8591CAB6FE1007A0912 /* MatrixErrorType.swift in Sources */,
 				C733B6321C58BDE800B7DC04 /* FFT.swift in Sources */,
 				C733B6301C58BDE800B7DC04 /* Convolution.swift in Sources */,
 				C733B6341C58BDE800B7DC04 /* Hilbert.swift in Sources */,
@@ -346,6 +362,7 @@
 				C733B6231C58BD2500B7DC04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
