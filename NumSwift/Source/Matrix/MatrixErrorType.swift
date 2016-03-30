@@ -1,5 +1,5 @@
 import Foundation
 
 public enum MatrixError: ErrorType {
-    case IndexError, LengthError
+    case IndexError, LengthError, SizeError
 }

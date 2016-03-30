@@ -23,6 +23,36 @@ public func mul(matA:[Double], _ matB:[Double], _ m:Int32, _ n:Int32, _ k:Int32)
     return result
 }
 
+public func mul(matA:[Double], _ matB:[Double]) throws -> [Double] {
+    
+    if matA.count != matB.count {
+        throw MatrixError.LengthError
+    }
+
+    let ptrMatA = UnsafePointer<Double>(matA)
+    let ptrMatB = UnsafePointer<Double>(matB)
+    var result = [Double](count:matA.count, repeatedValue:0)
+
+    vDSP_vmulD(ptrMatA, 1, ptrMatB, 1, &result, 1, UInt(matA.count))
+
+    return result
+}
+
+public func mul(matA:[Float], _ matB:[Float]) throws -> [Float] {
+
+    if matA.count != matB.count {
+        throw MatrixError.LengthError
+    }
+
+    let ptrMatA = UnsafePointer<Float>(matA)
+    let ptrMatB = UnsafePointer<Float>(matB)
+    var result = [Float](count:matA.count, repeatedValue:0)
+
+    vDSP_vmul(ptrMatA, 1, ptrMatB, 1, &result, 1, UInt(matA.count))
+
+    return result
+}
+
 public func sub(matA:[Float], _ matB:[Float]) throws -> [Float] {
     
     if matA.count != matB.count {

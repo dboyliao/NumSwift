@@ -20,6 +20,24 @@ var answerF:[Float] = [12,  9,  6, 30, 23, 16, 48, 37, 26]
 testEqual("Matrix Multiplication: Double", test:testMultiplicationDouble, expect:answerD)
 testEqual("Matrix Multiplication: Float", test:testMultiplicationFloat, expect:answerF)
 
+func testElementMulDouble() -> [Double]{
+
+    return try! mul(matAd, matBd)
+
+}
+
+func testElementMulFloat() -> [Float] {
+
+    return try! mul(matAf, matBf)
+}
+
+answerD = [6, 10, 12, 12, 10, 6]
+answerF = [6, 10, 12, 12, 10, 6]
+
+testEqual("Elementwise Multiplication: Double", test: testElementMulDouble, expect: answerD)
+testEqual("Elementwise Multiplication: Float", test: testElementMulFloat, expect: answerF)
+
+
 func testMatrixAddDouble() -> [Double] {
     let result:[Double]
     
