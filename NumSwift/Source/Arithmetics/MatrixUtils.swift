@@ -17,3 +17,8 @@ public func mean(arrayOfMatrices:[[Float]]) -> [Float] {
 
     return [Float]()
 }
+
+// TODO: matrix inverse.
+public func inv<Element:Field>(matrix:Matrix<Element>) -> Matrix<Element> {
+    return Matrix<Element>.Zeros(2, 2)
+}

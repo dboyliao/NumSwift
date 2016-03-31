@@ -1,4 +1,6 @@
-SOURCE=$$(pwd)/Source
+SOURCE_DIR=$$(pwd)/Source
+SOURCE=$(SOURCE_DIR)/*.swift $(SOURCE_DIR)/Arithmetics/*.swift $(SOURCE_DIR)/Signal/*.swift $(SOURCE_DIR)/TypeSystem/*.swift
+SWIFTC_FLAGS=-I $$(pwd)/Source/ -L $$(pwd)/Source/
 MODULE_NAME=NumSwift
 BUILD_DIR=NumSwiftModule
 TEST_SOURCE=$$(pwd)/tests/SwiftTest/Source
@@ -9,7 +11,7 @@ clean:
 
 module:
 	mkdir -p $(BUILD_DIR)
-	xcrun -sdk macosx swiftc -I $(SOURCE) -L $(SOURCE) -emit-module-path $(BUILD_DIR)/$(MODULE_NAME).swiftmodule -module-link-name $(MODULE_NAME) -module-name $(MODULE_NAME) $(SOURCE)/*.swift $(SOURCE)/Signal/*.swift $(SOURCE)/Matrix/*.swift -emit-library -o $(BUILD_DIR)/libNumSwift.dylib
+	xcrun -sdk macosx swiftc $(SWIFTC_FLAGS) -emit-module-path $(BUILD_DIR)/$(MODULE_NAME).swiftmodule -module-link-name $(MODULE_NAME) -module-name $(MODULE_NAME) $(SOURCE) -emit-library -o $(BUILD_DIR)/libNumSwift.dylib
 
 test-osx:
 	# if there is no module available, build one.
