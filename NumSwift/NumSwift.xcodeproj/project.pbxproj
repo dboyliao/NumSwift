@@ -25,7 +25,6 @@
 		C7B04C811CAD3F090072823F /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C801CAD3F090072823F /* MatrixTests.swift */; };
 		C7B04C831CAD3F090072823F /* NumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C733B6191C58BD2500B7DC04 /* NumSwift.framework */; };
 		C7F36B1F1CAD7656006B8F9E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C7F36B1E1CAD7656006B8F9E /* LICENSE */; };
-		C7F36B201CAD78DF006B8F9E /* iOSNumSwiftTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = C7B04C7E1CAD3F080072823F /* iOSNumSwiftTests.xctest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7F36B1F1CAD7656006B8F9E /* LICENSE in Resources */,
-				C7F36B201CAD78DF006B8F9E /* iOSNumSwiftTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +418,7 @@
 		C733B6221C58BD2500B7DC04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -436,6 +435,7 @@
 		C733B6231C58BD2500B7DC04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

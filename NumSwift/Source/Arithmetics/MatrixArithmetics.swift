@@ -129,6 +129,10 @@ public func *<Element:Field>(left:Matrix<Element>, scalar:Element) -> Matrix<Ele
     return Matrix<Element>(data:newData, rows: left.rows, cols:left.cols, order:left.order)!
 }
 
+public func *<Element:Field>(scalar:Element, right:Matrix<Element>) -> Matrix<Element> {
+    return right * scalar
+}
+
 public func ==<Element:Field>(left:Matrix<Element>, right:Matrix<Element>) -> Bool {
     
     return left.data == right.data && left.rows == right.rows && left.cols == right.cols && left.order == right.order
