@@ -69,6 +69,9 @@ You are ready to go!
     + That is why we use `vDSP_DFT_XXX` rather than `vDSP_fft_XXX`.
     + The header file which states you should prefer `DFT` over `fft` is located in `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Kernel.framework/Versions/Current/Headers/vecLib` on my computer. Go see it for yourself. 
 
+## Matrix
+- [StackOverflow - Inverse Matrix](http://stackoverflow.com/questions/11282746/how-to-perform-matrix-inverse-operation-using-the-accelerate-framework)
+
 # Licence
 
 MIT

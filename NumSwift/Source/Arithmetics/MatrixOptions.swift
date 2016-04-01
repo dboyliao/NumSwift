@@ -13,9 +13,10 @@
 // var TotalHoursWastedHere = 0
 //
 // Reference: http://stackoverflow.com/questions/184618/what-is-the-best-comment-in-source-code-you-have-ever-encountered
+//
 
 import Foundation
 
-public enum MatrixError: ErrorType {
-    case IndexError, LengthError, SizeError
+public enum MatrixNormType {
+    case NormInf, NormL1, NormL2
 }

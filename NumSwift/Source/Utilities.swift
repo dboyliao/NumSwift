@@ -13,6 +13,7 @@
 // var TotalHoursWastedHere = 0
 //
 // Reference: http://stackoverflow.com/questions/184618/what-is-the-best-comment-in-source-code-you-have-ever-encountered
+//
 
 import Accelerate
 import Foundation

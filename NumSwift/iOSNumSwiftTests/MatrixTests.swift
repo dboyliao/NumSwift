@@ -5,10 +5,11 @@
 
 import XCTest
 import NumSwift
+import Accelerate
 
-class iOSNumSwiftTests: XCTestCase {
+class iOSMatrixTests: XCTestCase {
     
-    // MARK: - Matrix Multiplication Tests
+    // MARK: - Matrix Arithmetics Tests
     func testDoubleMatrixMultiplication() {
         
         var dataA = [Double](1.stride(to: 5, by: 1))
@@ -83,6 +84,15 @@ class iOSNumSwiftTests: XCTestCase {
         XCTAssert(result == answer, "answer:\(answer.data), result:\(result.data)")
     }
     
+    func testDoubleMatrixScalarAddtion(){
+        let data:[Double] = [1, 2, 3, 4, 5, 6]
+        let mat = Matrix<Double>(data:data, rows:2, cols:3)!
+        let result = mat + 1
+        let answer = Matrix<Double>(data:[2, 3, 4, 5, 6, 7], rows:2, cols:3)!
+        
+        XCTAssert(result == answer, "answer: \(answer.data), result:\(result.data)")
+    }
+    
     func testFloatMatrixAddition(){
         let dataA:[Float] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         let dataB:[Float] = [9, 8, 7, 6, 5, 4, 3, 2, 1]
@@ -105,6 +115,19 @@ class iOSNumSwiftTests: XCTestCase {
         XCTAssert(result == answer, "answer:\(answer.data), result:\(result.data)")
     }
     
+    func testDoubleMatrixScalarSubtraction(){
+        let data:[Double] = [1, 2, 3, 4, 5, 6]
+        let mat = Matrix<Double>(data:data, rows:2, cols:3)!
+        var answer = Matrix<Double>(data:[0, 1, 2, 3, 4, 5], rows:2, cols:3)!
+        var result = mat - 1
+        
+        XCTAssert(result == answer, "answer:\(answer.data), result:\(result.data)")
+        
+        result = 1 - mat
+        answer = Matrix<Double>(data:[0, -1, -2, -3, -4, -5], rows:2, cols:3)!
+        XCTAssert(result == answer, "answer:\(answer.data), result:\(result.data)")
+    }
+    
     func testFloatMatrixSubtraction(){
         let dataA:[Float] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         let dataB:[Float] = [9, 8, 7, 6, 5, 4, 3, 2, 1]
@@ -114,6 +137,62 @@ class iOSNumSwiftTests: XCTestCase {
         let result = matA - matB
         
         XCTAssert(result == answer, "answer:\(answer.data), result:\(result.data)")
+    }
+    
+    func testFloatMatrixScalarSubtraction(){
+        let data:[Float] = [1, 2, 3, 4, 5, 6]
+        let mat = Matrix<Float>(data:data, rows:2, cols:3)!
+        var answer = Matrix<Float>(data:[0, 1, 2, 3, 4, 5], rows:2, cols:3)!
+        var result = mat - 1
+        
+        XCTAssert(result == answer, "answer:\(answer.data), result:\(result.data)")
+        
+        result = 1 - mat
+        answer = Matrix<Float>(data:[0, -1, -2, -3, -4, -5], rows:2, cols:3)!
+        XCTAssert(result == answer, "answer:\(answer.data), result:\(result.data)")
+    }
+    
+    func testDoubleMatrixChangeOrder() {
+        
+        let mat = Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        XCTAssert(mat.order == CblasRowMajor, "mat.order: \(mat.order)")
+        
+        mat.setDataOrder(toOrder: CblasColMajor)
+        XCTAssert(mat.order == CblasColMajor, "mat.order: \(mat.order)")
+        XCTAssert(mat.data == [1, 3, 2, 4], "mat.order: \(mat.data)")
+    }
+    
+    func testFloatMatrixChangeOrder() {
+        
+        let mat = Matrix<Float>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        XCTAssert(mat.order == CblasRowMajor, "mat.order: \(mat.order)")
+        
+        mat.setDataOrder(toOrder: CblasColMajor)
+        XCTAssert(mat.order == CblasColMajor, "mat.order: \(mat.order)")
+        XCTAssert(mat.data == [1, 3, 2, 4], "mat.order: \(mat.data)")
+    }
+    
+    // MARK: - Matrix Subscription Tests
+    func testDoubleMatrixSubsciption(){
+        let mat = Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let answer:Double = 2
+        
+        XCTAssert(mat[0, 1] == answer, "mat[0,0]: \(mat[0, 1]), expect: \(answer)")
+        
+        mat.setDataOrder(toOrder: CblasColMajor)
+        
+        XCTAssert(mat[0, 1] == answer, "mat[0,0]: \(mat[0, 1]), expect: \(answer)")
+    }
+    
+    func testFloatMatrixSubsciption(){
+        let mat = Matrix<Float>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let answer:Float = 2
+        
+        XCTAssert(mat[0, 1] == answer, "mat[0,0]: \(mat[0, 1]), expect: \(answer)")
+        
+        mat.setDataOrder(toOrder: CblasColMajor)
+        
+        XCTAssert(mat[0, 1] == answer, "mat[0,0]: \(mat[0, 1]), expect: \(answer)")
     }
     
     // MARK: - Matrix Performance Tests

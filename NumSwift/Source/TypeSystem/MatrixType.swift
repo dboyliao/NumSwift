@@ -65,14 +65,14 @@ public class Matrix<Element:Field>:Equatable {
 
     }
 
-    public init(matrix:Matrix<Element>){
+    public init(_ matrix:Matrix<Element>){
         self.rows = matrix.rows
         self.cols = matrix.cols
         self._order = matrix.order
         self._data = matrix.data
     }
 
-    func setDataOrder(toOrder order:CBLAS_ORDER){
+    public func setDataOrder(toOrder order:CBLAS_ORDER){
         if self.order == order {
             return
         }
@@ -86,7 +86,7 @@ public class Matrix<Element:Field>:Equatable {
             let ptrNewData = UnsafeMutablePointer<Double>(newData)
 
             for offset in 0..<self.cols {
-                let start = UInt(offset)
+                let start = UInt(offset+1)
                 let end = UInt(self.data.count + 1)
                 let index = [UInt](start.stride(to:end, by:stride))
                 vDSP_vgathrD(ptrData, index, 1, ptrNewData.advancedBy(offset * self.cols), 1, UInt(self.rows))
@@ -97,7 +97,7 @@ public class Matrix<Element:Field>:Equatable {
             let ptrNewData = UnsafeMutablePointer<Float>(newData)
 
             for offset in 0..<self.cols {
-                let start = UInt(offset)
+                let start = UInt(offset+1)
                 let end = UInt(self.data.count + 1)
                 let index = [UInt](start.stride(to:end, by:stride))
                 vDSP_vgathr(ptrData, index, 1, ptrNewData.advancedBy(offset * self.cols), 1, UInt(self.rows))
@@ -108,7 +108,7 @@ public class Matrix<Element:Field>:Equatable {
             let ptrNewData = UnsafeMutablePointer<Double>(newData)
 
             for offset in 0..<self.rows {
-                let start = UInt(offset)
+                let start = UInt(offset+1)
                 let end = UInt(self.data.count + 1)
                 let index = [UInt](start.stride(to:end, by:stride))
                 vDSP_vgathrD(ptrData, index, 1, ptrNewData.advancedBy(offset * self.rows), 1, UInt(self.cols))
@@ -119,7 +119,7 @@ public class Matrix<Element:Field>:Equatable {
             let ptrNewData = UnsafeMutablePointer<Float>(newData)
 
             for offset in 0..<self.rows {
-                let start = UInt(offset)
+                let start = UInt(offset+1)
                 let end = UInt(self.data.count + 1)
                 let index = [UInt](start.stride(to:end, by:stride))
                 vDSP_vgathr(ptrData, index, 1, ptrNewData.advancedBy(offset * self.rows), 1, UInt(self.cols))
