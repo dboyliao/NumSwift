@@ -50,6 +50,22 @@ A - B // == Matrix<Double>(data:[0, 1, 2, 3], rows:2, cols:2)!
 // (coming soon....)
 ```
 
+## Matrix Data Type Conversion
+
+You can convert matrix from one data type to another.
+
+```{swift}
+import NumSwift
+
+let matrixD = Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!
+
+// convert to `Matrix<Float>`
+let matrixF = matrixD.astype(Float)
+
+print(matrixF == Matrix<Float>(data:[1, 2, 3, 4], rows:2, cols:2)!)
+// true
+```
+
 ## Matrix Memeory Management
 
 ```{swift}
