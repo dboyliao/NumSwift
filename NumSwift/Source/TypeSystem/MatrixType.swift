@@ -141,7 +141,6 @@ public class Matrix<Element:Field> {
         return Matrix<Element>.Zeros(matrix.rows, matrix.cols, order:matrix.order)
     }
 
-    // TODO: subscript methods.
     public subscript(indexX:Int, indexY:Int) -> Element {
         let offset:Int
         switch self.order {
@@ -158,12 +157,32 @@ public class Matrix<Element:Field> {
         return self.data[offset]
     }
     
+    // TODO: subscription by range.
     /*
     public subscript(rangeX:Range<Int>, rangeY:Range<Int>) -> Matrix<Element> {
         return Matrix<Element>.Zeros(2, 2)
     }
     */
     
-    // TODO: type convertion
-    // public func astype(type:Element.Type) -> Matrix<Element>
+    public func astype<AnotherElement:Field>(type:AnotherElement.Type) -> Matrix<AnotherElement> {
+        
+        let strArray = self.data.map { ($0.description) }
+        let newData = [AnotherElement](count:self.count, repeatedValue:AnotherElement(0))
+        let index = [UInt](UInt(1).stride(to: UInt(self.count + 1), by: 1))
+        
+        switch type {
+        case is Double.Type:
+            let tempData = strArray.map { Double($0)! }
+            let ptrNewData = UnsafeMutablePointer<Double>(newData)
+            vDSP_vgathrD(tempData, index, 1, ptrNewData, 1, UInt(self.count))
+        case is Float.Type:
+            let tempData = strArray.map { Float($0)! }
+            let ptrNewData = UnsafeMutablePointer<Float>(newData)
+            vDSP_vgathr(tempData, index, 1, ptrNewData, 1, UInt(self.count))
+        default:
+            break
+        }
+        
+        return Matrix<AnotherElement>(data:newData, rows:self.rows, cols:self.cols, order:self.order)!
+    }
 }

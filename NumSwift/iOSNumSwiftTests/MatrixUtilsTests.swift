@@ -67,4 +67,20 @@ class iOSMatrixUtilsTests:XCTestCase {
         
         XCTAssert(matrixNorm == answer, "result: \(matrixNorm), answer: \(answer)")
     }
+    
+    func testDoubleMatrixTranspose(){
+        let matrix = Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let matrixTranspose = transpose(matrix)
+        let answer = Matrix<Double>(data:[1, 3, 2, 4], rows:2, cols:2)!
+        
+        XCTAssert(matrixTranspose == answer, "transpose data: \(matrixTranspose.data), ansswer.data: \(answer.data)")
+    }
+    
+    func testFloatMatrixTranspose(){
+        let matrix = Matrix<Float>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let matrixTranspose = transpose(matrix)
+        let answer = Matrix<Float>(data:[1, 3, 2, 4], rows:2, cols:2)!
+        
+        XCTAssert(matrixTranspose == answer, "transpose data: \(matrixTranspose.data), ansswer.data: \(answer.data)")
+    }
 }

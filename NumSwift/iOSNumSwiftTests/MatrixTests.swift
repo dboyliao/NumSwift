@@ -195,6 +195,18 @@ class iOSMatrixTests: XCTestCase {
         XCTAssert(mat[0, 1] == answer, "mat[0,0]: \(mat[0, 1]), expect: \(answer)")
     }
     
+    func testMatrixAstype(){
+        let matrix = Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let resultD = matrix.astype(Double)
+        let resultF = matrix.astype(Float)
+        let answerD = Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let answerF = Matrix<Float>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        
+        XCTAssert(resultD == answerD, "answerD.data: \(answerD.data), resultD.data: \(resultD.data)")
+        XCTAssert(resultF == answerF, "answerD.data: \(answerF.data), resultD.data: \(resultF.data)")
+        
+    }
+    
     // MARK: - Matrix Performance Tests
     func testPerformanceDoubleMatrixMultiplication() {
         
