@@ -16,7 +16,9 @@
 
 import Accelerate
 
-public class Matrix<Element:Field>:Equatable {
+extension Matrix:Equatable {}
+
+public class Matrix<Element:Field> {
 
     // public properties
     public var data:[Element] {

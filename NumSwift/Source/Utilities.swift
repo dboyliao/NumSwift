@@ -140,43 +140,43 @@ public func roundToZero(x:[Float]) -> [Float]{
 }
 
 /**
- Evenly Spaced Values within a Given Interval.
+ Evenly spaced values with a given start value.
  
  - Parameters:
     - N: output length
-    - start: starting value (default 1).
+    - start: starting value (default 0).
     - step: step size between values.
  
  - Returns: A double precision array of sequential values starting at `start` 
             with even step size.
 */
-public func arangeD(N:Int, start:Int = 1, step:Double = 1.0) -> [Double]{
+public func arange(N:Int, start:Double = 0, step:Double) -> [Double]{
 
-    var startDouble = Double(start)
+    var start = start
     var step = Double(step)
     var result = [Double](count:N, repeatedValue:0.0)
-    vDSP_vrampD(&startDouble, &step, &result, 1, vDSP_Length(N))
+    vDSP_vrampD(&start, &step, &result, 1, vDSP_Length(N))
 
     return result
 }
 
 /**
- Evenly Spaced Values within a Given Interval.
+ Evenly spaced values with a given start value.
  
  - Parameters:
     - N: output length
-    - start: starting value (default 1).
+    - start: starting value (default 0).
     - step: step size between values.
  
  - Returns: A single precision array of sequential values starting at `start` 
             with even step size.
 */
-public func arange(N:Int, start:Int = 1, step:Float = 1.0) -> [Float] {
+public func arange(N:Int, start:Float = 0, step:Float) -> [Float] {
 
-    var startFloat = Float(start)
+    var start = start
     var step = step
     var result = [Float](count:N, repeatedValue:0.0)
-    vDSP_vramp(&startFloat, &step, &result, 1, vDSP_Length(N))
+    vDSP_vramp(&start, &step, &result, 1, vDSP_Length(N))
 
     return result
 }
@@ -191,7 +191,9 @@ public func arange(N:Int, start:Int = 1, step:Float = 1.0) -> [Float] {
  
  - Returns: An double precision array of `num` many equally spaced samples.
 */
-public func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
+public func linspace(start:Double, _ end:Double, num:Int = 100) -> [Double]{
+    
+    precondition(start <= end, "start must be no larger than end.")
 
     var startDouble = Double(start)
     var endDouble = Double(end)
@@ -213,7 +215,9 @@ public func linspace(start:Double, _ end:Double, num:Int) -> [Double]{
  
  - Returns: An single precision array of `num` many equally spaced samples.
 */
-public func linspace(start:Float, _ end:Float, num:Int) -> [Float]{
+public func linspace(start:Float, _ end:Float, num:Int = 100) -> [Float]{
+    
+    precondition(start <= end, "start must be no larger than end.")
 
     var startFloat = Float(start)
     var endFloat = Float(end)
@@ -234,9 +238,8 @@ public func linspace(start:Float, _ end:Float, num:Int) -> [Float]{
 */
 public func mean(x:[Double]) -> Double {
 
-    let ptr_x = UnsafePointer<Double>(x)
     var value:Double = 0.0
-    vDSP_meanvD(ptr_x, 1, &value, vDSP_Length(x.count))
+    vDSP_meanvD(x, 1, &value, vDSP_Length(x.count))
 
     return value
 
@@ -252,9 +255,8 @@ public func mean(x:[Double]) -> Double {
 */
 public func mean(x:[Float]) -> Float {
 
-    let ptr_x = UnsafePointer<Float>(x)
     var value:Float = 0.0
-    vDSP_meanv(ptr_x, 1, &value, vDSP_Length(x.count))
+    vDSP_meanv(x, 1, &value, vDSP_Length(x.count))
 
     return value
 }
@@ -492,6 +494,50 @@ public func leastPowerOfTwo(N:Int) -> Int {
     }
 
     return NPowTwo
+}
+
+/**
+ Find the least power of 2.
+ 
+ Returns the least power of 2 greater than `N`.
+ 
+ - Parameters:
+ - N: the lower bound of power of 2.
+ 
+ - Returns: the least power of 2 greater than N
+ */
+public func leastPowerOfTwo(N:Double) -> Double {
+    
+    let log2N = Int(log2(N))
+    var NPowTwo = 1 << log2N
+    
+    if Double(NPowTwo) < N {
+        NPowTwo = NPowTwo << 1
+    }
+    
+    return Double(NPowTwo)
+}
+
+/**
+ Find the least power of 2.
+ 
+ Returns the least power of 2 greater than `N`.
+ 
+ - Parameters:
+ - N: the lower bound of power of 2.
+ 
+ - Returns: the least power of 2 greater than N
+ */
+public func leastPowerOfTwo(N:Float) -> Float {
+    
+    let log2N = Int(log2(N))
+    var NPowTwo = 1 << log2N
+    
+    if Float(NPowTwo) < N {
+        NPowTwo = NPowTwo << 1
+    }
+    
+    return Float(NPowTwo)
 }
 
 /**

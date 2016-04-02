@@ -28,6 +28,27 @@ public func mean<Element:Field>(of matrices:[Matrix<Element>]) -> Matrix<Element
     return meanMatrix
 }
 
+public func mean<Element:Field>(of matrix:Matrix<Element>) -> Element {
+    
+    var result = [Element(0)]
+    
+    switch matrix.dtype {
+    case is Double.Type:
+        let ptrResult = UnsafeMutablePointer<Double>(result)
+        let ptrData = UnsafePointer<Double>(matrix.data)
+        vDSP_meanvD(ptrData, 1, ptrResult, UInt(matrix.count))
+    case is Float.Type:
+        let ptrResult = UnsafeMutablePointer<Float>(result)
+        let ptrData = UnsafePointer<Float>(matrix.data)
+        vDSP_meanv(ptrData, 1, ptrResult, UInt(matrix.count))
+    default:
+        break
+    }
+    
+    return result[0]
+    
+}
+
 public func transpose<Element:Field>(matrix:Matrix<Element>) -> Matrix<Element> {
     
     let newData = [Element](count:matrix.count, repeatedValue:Element(0))

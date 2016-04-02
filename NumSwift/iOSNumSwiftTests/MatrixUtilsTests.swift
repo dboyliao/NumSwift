@@ -8,7 +8,7 @@ import NumSwift
 
 class iOSMatrixUtilsTests:XCTestCase {
     
-    func testDoubleMatrixMean() {
+    func testDoubleMatricesMean() {
         var matrices = [Matrix<Double>]()
         matrices.append(Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!)
         matrices.append(Matrix<Double>(data:[4, 3, 2, 1], rows:2, cols:2)!)
@@ -19,7 +19,7 @@ class iOSMatrixUtilsTests:XCTestCase {
         XCTAssert(meanMatrix == answer, "answer: \(answer.data), result: \(meanMatrix.data)")
     }
     
-    func testFloatMatrixMean() {
+    func testFloatMatricesMean() {
         var matrices = [Matrix<Float>]()
         matrices.append(Matrix<Float>(data:[1, 2, 3, 4], rows:2, cols:2)!)
         matrices.append(Matrix<Float>(data:[4, 3, 2, 1], rows:2, cols:2)!)
@@ -29,6 +29,25 @@ class iOSMatrixUtilsTests:XCTestCase {
         let answer = Matrix<Float>(data:[3, 3, 3, 3], rows:2, cols:2)!
         
         XCTAssert(meanMatrix == answer, "answer: \(answer.data), result: \(meanMatrix.data)")
+    }
+    
+    func testDoubleMatrixMean(){
+        
+        let matrix = Matrix<Double>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let result = mean(of: matrix)
+        let answer:Double = 2.5
+        
+        XCTAssert(result == answer, "answer: \(answer), result: \(result)")
+        
+    }
+    
+    func testFloatMatrixMean(){
+        
+        let matrix = Matrix<Float>(data:[1, 2, 3, 4], rows:2, cols:2)!
+        let result = mean(of: matrix)
+        let answer:Float = 2.5
+        
+        XCTAssert(result == answer, "answer: \(answer), result: \(result)")
     }
     
     func testDoubleMatrixNorm(){

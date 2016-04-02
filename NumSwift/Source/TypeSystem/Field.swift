@@ -16,6 +16,18 @@
 
 import Foundation
 
+/**
+ ```
+    Field: Comparable, CustomStringConvertible, Hashable
+                     /      |      \
+                  Double  Float    Int
+ ```
+ 
+ - Required Methods:
+    - `init(_ num: Double)`
+    - `init(_ num: Float)`
+    - `init(_ num: Int)`
+*/
 public protocol Field:Comparable, CustomStringConvertible, Hashable {
     init(_ num: Double)
     init(_ num: Float)
