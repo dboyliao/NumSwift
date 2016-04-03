@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C725BD3E1CB1577E00F06000 /* dev.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = dev.playground; path = dev/dev.playground; sourceTree = "<group>"; };
 		C733B6191C58BD2500B7DC04 /* NumSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C733B61C1C58BD2500B7DC04 /* NumSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumSwift.h; sourceTree = "<group>"; };
 		C733B61E1C58BD2500B7DC04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		C733B60F1C58BD2500B7DC04 = {
 			isa = PBXGroup;
 			children = (
+				C725BD3E1CB1577E00F06000 /* dev.playground */,
 				C7F36B1E1CAD7656006B8F9E /* LICENSE */,
 				C7B04C441CACDE940072823F /* Source */,
 				C733B61B1C58BD2500B7DC04 /* NumSwift */,

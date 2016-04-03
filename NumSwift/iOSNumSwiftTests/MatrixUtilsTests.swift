@@ -83,4 +83,35 @@ class iOSMatrixUtilsTests:XCTestCase {
         
         XCTAssert(matrixTranspose == answer, "transpose data: \(matrixTranspose.data), ansswer.data: \(answer.data)")
     }
+    
+    func testInverseDoubleMatrix(){
+        
+        let matrix = Matrix<Double>(data:[1, 1, 7, 1, 2, 1, 1, 1, 3], rows:3, cols:3)!
+        let iMatrix = inverse(matrix)!
+        let answer = Matrix<Double>(data:[-1.25, -1.0, 3.25, 0.5, 1.0, -1.5, 0.25, 0.0, -0.25], rows:3, cols:3)!
+        let (pass, maxDiff) = testAllClose(iMatrix.data, answer.data, tol:1e-15)
+        
+        XCTAssert(pass, "maxDiff: \(maxDiff), iMatrix.data: \(iMatrix.data), answer.data: \(answer.data)")
+        
+        let product = matrix * iMatrix
+        let identity = Matrix<Double>(data:[1, 0, 0, 0, 1, 0, 0, 0, 1], rows:3, cols:3)!
+        let (pass2, _) = testAllClose(product.data, identity.data)
+        
+        XCTAssert(pass2, "product.data:\(product.data)")
+    }
+    
+    func testInverseFloatMatrix(){
+        let matrix = Matrix<Float>(data:[1, 1, 7, 1, 2, 1, 1, 1, 3], rows:3, cols:3)!
+        let iMatrix = inverse(matrix)!
+        let answer = Matrix<Float>(data:[-1.25, -1.0, 3.25, 0.5, 1.0, -1.5, 0.25, 0.0, -0.25], rows:3, cols:3)!
+        let (pass, maxDiff) = testAllClose(iMatrix.data, answer.data, tol:1e-6)
+        
+        XCTAssert(pass, "maxDiff: \(maxDiff), iMatrix.data: \(iMatrix.data), answer.data: \(answer.data)")
+        
+        let product = matrix * iMatrix
+        let identity = Matrix<Float>(data:[1, 0, 0, 0, 1, 0, 0, 0, 1], rows:3, cols:3)!
+        let (pass2, _) = testAllClose(product.data, identity.data)
+        
+        XCTAssert(pass2, "product.data:\(product.data)")
+    }
 }

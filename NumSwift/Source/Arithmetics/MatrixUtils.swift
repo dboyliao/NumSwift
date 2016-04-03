@@ -93,6 +93,35 @@ public func norm<Element:Field>(matrix: Matrix<Element>, normType:MatrixNormType
 }
 
 // TODO: matrix inverse.
-public func inv<Element:Field>(matrix:Matrix<Element>) -> Matrix<Element> {
-    return Matrix<Element>.Zeros(2, 2)
+public func inverse<Element:Field>(matrix:Matrix<Element>) -> Matrix<Element>? {
+    
+    precondition(matrix.rows == matrix.cols, "the matrix is not square.")
+    precondition(matrix.order == CblasRowMajor, "the matrix has to be of row-major matrix.")
+    
+    var pivots = [Int32](count:matrix.rows, repeatedValue:0)
+    var rowsNumber = [Int32(matrix.rows)]
+    var errorLUFactor = [Int32(0)]
+    var errorInverse = [Int32(0)]
+    let newData = matrix.data // since array is a struct, this assignment is copy by value.
+    
+    switch matrix.dtype {
+    case is Double.Type:
+        let ptrNewData = UnsafeMutablePointer<Double>(newData)
+        var workspace = [Double](count:matrix.rows, repeatedValue:0)
+        dgetrf_(&rowsNumber, &rowsNumber, ptrNewData, &rowsNumber, &pivots, &errorLUFactor) // get LU factorization
+        dgetri_(&rowsNumber, ptrNewData, &rowsNumber, &pivots, &workspace, &rowsNumber, &errorInverse) // make inversion
+    case is Float.Type:
+        let ptrNewData = UnsafeMutablePointer<Float>(newData)
+        var workspace = [Float](count:matrix.rows, repeatedValue:0)
+        sgetrf_(&rowsNumber, &rowsNumber, ptrNewData, &rowsNumber, &pivots, &errorLUFactor)
+        sgetri_(&rowsNumber, ptrNewData, &rowsNumber, &pivots, &workspace, &rowsNumber, &errorInverse)
+    default:
+        break
+    }
+    
+    if errorLUFactor[0] != 0 || errorInverse[0] != 0 {
+        return nil
+    }
+    
+    return Matrix<Element>(data:newData, rows:matrix.rows, cols:matrix.cols)!
 }

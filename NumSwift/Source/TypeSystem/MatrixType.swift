@@ -20,7 +20,7 @@ extension Matrix:Equatable {}
 
 public class Matrix<Element:Field> {
 
-    // public properties
+    // MARK: # Public Properties
     public var data:[Element] {
         return self._data
     }
@@ -38,14 +38,19 @@ public class Matrix<Element:Field> {
     public var count: Int {
         return self.data.count
     }
+    
+    // transpose of matrix
+    public var T:Matrix<Element> {
+        return transpose(self)
+    }
 
-    // private properties
+    // MARK: # Private Properties
     private var _order:CBLAS_ORDER
     private var _data:[Element]
     private var _dtype = Element.self
     
 
-    
+    // MARK: # Initializer
     public init?(data:[Element], rows:Int, cols:Int, order:CBLAS_ORDER = CblasRowMajor){
 
         if data.count != rows*cols {
@@ -59,9 +64,9 @@ public class Matrix<Element:Field> {
         
     }
 
-    public convenience init?(data:ArraySlice<Element>, rows:Int, cols:Int, order:CBLAS_ORDER = CblasRowMajor){
+    public convenience init?(slice:ArraySlice<Element>, rows:Int, cols:Int, order:CBLAS_ORDER = CblasRowMajor){
 
-        let array = Array<Element>(data)
+        let array = Array<Element>(slice)
         
         self.init(data:array, rows: rows, cols: cols, order: order)
 
@@ -73,7 +78,32 @@ public class Matrix<Element:Field> {
         self._order = matrix.order
         self._data = matrix.data
     }
-
+    
+    // MARK: # Subscription
+    public subscript(indexX:Int, indexY:Int) -> Element {
+        let offset:Int
+        switch self.order {
+        case CblasRowMajor:
+            offset = indexX * self.cols + indexY
+        case CblasColMajor:
+            offset = indexY * self.rows + indexX
+        default:
+            print("[Matrix subscription:indexX:indexY]: no such order")
+            offset = 0
+            break
+        }
+        
+        return self.data[offset]
+    }
+    
+    // TODO: subscription by range.
+    /*
+     public subscript(rangeX:Range<Int>, rangeY:Range<Int>) -> Matrix<Element> {
+     return Matrix<Element>.Zeros(2, 2)
+     }
+     */
+    
+    // MARK: # Other Methods
     public func setDataOrder(toOrder order:CBLAS_ORDER){
         if self.order == order {
             return
@@ -140,29 +170,6 @@ public class Matrix<Element:Field> {
     public class func Zeros<Element>(like matrix: Matrix<Element>) -> Matrix<Element>{
         return Matrix<Element>.Zeros(matrix.rows, matrix.cols, order:matrix.order)
     }
-
-    public subscript(indexX:Int, indexY:Int) -> Element {
-        let offset:Int
-        switch self.order {
-        case CblasRowMajor:
-            offset = indexX * self.cols + indexY
-        case CblasColMajor:
-            offset = indexY * self.rows + indexX
-        default:
-            print("[Matrix subscription:indexX:indexY]: no such order")
-            offset = 0
-            break
-        }
-
-        return self.data[offset]
-    }
-    
-    // TODO: subscription by range.
-    /*
-    public subscript(rangeX:Range<Int>, rangeY:Range<Int>) -> Matrix<Element> {
-        return Matrix<Element>.Zeros(2, 2)
-    }
-    */
     
     public func astype<AnotherElement:Field>(type:AnotherElement.Type) -> Matrix<AnotherElement> {
         

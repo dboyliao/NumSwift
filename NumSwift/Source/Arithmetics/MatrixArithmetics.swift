@@ -172,12 +172,13 @@ public func *<Element:Field>(left:Matrix<Element>, right:Matrix<Element>) -> Mat
         let ptrNewData = UnsafeMutablePointer<Double>(newData)
         let ptrLeftData = UnsafePointer<Double>(left.data)
         let ptrRightData = UnsafePointer<Double>(right.data)
-        cblas_dgemm(left.order, CblasNoTrans, CblasNoTrans, Int32(m), Int32(n), Int32(k), 1, ptrLeftData, Int32(k), ptrRightData, Int32(n), 1, ptrNewData, Int32(n))
+        cblas_dgemm(left.order, CblasNoTrans, CblasNoTrans, Int32(m), Int32(n), Int32(k), 1.0, ptrLeftData, Int32(k), ptrRightData, Int32(n), 0.0, ptrNewData, Int32(n))
+        
     case (is Float.Type, is Float.Type):
         let ptrNewData = UnsafeMutablePointer<Float>(newData)
         let ptrLeftData = UnsafePointer<Float>(left.data)
         let ptrRightData = UnsafePointer<Float>(right.data)
-        cblas_sgemm(left.order, CblasNoTrans, CblasNoTrans, Int32(m), Int32(n), Int32(k), 1, ptrLeftData, Int32(k), ptrRightData, Int32(n), 1, ptrNewData, Int32(n))
+        cblas_sgemm(left.order, CblasNoTrans, CblasNoTrans, Int32(m), Int32(n), Int32(k), 1.0, ptrLeftData, Int32(k), ptrRightData, Int32(n), 0.0, ptrNewData, Int32(n))
     default:
         break
     }

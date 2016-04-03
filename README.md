@@ -71,6 +71,7 @@ You are ready to go!
 
 ## Matrix
 - [StackOverflow - Inverse Matrix](http://stackoverflow.com/questions/11282746/how-to-perform-matrix-inverse-operation-using-the-accelerate-framework)
+- [netlib CLAPACK - `dgetrf`](http://www.netlib.org/clapack/clapack-3.2.1-CMAKE/SRC/VARIANTS/lu/CR/dgetrf.c)
 
 # Licence
 
