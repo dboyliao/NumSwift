@@ -98,7 +98,7 @@ class iOSUtilityFunctionTests: XCTestCase {
     
     func testVarianceDouble(){
         
-        let x = 1.stride(to: 11, by: 1).map { Double($0) }
+        let x = stride(from: 1, to: 11, by: 1).map { Double($0) }
         let result = variance(x)
         let answer:Double = 8.25
         
@@ -108,7 +108,7 @@ class iOSUtilityFunctionTests: XCTestCase {
     
     func testVarianceFloat(){
         
-        let x = 1.stride(to: 11, by: 1).map { Float($0) }
+        let x = stride(from: 1, to: 11, by: 1).map { Float($0) }
         let result = variance(x)
         let answer:Float = 8.25
         
@@ -118,7 +118,7 @@ class iOSUtilityFunctionTests: XCTestCase {
     
     func testStdDouble(){
         
-        let x = 1.stride(to: 11, by: 1).map { Double($0) }
+        let x = stride(from: 1, to: 11, by: 1).map { Double($0) }
         let result = std(x)
         let answer:Double = 2.8722813232690143
         
@@ -128,7 +128,7 @@ class iOSUtilityFunctionTests: XCTestCase {
     
     func testStdFloat(){
         
-        let x = 1.stride(to: 11, by: 1).map { Float($0) }
+        let x = stride(from: 1, to: 11, by: 1).map { Float($0) }
         let result = std(x)
         let answer:Float = 2.8722813232690143
         
@@ -137,7 +137,7 @@ class iOSUtilityFunctionTests: XCTestCase {
     }
     
     func testNormalizeDouble(){
-        let x = 1.stride(to:11, by:1).map { Double($0) }
+        let x = stride(from: 1, to:11, by:1).map { Double($0) }
         let result = normalize(x)
         let answer:[Double] = [-1.5666989, -1.21854359, -0.87038828, -0.52223297, -0.17407766,
                                0.17407766,  0.52223297,  0.87038828,  1.21854359,  1.5666989]
@@ -149,7 +149,7 @@ class iOSUtilityFunctionTests: XCTestCase {
     
     func testNormalizeFloat(){
         
-        let x = 1.stride(to:11, by:1).map { Float($0) }
+        let x = stride(from: 1, to:11, by:1).map { Float($0) }
         let result = normalize(x)
         let answer:[Float] = [-1.5666989, -1.21854359, -0.87038828, -0.52223297, -0.17407766,
                                0.17407766,  0.52223297,  0.87038828,  1.21854359,  1.5666989]
@@ -170,9 +170,16 @@ class iOSUtilityFunctionTests: XCTestCase {
         let answerD:[[Double]] = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14], [15, 16, 17, 18, 19, 20]].map { $0.map {Double($0)} }
         let answerF:[[Float]] = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14], [15, 16, 17, 18, 19, 20]].map { $0.map {Float($0)} }
         
-        XCTAssert(resultD == answerD, "answerD: \(answerD), resultD: \(resultD)")
-        XCTAssert(resultF == answerF, "answerD: \(answerF), resultD: \(resultF)")
+        XCTAssert(resultD.count == answerD.count, "answerD.count: \(answerD.count), resultD.count: \(resultD.count)")
+        XCTAssert(resultF.count == answerF.count, "answerF.count: \(answerF.count), resultF.count: \(resultF.count)")
         
+        for index in 0..<resultD.count {
+            XCTAssertEqual(resultD[index], answerD[index], "resultD is different from answerD at \(index) position: \(resultD[index]) v.s \(answerD[index])")
+        }
+        
+        for index in 0..<resultF.count {
+            XCTAssertEqual(resultF[index], answerF[index], "resultF is different from answerF at \(index) position: \(resultF[index]) v.s \(answerF[index])")
+        }
     }
     
     func testLeastPowerOfTwo(){

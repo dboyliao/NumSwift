@@ -26,10 +26,10 @@ import Accelerate
  - Returns: An array of floating numbers with its i-th element be raised to
             the `power`-th power of x[i].
 */
-public func pow(x: [Float], power: Float) -> [Float] {
+public func pow(_ x: [Float], power: Float) -> [Float] {
     
-    var y = [Float](count: x.count, repeatedValue: 0.0)
-    let powers = [Float](count: x.count, repeatedValue: power)
+    var y = [Float](repeating: 0.0, count: x.count)
+    let powers = [Float](repeating: power, count: x.count)
     var N = Int32(x.count)
 
     vvpowf(&y, x, powers, &N)
@@ -46,10 +46,10 @@ public func pow(x: [Float], power: Float) -> [Float] {
  - Returns: An array of floating numbers with its i-th element be raised to
             the `power`-th power of x[i].
 */
-public func pow(x:[Double], power: Double) -> [Double] {
+public func pow(_ x:[Double], power: Double) -> [Double] {
 
-    var y = [Double](count: x.count, repeatedValue: 0.0)
-    let powers = [Double](count: x.count, repeatedValue: power)
+    var y = [Double](repeating: 0.0, count: x.count)
+    let powers = [Double](repeating: power, count: x.count)
     var N = Int32(x.count)
 
     vvpow(&y, x, powers, &N)
@@ -65,10 +65,10 @@ public func pow(x:[Double], power: Double) -> [Double] {
  - Returns: A double precision floating number array with its i-th
             element as the square root of `x[i]`
 */
-public func sqrt(x:[Double]) -> [Double] {
+public func sqrt(_ x:[Double]) -> [Double] {
 
     var input = [Double](x)
-    var output = [Double](count:x.count, repeatedValue:0.0)
+    var output = [Double](repeating: 0.0, count: x.count)
     var N = Int32(x.count)
     vvsqrt(&output, &input, &N)
 
@@ -85,10 +85,10 @@ public func sqrt(x:[Double]) -> [Double] {
  - Returns: A single precision floating number array with its i-th
             element as the square root of `x[i]`
 */
-public func sqrt(x:[Float]) -> [Float] {
+public func sqrt(_ x:[Float]) -> [Float] {
 
     var input = [Float](x)
-    var output = [Float](count:x.count, repeatedValue:0.0)
+    var output = [Float](repeating: 0.0, count: x.count)
     var N = Int32(x.count)
     vvsqrtf(&output, &input, &N)
 

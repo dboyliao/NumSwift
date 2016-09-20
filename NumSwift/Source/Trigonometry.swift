@@ -24,9 +24,9 @@ import Accelerate
  
  - Returns: A array of sine values of each element in x.
 */
-public func sin(x:[Double]) -> [Double] {
+public func sin(_ x:[Double]) -> [Double] {
     var N = Int32(x.count)
-    var y = [Double](count:x.count, repeatedValue: 0.0)
+    var y = [Double](repeating: 0.0, count: x.count)
 
     vvsin(&y, x, &N)
     return y
@@ -40,9 +40,9 @@ public func sin(x:[Double]) -> [Double] {
  
  - Returns: A array of sine values of each element in x.
 */
-public func sin(x:[Float]) -> [Float] {
+public func sin(_ x:[Float]) -> [Float] {
     var N = Int32(x.count)
-    var y = [Float](count: x.count, repeatedValue: 0.0)
+    var y = [Float](repeating: 0.0, count: x.count)
 
     vvsinf(&y, x, &N)
     return y
@@ -56,10 +56,10 @@ public func sin(x:[Float]) -> [Float] {
  
  - Returns: A array of cosecant values of each element in x.
 */
-public func csc(x:[Double]) -> [Double]{
+public func csc(_ x:[Double]) -> [Double]{
 
     var y = sin(x)
-    var output = [Double](count: y.count, repeatedValue:0.0)
+    var output = [Double](repeating: 0.0, count: y.count)
     let N = vDSP_Length(y.count)
     var one = 1.0
 
@@ -75,10 +75,10 @@ public func csc(x:[Double]) -> [Double]{
  
  - Returns: A array of cosecant values of each element in x.
 */
-public func csc(x:[Float]) -> [Float]{
+public func csc(_ x:[Float]) -> [Float]{
 
     var y = sin(x)
-    var output = [Float](count: y.count, repeatedValue:0.0)
+    var output = [Float](repeating: 0.0, count: y.count)
     let N = vDSP_Length(y.count)
     var one:Float = 1.0
 
@@ -94,9 +94,9 @@ public func csc(x:[Float]) -> [Float]{
  
  - Returns: A array of cosine values of each element in x.
 */
-public func cos(x:[Double]) -> [Double]{
+public func cos(_ x:[Double]) -> [Double]{
     var N = Int32(x.count)
-    var y = [Double](count: x.count, repeatedValue: 0.0)
+    var y = [Double](repeating: 0.0, count: x.count)
 
     vvcos(&y, x, &N)
     return y
@@ -110,9 +110,9 @@ public func cos(x:[Double]) -> [Double]{
  
  - Returns: A array of cosine values of each element in x.
 */
-public func cos(x:[Float]) -> [Float]{
+public func cos(_ x:[Float]) -> [Float]{
     var N = Int32(x.count)
-    var y = [Float](count: x.count, repeatedValue: 0.0)
+    var y = [Float](repeating: 0.0, count: x.count)
 
     vvcosf(&y, x, &N)
     return y
@@ -126,10 +126,10 @@ public func cos(x:[Float]) -> [Float]{
  
  - Returns: A array of secant values of each element in x.
 */
-public func sec(x:[Double]) -> [Double]{
+public func sec(_ x:[Double]) -> [Double]{
 
     var y = cos(x)
-    var output = [Double](count: y.count, repeatedValue:0.0)
+    var output = [Double](repeating: 0.0, count: y.count)
     let N = vDSP_Length(y.count)
     var one = 1.0
 
@@ -145,10 +145,10 @@ public func sec(x:[Double]) -> [Double]{
  
  - Returns: A array of secant values of each element in x.
 */
-public func sec(x:[Float]) -> [Float]{
+public func sec(_ x:[Float]) -> [Float]{
 
     var y = cos(x)
-    var output = [Float](count: y.count, repeatedValue:0.0)
+    var output = [Float](repeating: 0.0, count: y.count)
     let N = vDSP_Length(y.count)
     var one:Float = 1.0
 
@@ -164,9 +164,9 @@ public func sec(x:[Float]) -> [Float]{
  
  - Returns: A array of tangent values of each element in x.
 */
-public func tan(x:[Double]) -> [Double] {
+public func tan(_ x:[Double]) -> [Double] {
     var N = Int32(x.count)
-    var y = [Double](count: x.count, repeatedValue: 0.0)
+    var y = [Double](repeating: 0.0, count: x.count)
 
     vvtan(&y, x, &N)
     return y
@@ -180,9 +180,9 @@ public func tan(x:[Double]) -> [Double] {
  
  - Returns: A array of tangent values of each element in x.
 */
-public func tan(x:[Float]) -> [Float] {
+public func tan(_ x:[Float]) -> [Float] {
     var N = Int32(x.count)
-    var y = [Float](count: x.count, repeatedValue: 0.0)
+    var y = [Float](repeating: 0.0, count: x.count)
 
     vvtanf(&y, x, &N)
     return y
@@ -196,10 +196,10 @@ public func tan(x:[Float]) -> [Float] {
  
  - Returns: A array of cotangent values of each element in x.
 */
-public func cot(x:[Double]) -> [Double]{
+public func cot(_ x:[Double]) -> [Double]{
     
     var y = tan(x)
-    var output = [Double](count:y.count, repeatedValue:0.0)
+    var output = [Double](repeating: 0.0, count: y.count)
     var one = 1.0
     let N = vDSP_Length(y.count)
 
@@ -215,10 +215,10 @@ public func cot(x:[Double]) -> [Double]{
  
  - Returns: A array of cotangent values of each element in x.
 */
-public func cot(x:[Float]) -> [Float]{
+public func cot(_ x:[Float]) -> [Float]{
     
     var y = tan(x)
-    var output = [Float](count:y.count, repeatedValue:0.0)
+    var output = [Float](repeating: 0.0, count: y.count)
     var one:Float = 1.0
     let N = vDSP_Length(y.count)
 

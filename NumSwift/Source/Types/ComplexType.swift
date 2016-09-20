@@ -24,7 +24,7 @@ import Foundation
  
  - Returns: z.real^2 + z.imag^2
 */
-public func norm(z:DSPComplex) -> Float {
+public func norm(_ z:DSPComplex) -> Float {
 
     return z.real*z.real+z.imag*z.imag
 }
@@ -37,7 +37,7 @@ public func norm(z:DSPComplex) -> Float {
  
  - Returns: z.real^2 + z.imag^2
 */
-public func norm(z:DSPDoubleComplex) -> Double {
+public func norm(_ z:DSPDoubleComplex) -> Double {
 
     return z.real*z.real+z.imag*z.imag
 }
@@ -50,7 +50,7 @@ public func norm(z:DSPDoubleComplex) -> Double {
  
  - Returns: Square root of norm of `z`
 */
-public func abs(z:DSPComplex) -> Float {
+public func abs(_ z:DSPComplex) -> Float {
     return sqrt(norm(z))
 }
 
@@ -62,7 +62,7 @@ public func abs(z:DSPComplex) -> Float {
  
  - Returns: Square root of norm of `z`
 */
-public func abs(z:DSPDoubleComplex) -> Double {
+public func abs(_ z:DSPDoubleComplex) -> Double {
     return sqrt(norm(z))
 }
 

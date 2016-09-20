@@ -17,31 +17,31 @@ let ColorCodes = [
     "white": "1;37"
 ]
 
-func getShorterString<T:Equatable>(x:[T]) -> String {
+func getShorterString<T:Equatable>(_ x:[T]) -> String {
     
     var result:String
     
     if x.count < 20 {
         
-        result = String(x)
+        result = String(describing: x)
         
     } else {
         result = "["
         for i in 0..<5 {
-            result += (String(x[i]) + ", ")
+            result += (String(describing: x[i]) + ", ")
         }
         result += "..., "
         
         for i in 0..<4 {
-            result += (String(x[x.count-5+i]) + ", ")
+            result += (String(describing: x[x.count-5+i]) + ", ")
         }
-        result += (String(x[x.count-1]) + "]")
+        result += (String(describing: x[x.count-1]) + "]")
     }
     
     return result
 }
 
-func colorPrint(args:AnyObject..., color:String) {
+func colorPrint(_ args:AnyObject..., color:String) {
     
     switch color {
         
@@ -60,7 +60,7 @@ func colorPrint(args:AnyObject..., color:String) {
     }
 }
 
-func testAllClose(x:[Double], _ y:[Double], tol:Double = 3e-7) -> (Bool, Double) {
+func testAllClose(_ x:[Double], _ y:[Double], tol:Double = 3e-7) -> (Bool, Double) {
     
     /*
      Return `true` if x and y are element-wise equal within a tolerance.
@@ -79,7 +79,7 @@ func testAllClose(x:[Double], _ y:[Double], tol:Double = 3e-7) -> (Bool, Double)
         
         let N = x.count
         
-        var xMinusY = [Double](count:N, repeatedValue:0.0)
+        var xMinusY = [Double](repeating: 0.0, count: N)
         
         // Compute x - y (vectorized)
         vDSP_vsubD(&inputX, 1, &inputY, 1, &xMinusY, 1, vDSP_Length(N))
@@ -98,7 +98,7 @@ func testAllClose(x:[Double], _ y:[Double], tol:Double = 3e-7) -> (Bool, Double)
     
 }
 
-func testAllClose(x:[Float], _ y:[Float], tol:Float = 3e-7) -> (Bool, Float) {
+func testAllClose(_ x:[Float], _ y:[Float], tol:Float = 3e-7) -> (Bool, Float) {
     
     /*
      Return `true` if x and y are element-wise equal within a tolerance.
@@ -117,7 +117,7 @@ func testAllClose(x:[Float], _ y:[Float], tol:Float = 3e-7) -> (Bool, Float) {
         
         let N = x.count
         
-        var xMinusY = [Float](count:N, repeatedValue:0.0)
+        var xMinusY = [Float](repeating: 0.0, count: N)
         
         // Compute x - y (vectorized)
         vDSP_vsub(&inputX, 1, &inputY, 1, &xMinusY, 1, vDSP_Length(N))

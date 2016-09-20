@@ -28,22 +28,22 @@ import Foundation
  - Returns: array of norm of each vector, (x_i, y_i), where x_i and y_i 
             are the i-th element of x and y, respectively.
 */
-public func norm(x:[Double], _ y:[Double]) -> [Double]{
+public func norm(_ x:[Double], _ y:[Double]) -> [Double]{
 
     var inputX = [Double](x)
     var inputY = [Double](y)
-    var xSquare = [Double](count:x.count, repeatedValue:0.0)
-    var ySquare = [Double](count:y.count, repeatedValue:0.0)
+    var xSquare = [Double](repeating: 0.0, count: x.count)
+    var ySquare = [Double](repeating: 0.0, count: y.count)
 
     vDSP_vsqD(&inputX, 1, &xSquare, 1, vDSP_Length(x.count))
     vDSP_vsqD(&inputY, 1, &ySquare, 1, vDSP_Length(y.count))
 
-    var squareSum = [Double](count:x.count, repeatedValue:0.0)
+    var squareSum = [Double](repeating: 0.0, count: x.count)
 
     vDSP_vaddD(&xSquare, 1, &ySquare, 1, &squareSum, 1, vDSP_Length(x.count))
 
     var N = Int32(squareSum.count)
-    var vectorNorm = [Double](count:squareSum.count, repeatedValue:0.0)
+    var vectorNorm = [Double](repeating: 0.0, count: squareSum.count)
     vvsqrt(&vectorNorm, &squareSum, &N)
 
     return vectorNorm
@@ -59,22 +59,22 @@ public func norm(x:[Double], _ y:[Double]) -> [Double]{
  - Returns: array of norm of each vector, (x_i, y_i), where x_i and y_i
             are the i-th element of x and y, respectively.
 */
-public func norm(x:[Float], _ y:[Float]) -> [Float]{
+public func norm(_ x:[Float], _ y:[Float]) -> [Float]{
     
     var inputX = [Float](x)
     var inputY = [Float](y)
-    var xSquare = [Float](count:x.count, repeatedValue:0.0)
-    var ySquare = [Float](count:y.count, repeatedValue:0.0)
+    var xSquare = [Float](repeating: 0.0, count: x.count)
+    var ySquare = [Float](repeating: 0.0, count: y.count)
 
     vDSP_vsq(&inputX, 1, &xSquare, 1, vDSP_Length(x.count))
     vDSP_vsq(&inputY, 1, &ySquare, 1, vDSP_Length(y.count))
 
-    var squareSum = [Float](count:x.count, repeatedValue:0.0)
+    var squareSum = [Float](repeating: 0.0, count: x.count)
 
     vDSP_vadd(&xSquare, 1, &ySquare, 1, &squareSum, 1, vDSP_Length(x.count))
 
     var N = Int32(squareSum.count)
-    var vectorNorm = [Float](count:squareSum.count, repeatedValue:0.0)
+    var vectorNorm = [Float](repeating: 0.0, count: squareSum.count)
 
     vvsqrtf(&vectorNorm, &squareSum, &N)
 
@@ -97,13 +97,13 @@ public func norm(x:[Float], _ y:[Float]) -> [Float]{
  // [1, 2, -1]
  ```
 */
-public func roundToZero(x:[Double]) -> [Double]{
+public func roundToZero(_ x:[Double]) -> [Double]{
 
     var input = [Double](x)
-    var fracPart = [Double](count:x.count, repeatedValue:0.0)
+    var fracPart = [Double](repeating: 0.0, count: x.count)
     vDSP_vfracD(&input, 1, &fracPart, 1, vDSP_Length(x.count))
 
-    var result = [Double](count:x.count, repeatedValue:0.0)
+    var result = [Double](repeating: 0.0, count: x.count)
     vDSP_vsubD(&fracPart, 1, &input, 1, &result, 1, vDSP_Length(x.count))
 
     return result
@@ -126,13 +126,13 @@ public func roundToZero(x:[Double]) -> [Double]{
  // [1, 2, -1]
  ```
 */
-public func roundToZero(x:[Float]) -> [Float]{
+public func roundToZero(_ x:[Float]) -> [Float]{
 
     var input = [Float](x)
-    var fracPart = [Float](count:x.count, repeatedValue:0.0)
+    var fracPart = [Float](repeating: 0.0, count: x.count)
     vDSP_vfrac(&input, 1, &fracPart, 1, vDSP_Length(x.count))
 
-    var result = [Float](count:x.count, repeatedValue:0.0)
+    var result = [Float](repeating: 0.0, count: x.count)
     vDSP_vsub(&fracPart, 1, &input, 1, &result, 1, vDSP_Length(x.count))
 
     return result
@@ -150,11 +150,11 @@ public func roundToZero(x:[Float]) -> [Float]{
  - Returns: A double precision array of sequential values starting at `start` 
             with even step size.
 */
-public func arange(N:Int, start:Double = 0, step:Double) -> [Double]{
+public func arange(_ N:Int, start:Double = 0, step:Double) -> [Double]{
 
     var start = start
     var step = Double(step)
-    var result = [Double](count:N, repeatedValue:0.0)
+    var result = [Double](repeating: 0.0, count: N)
     vDSP_vrampD(&start, &step, &result, 1, vDSP_Length(N))
 
     return result
@@ -171,11 +171,11 @@ public func arange(N:Int, start:Double = 0, step:Double) -> [Double]{
  - Returns: A single precision array of sequential values starting at `start` 
             with even step size.
 */
-public func arange(N:Int, start:Float = 0, step:Float) -> [Float] {
+public func arange(_ N:Int, start:Float = 0, step:Float) -> [Float] {
 
     var start = start
     var step = step
-    var result = [Float](count:N, repeatedValue:0.0)
+    var result = [Float](repeating: 0.0, count: N)
     vDSP_vramp(&start, &step, &result, 1, vDSP_Length(N))
 
     return result
@@ -191,13 +191,13 @@ public func arange(N:Int, start:Float = 0, step:Float) -> [Float] {
  
  - Returns: An double precision array of `num` many equally spaced samples.
 */
-public func linspace(start:Double, _ end:Double, num:Int = 100) -> [Double]{
+public func linspace(_ start:Double, _ end:Double, num:Int = 100) -> [Double]{
     
     precondition(start <= end, "start must be no larger than end.")
 
     var startDouble = Double(start)
     var endDouble = Double(end)
-    var result = [Double](count:num, repeatedValue:0.0)
+    var result = [Double](repeating: 0.0, count: num)
 
     vDSP_vgenD(&startDouble, &endDouble, &result, 1, vDSP_Length(num))
 
@@ -215,13 +215,13 @@ public func linspace(start:Double, _ end:Double, num:Int = 100) -> [Double]{
  
  - Returns: An single precision array of `num` many equally spaced samples.
 */
-public func linspace(start:Float, _ end:Float, num:Int = 100) -> [Float]{
+public func linspace(_ start:Float, _ end:Float, num:Int = 100) -> [Float]{
     
     precondition(start <= end, "start must be no larger than end.")
 
     var startFloat = Float(start)
     var endFloat = Float(end)
-    var result = [Float](count:num, repeatedValue:0.0)
+    var result = [Float](repeating: 0.0, count: num)
 
     vDSP_vgen(&startFloat, &endFloat, &result, 1, vDSP_Length(num))
 
@@ -236,7 +236,7 @@ public func linspace(start:Float, _ end:Float, num:Int = 100) -> [Float]{
  
  - Returns: the mean of elements in x.
 */
-public func mean(x:[Double]) -> Double {
+public func mean(_ x:[Double]) -> Double {
 
     var value:Double = 0.0
     vDSP_meanvD(x, 1, &value, vDSP_Length(x.count))
@@ -253,7 +253,7 @@ public func mean(x:[Double]) -> Double {
  
  - Returns: the mean of elements in x.
 */
-public func mean(x:[Float]) -> Float {
+public func mean(_ x:[Float]) -> Float {
 
     var value:Float = 0.0
     vDSP_meanv(x, 1, &value, vDSP_Length(x.count))
@@ -271,16 +271,16 @@ public func mean(x:[Float]) -> Float {
  
  - Returns: the variance of elements in x.
  */
-public func variance(x:[Double]) -> Double {
+public func variance(_ x:[Double]) -> Double {
 
     let N = vDSP_Length(x.count)
-    var output_buffer = [Double](count:x.count, repeatedValue:0.0)
+    var output_buffer = [Double](repeating: 0.0, count: x.count)
     var neg_mean_x = -mean(x)
 
     vDSP_vsaddD(x, 1, &neg_mean_x, &output_buffer, 1, N)
     vDSP_vsqD(&output_buffer, 1, &output_buffer, 1, N)
 
-    let result = output_buffer.reduce(0, combine:{$0 + $1})
+    let result = output_buffer.reduce(0, {$0 + $1})
 
     return result/Double(x.count)
 }
@@ -295,16 +295,16 @@ public func variance(x:[Double]) -> Double {
  
  - Returns: the variance of elements in x.
 */
-public func variance(x:[Float]) -> Float {
+public func variance(_ x:[Float]) -> Float {
 
     let N = vDSP_Length(x.count)
-    var output_buffer = [Float](count:x.count, repeatedValue:0.0)
+    var output_buffer = [Float](repeating: 0.0, count: x.count)
     var neg_mean_x = -mean(x)
 
     vDSP_vsadd(x, 1, &neg_mean_x, &output_buffer, 1, N)
     vDSP_vsq(&output_buffer, 1, &output_buffer, 1, N)
 
-    let result = output_buffer.reduce(0, combine:{$0 + $1})
+    let result = output_buffer.reduce(0, {$0 + $1})
 
     return result/Float(x.count)
 }
@@ -319,7 +319,7 @@ public func variance(x:[Float]) -> Float {
  
  - Returns: The standard deviation of x.
 */
-public func std(x:[Double]) -> Double {
+public func std(_ x:[Double]) -> Double {
 
     return sqrt(variance(x))
 
@@ -335,7 +335,7 @@ public func std(x:[Double]) -> Double {
  
  - Returns: The standard deviation of x.
 */
-public func std(x:[Float]) -> Float {
+public func std(_ x:[Float]) -> Float {
 
     return sqrt(variance(x))
 
@@ -351,12 +351,12 @@ public func std(x:[Float]) -> Float {
  
  - Returns: Normalized data which has zero mean and unit standard deviation.
 */
-public func normalize(x:[Double]) -> [Double] {
+public func normalize(_ x:[Double]) -> [Double] {
 
     var mean_x = mean(x)
     var std_x = std(x)
 
-    var x_normalized = [Double](count:x.count, repeatedValue:0.0)
+    var x_normalized = [Double](repeating: 0.0, count: x.count)
 
     vDSP_normalizeD(x, 1, &x_normalized, 1, &mean_x, &std_x, vDSP_Length(x.count))
 
@@ -374,12 +374,12 @@ public func normalize(x:[Double]) -> [Double] {
  
  - Returns: Normalized data which has zero mean and unit standard deviation.
 */
-public func normalize(x:[Float]) -> [Float]{
+public func normalize(_ x:[Float]) -> [Float]{
 
     var mean_x = mean(x)
     var std_x = std(x)
 
-    var x_normalized = [Float](count:x.count, repeatedValue:0.0)
+    var x_normalized = [Float](repeating: 0.0, count: x.count)
 
     vDSP_normalize(x, 1, &x_normalized, 1, &mean_x, &std_x, vDSP_Length(x.count))
 
@@ -404,7 +404,7 @@ public func normalize(x:[Float]) -> [Float]{
  /// [[1, 2], [3, 4], [5, 6]]
  ```
 */
-public func splitArrayIntoParts(x:[Double], _ numberOfParts: Int) -> [[Double]] {
+public func splitArrayIntoParts(_ x:[Double], _ numberOfParts: Int) -> [[Double]] {
 
     var parts = [[Double]]()
     let input = [Double](x)
@@ -446,7 +446,7 @@ public func splitArrayIntoParts(x:[Double], _ numberOfParts: Int) -> [[Double]] 
  /// [[1, 2], [3, 4], [5, 6]]
  ```
  */
-public func splitArrayIntoParts(x:[Float], _ numberOfParts: Int) -> [[Float]] {
+public func splitArrayIntoParts(_ x:[Float], _ numberOfParts: Int) -> [[Float]] {
 
     var parts = [[Float]]()
     let input = [Float](x)
@@ -481,7 +481,7 @@ public func splitArrayIntoParts(x:[Float], _ numberOfParts: Int) -> [[Float]] {
  
  - Returns: the least power of 2 greater than N
 */
-public func leastPowerOfTwo(N:Int) -> Int {
+public func leastPowerOfTwo(_ N:Int) -> Int {
     /*
     Find the least power of two greater than `N`.
     */ 
@@ -506,7 +506,7 @@ public func leastPowerOfTwo(N:Int) -> Int {
  
  - Returns: the least power of 2 greater than N
  */
-public func leastPowerOfTwo(N:Double) -> Double {
+public func leastPowerOfTwo(_ N:Double) -> Double {
     
     let log2N = Int(log2(N))
     var NPowTwo = 1 << log2N
@@ -528,7 +528,7 @@ public func leastPowerOfTwo(N:Double) -> Double {
  
  - Returns: the least power of 2 greater than N
  */
-public func leastPowerOfTwo(N:Float) -> Float {
+public func leastPowerOfTwo(_ N:Float) -> Float {
     
     let log2N = Int(log2(N))
     var NPowTwo = 1 << log2N
@@ -548,10 +548,10 @@ public func leastPowerOfTwo(N:Float) -> Float {
  
  - Returns: an array containing the absolute value of each element in x.
 */
-public func abs(x:[Double]) -> [Double] {
+public func abs(_ x:[Double]) -> [Double] {
 
     var input = [Double](x)
-    var output = [Double](count:x.count, repeatedValue:0.0)
+    var output = [Double](repeating: 0.0, count: x.count)
 
     vDSP_vabsD(&input, 1, &output, 1, vDSP_Length(x.count))
 
@@ -566,10 +566,10 @@ public func abs(x:[Double]) -> [Double] {
  
  - Returns: an array containing the absolute value of each element in x.
 */
-public func abs(x:[Float]) -> [Float] {
+public func abs(_ x:[Float]) -> [Float] {
 
     var input = [Float](x)
-    var output = [Float](count:x.count, repeatedValue:0.0)
+    var output = [Float](repeating: 0.0, count: x.count)
 
     vDSP_vabs(&input, 1, &output, 1, vDSP_Length(x.count))
 
@@ -595,14 +595,14 @@ public func abs(x:[Float]) -> [Float] {
  /// [1.0, 2.0, 3.0, 0.0, 0.0]
  ```
 */
-public func pad(x:[Double], toLength length: Int, value:Double = 0.0) -> [Double] {
+public func pad(_ x:[Double], toLength length: Int, value:Double = 0.0) -> [Double] {
 
     let result:[Double]
 
     if length <= x.count {
         result = [Double](x)
     } else {
-        result = [Double](x) + [Double](count:length - x.count, repeatedValue:value)
+        result = [Double](x) + [Double](repeating: value, count: length - x.count)
     }
     return result
 }
@@ -625,14 +625,14 @@ public func pad(x:[Double], toLength length: Int, value:Double = 0.0) -> [Double
  /// [1.0, 2.0, 3.0, 0.0, 0.0]
  ```
  */
-public func pad(x:[Float], toLength length: Int, value:Float = 0.0) -> [Float] {
+public func pad(_ x:[Float], toLength length: Int, value:Float = 0.0) -> [Float] {
 
     let result:[Float]
 
     if length <= x.count {
         result = [Float](x)
     } else {
-        result = [Float](x) + [Float](count:length - x.count, repeatedValue:value)
+        result = [Float](x) + [Float](repeating: value, count: length - x.count)
     }
     return result
 }
@@ -647,7 +647,7 @@ public func pad(x:[Float], toLength length: Int, value:Float = 0.0) -> [Float] {
  
  - Returns: true if two array are equal with tolerance, false otherwise.
 */
-public func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
+public func allClose(_ x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
 
     var inputX = [Double](x)
     var inputY = [Double](y)
@@ -657,7 +657,7 @@ public func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
 
         let N = x.count
 
-        var xMinusY = [Double](count:N, repeatedValue:0.0)
+        var xMinusY = [Double](repeating: 0.0, count: N)
         
         // Compute x - y (vectorized)
         vDSP_vsubD(&inputY, 1, &inputX, 1, &xMinusY, 1, vDSP_Length(N))
@@ -687,7 +687,7 @@ public func allClose(x:[Double], y:[Double], tol:Double = 3e-7) -> Bool {
  
  - Returns: true if two array are equal with tolerance, false otherwise.
 */
-public func allClose(x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
+public func allClose(_ x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
 
     var inputX = [Float](x)
     var inputY = [Float](y)
@@ -697,7 +697,7 @@ public func allClose(x:[Float], y:[Float], tol:Float = 3e-7) -> Bool {
 
         let N = x.count
 
-        var xMinusY = [Float](count:N, repeatedValue:0.0)
+        var xMinusY = [Float](repeating: 0.0, count: N)
         
         // Compute x - y (vectorized)
         vDSP_vsub(&inputY, 1, &inputX, 1, &xMinusY, 1, vDSP_Length(N))

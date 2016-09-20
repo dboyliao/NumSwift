@@ -25,7 +25,7 @@ import Accelerate
  
  - Returns: a sorted array.
 */
-public func sort(x: [Double], order:Int) -> [Double]{
+public func sort(_ x: [Double], order:Int) -> [Double]{
 
     var input = [Double](x)
 
@@ -43,7 +43,7 @@ public func sort(x: [Double], order:Int) -> [Double]{
  
  - Returns: a sorted array.
 */
-public func sort(x: [Float], order:Int) -> [Float]{
+public func sort(_ x: [Float], order:Int) -> [Float]{
     
     var input = [Float](x)
 

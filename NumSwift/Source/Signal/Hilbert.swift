@@ -31,24 +31,24 @@ import Accelerate
  - Returns: a tuple consists of the real part and the imaginary part of the analytic
             signal.
 */
-public func hilbert(x:[Double]) -> (realp:[Double], imagp:[Double]) {
+public func hilbert(_ x:[Double]) -> (realp:[Double], imagp:[Double]) {
 
     let signal = [Double](x)
-    let zeros = [Double](count:signal.count, repeatedValue:0.0)
+    let zeros = [Double](repeating: 0.0, count: signal.count)
     var coef_sig = fft(signal, imagp:zeros)
     let N_fft = coef_sig.realp.count
 
     // Setup the step function `U` in the hilbert transform.
     // Represent as an array.
-    var step_fun = [Double](count:N_fft, repeatedValue:0.0)
+    var step_fun = [Double](repeating: 0.0, count: N_fft)
     step_fun[0] = 1.0
     step_fun[N_fft/2] = 1.0
 
     var two = 2.0
     vDSP_vfillD(&two, &(step_fun[1]), 1, vDSP_Length(N_fft/2 - 1))
 
-    var output_realp = [Double](count:N_fft, repeatedValue:0.0)
-    var output_imagp = [Double](count:N_fft, repeatedValue:0.0)
+    var output_realp = [Double](repeating: 0.0, count: N_fft)
+    var output_imagp = [Double](repeating: 0.0, count: N_fft)
 
     vDSP_vmulD(&(coef_sig.realp), 1, &step_fun, 1, &output_realp, 1, vDSP_Length(N_fft))
     vDSP_vmulD(&(coef_sig.imagp), 1, &step_fun, 1, &output_imagp, 1, vDSP_Length(N_fft))
@@ -73,24 +73,24 @@ public func hilbert(x:[Double]) -> (realp:[Double], imagp:[Double]) {
  - Returns: a tuple consists of the real part and the imaginary part of the analytic 
             signal.
 */
-public func hilbert(x:[Float]) -> (realp:[Float], imagp:[Float]) {
+public func hilbert(_ x:[Float]) -> (realp:[Float], imagp:[Float]) {
 
     let signal = [Float](x)
-    let zeros = [Float](count:signal.count, repeatedValue:0.0)
+    let zeros = [Float](repeating: 0.0, count: signal.count)
     var coef_sig = fft(signal, imagp:zeros)
     let N_fft = coef_sig.realp.count
 
     // Setup the step function `U` in the hilbert transform.
     // Represent as an array.
-    var step_fun = [Float](count:N_fft, repeatedValue:0.0)
+    var step_fun = [Float](repeating: 0.0, count: N_fft)
     step_fun[0] = Float(1.0)
     step_fun[N_fft/2] = Float(1.0)
 
     var two = Float(2.0)
     vDSP_vfill(&two, &(step_fun[1]), 1, vDSP_Length(N_fft/2 - 1))
 
-    var output_realp = [Float](count:N_fft, repeatedValue:0.0)
-    var output_imagp = [Float](count:N_fft, repeatedValue:0.0)
+    var output_realp = [Float](repeating: 0.0, count: N_fft)
+    var output_imagp = [Float](repeating: 0.0, count: N_fft)
 
     vDSP_vmul(&(coef_sig.realp), 1, &step_fun, 1, &output_realp, 1, vDSP_Length(N_fft))
     vDSP_vmul(&(coef_sig.imagp), 1, &step_fun, 1, &output_imagp, 1, vDSP_Length(N_fft))

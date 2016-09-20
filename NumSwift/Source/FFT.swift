@@ -30,7 +30,7 @@ import Accelerate
     - `(realp:[Double], imagp:[Double])`: Fourier coeficients. It's a tuple with named
       attributes, `realp` and `imagp`.
 */
-public func fft(realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Double]) {
+public func fft(_ realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Double]) {
 
     let log2N = vDSP_Length(log2f(Float(realp.count)))
     let fftN = Int(1 << log2N)
@@ -38,12 +38,12 @@ public func fft(realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Doub
     // buffers.
     var inputRealp = [Double](realp[0..<fftN])
     var inputImagp = [Double](imagp[0..<fftN])
-    var fftCoefRealp = [Double](count: fftN, repeatedValue:0.0)
-    var fftCoefImagp = [Double](count: fftN, repeatedValue:0.0)
+    var fftCoefRealp = [Double](repeating: 0.0, count: fftN)
+    var fftCoefImagp = [Double](repeating: 0.0, count: fftN)
 
     // setup DFT and execute.
     let setup = vDSP_DFT_zop_CreateSetupD(nil, vDSP_Length(fftN), vDSP_DFT_Direction.FORWARD)
-    vDSP_DFT_ExecuteD(setup, &inputRealp, &inputImagp, &fftCoefRealp, &fftCoefImagp)
+    vDSP_DFT_ExecuteD(setup!, &inputRealp, &inputImagp, &fftCoefRealp, &fftCoefImagp)
 
     // destroy setup.
     vDSP_DFT_DestroySetupD(setup)
@@ -65,7 +65,7 @@ public func fft(realp:[Double], imagp: [Double]) -> (realp:[Double], imagp:[Doub
  - Returns: `(realp:[Float], imagp:[Float])`: Fourier coeficients. It's a tuple with named
       attributes, `realp` and `imagp`.
 */
-public func fft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
+public func fft(_ realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
 
     let log2N = vDSP_Length(log2f(Float(realp.count)))
     let fftN = Int(1 << log2N)
@@ -73,12 +73,12 @@ public func fft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
     // buffers.
     var inputRealp = [Float](realp[0..<fftN])
     var inputImagp = [Float](imagp[0..<fftN])
-    var fftCoefRealp = [Float](count: fftN, repeatedValue:0.0)
-    var fftCoefImagp = [Float](count: fftN, repeatedValue:0.0)
+    var fftCoefRealp = [Float](repeating: 0.0, count: fftN)
+    var fftCoefImagp = [Float](repeating: 0.0, count: fftN)
 
     // setup DFT and execute.
     let setup = vDSP_DFT_zop_CreateSetup(nil, vDSP_Length(fftN), vDSP_DFT_Direction.FORWARD)
-    vDSP_DFT_Execute(setup, &inputRealp, &inputImagp, &fftCoefRealp, &fftCoefImagp)
+    vDSP_DFT_Execute(setup!, &inputRealp, &inputImagp, &fftCoefRealp, &fftCoefImagp)
 
     // destroy setup.
     vDSP_DFT_DestroySetup(setup)
@@ -100,7 +100,7 @@ public func fft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
  - Returns: `(realp:[Double], imagp:[Double])`: Fourier coeficients. It's a tuple with named
             attributes, `realp` and `imagp`.
 */
-public func ifft(realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Double]){
+public func ifft(_ realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Double]){
 
     let log2N = vDSP_Length(log2f(Float(realp.count)))
     let fftN = Int(1 << log2N)
@@ -108,17 +108,17 @@ public func ifft(realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Doub
     // buffers.
     var inputCoefRealp = [Double](realp[0..<fftN])
     var inputCoefImagp = [Double](imagp[0..<fftN])
-    var outputRealp = [Double](count: fftN, repeatedValue:0.0)
-    var outputImagp = [Double](count: fftN, repeatedValue:0.0)
+    var outputRealp = [Double](repeating: 0.0, count: fftN)
+    var outputImagp = [Double](repeating: 0.0, count: fftN)
     
     // setup DFT and execute.
     let setup = vDSP_DFT_zop_CreateSetupD(nil, vDSP_Length(fftN), vDSP_DFT_Direction.INVERSE)
-    vDSP_DFT_ExecuteD(setup, &inputCoefRealp, &inputCoefImagp, &outputRealp, &outputImagp)
+    vDSP_DFT_ExecuteD(setup!, &inputCoefRealp, &inputCoefImagp, &outputRealp, &outputImagp)
 
     // normalization of ifft
     var scale = Double(fftN)
-    var normalizedOutputRealp = [Double](count: fftN, repeatedValue:0.0)
-    var normalizedOutputImagp = [Double](count: fftN, repeatedValue:0.0)
+    var normalizedOutputRealp = [Double](repeating: 0.0, count: fftN)
+    var normalizedOutputImagp = [Double](repeating: 0.0, count: fftN)
     
     vDSP_vsdivD(&outputRealp, 1, &scale, &normalizedOutputRealp, 1, vDSP_Length(fftN))
     vDSP_vsdivD(&outputImagp, 1, &scale, &normalizedOutputImagp, 1, vDSP_Length(fftN))
@@ -142,7 +142,7 @@ public func ifft(realp:[Double], imagp:[Double]) -> (realp:[Double], imagp:[Doub
  - Returns: `(realp:[Float], imagp:[Float])`: Fourier coeficients. It's a tuple with named
             attributes, `realp` and `imagp`.
  */
-public func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
+public func ifft(_ realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float]){
     
     let log2N = vDSP_Length(log2f(Float(realp.count)))
     let fftN = Int(1 << log2N)
@@ -150,8 +150,8 @@ public func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float])
     // buffers.
     var inputCoefRealp = [Float](realp[0..<fftN])
     var inputCoefImagp = [Float](imagp[0..<fftN])
-    var outputRealp = [Float](count: fftN, repeatedValue:0.0)
-    var outputImagp = [Float](count: fftN, repeatedValue:0.0)
+    var outputRealp = [Float](repeating: 0.0, count: fftN)
+    var outputImagp = [Float](repeating: 0.0, count: fftN)
     
     // setup DFT and execute.
     let setup = vDSP_DFT_zop_CreateSetup(nil, vDSP_Length(fftN), vDSP_DFT_Direction.INVERSE)
@@ -163,12 +163,12 @@ public func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float])
         
     }
 
-    vDSP_DFT_Execute(setup, &inputCoefRealp, &inputCoefImagp, &outputRealp, &outputImagp)
+    vDSP_DFT_Execute(setup!, &inputCoefRealp, &inputCoefImagp, &outputRealp, &outputImagp)
 
     // normalization of ifft
     var scale = Float(fftN)
-    var normalizedOutputRealp = [Float](count: fftN, repeatedValue:0.0)
-    var normalizedOutputImagp = [Float](count: fftN, repeatedValue:0.0)
+    var normalizedOutputRealp = [Float](repeating: 0.0, count: fftN)
+    var normalizedOutputImagp = [Float](repeating: 0.0, count: fftN)
     
     vDSP_vsdiv(&outputRealp, 1, &scale, &normalizedOutputRealp, 1, vDSP_Length(fftN))
     vDSP_vsdiv(&outputImagp, 1, &scale, &normalizedOutputImagp, 1, vDSP_Length(fftN))
@@ -191,7 +191,7 @@ public func ifft(realp:[Float], imagp:[Float]) -> (realp:[Float], imagp:[Float])
  
  - Returns: the result of the convolution of x and y.
 */
-public func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
+public func fft_convolve(_ x:[Double], y:[Double], mode:String = "full") -> [Double] {
 
     var longArray:[Double]
     var shortArray:[Double]
@@ -216,7 +216,7 @@ public func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Doubl
     longArray = pad(longArray, toLength:convNPowTwo, value:0.0)
     shortArray = pad(shortArray, toLength:convNPowTwo, value:0.0)
 
-    let zeros = [Double](count:convNPowTwo, repeatedValue:0.0)
+    let zeros = [Double](repeating: 0.0, count: convNPowTwo)
 
     var (coefLongArrayRealp, coefLongArrayImagp) = fft(longArray, imagp:zeros)
     var (coefShortArrayRealp, coefShortArrayImagp) = fft(shortArray, imagp:zeros)
@@ -229,8 +229,8 @@ public func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Doubl
     var coefShortArrayComplex = DSPDoubleSplitComplex(realp:&coefShortArrayRealp, imagp:&coefShortArrayImagp)
 
     // setup output buffers for vDSP_zvmulD
-    var coefConvRealp = [Double](count:convNPowTwo, repeatedValue:0.0)
-    var coefConvImagp = [Double](count:convNPowTwo, repeatedValue:0.0)
+    var coefConvRealp = [Double](repeating: 0.0, count: convNPowTwo)
+    var coefConvImagp = [Double](repeating: 0.0, count: convNPowTwo)
     var coefConvComplex = DSPDoubleSplitComplex(realp:&coefConvRealp, imagp:&coefConvImagp)
 
     // Elementwise Complex Multiplication
@@ -287,7 +287,7 @@ public func fft_convolve(x:[Double], y:[Double], mode:String = "full") -> [Doubl
  
  - Returns: the result of the convolution of x and y.
 */
-public func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float] {
+public func fft_convolve(_ x:[Float], y:[Float], mode:String = "full") -> [Float] {
 
     var longArray:[Float]
     var shortArray:[Float]
@@ -312,7 +312,7 @@ public func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float] 
     longArray = pad(longArray, toLength:convNPowTwo, value:0.0)
     shortArray = pad(shortArray, toLength:convNPowTwo, value:0.0)
 
-    let zeros = [Float](count:convNPowTwo, repeatedValue:0.0)
+    let zeros = [Float](repeating: 0.0, count: convNPowTwo)
 
     var (coefLongArrayRealp, coefLongArrayImagp) = fft(longArray, imagp:zeros)
     var (coefShortArrayRealp, coefShortArrayImagp) = fft(shortArray, imagp:zeros)
@@ -325,8 +325,8 @@ public func fft_convolve(x:[Float], y:[Float], mode:String = "full") -> [Float] 
     var coefShortArrayComplex = DSPSplitComplex(realp:&coefShortArrayRealp, imagp:&coefShortArrayImagp)
 
     // setup output buffers for vDSP_zvmulD
-    var coefConvRealp = [Float](count:convNPowTwo, repeatedValue:0.0)
-    var coefConvImagp = [Float](count:convNPowTwo, repeatedValue:0.0)
+    var coefConvRealp = [Float](repeating: 0.0, count: convNPowTwo)
+    var coefConvImagp = [Float](repeating: 0.0, count: convNPowTwo)
     var coefConvComplex = DSPSplitComplex(realp:&coefConvRealp, imagp:&coefConvImagp)
 
     // Elementwise Complex Multiplication

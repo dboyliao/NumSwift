@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C733B61D1C58BD2500B7DC04 /* NumSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = C733B61C1C58BD2500B7DC04 /* NumSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C75DC91F1D90D4E300324DBF /* ComplexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DC91C1D90D4E300324DBF /* ComplexType.swift */; };
 		C7B04C561CACDE940072823F /* Convolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C451CACDE940072823F /* Convolution.swift */; };
 		C7B04C571CACDE940072823F /* Exponential.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C461CACDE940072823F /* Exponential.swift */; };
 		C7B04C581CACDE940072823F /* FFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C471CACDE940072823F /* FFT.swift */; };
@@ -15,16 +16,8 @@
 		C7B04C5D1CACDE940072823F /* Hilbert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C4E1CACDE940072823F /* Hilbert.swift */; };
 		C7B04C5E1CACDE940072823F /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C4F1CACDE940072823F /* Sort.swift */; };
 		C7B04C5F1CACDE940072823F /* Trigonometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C501CACDE940072823F /* Trigonometry.swift */; };
-		C7B04C601CACDE940072823F /* ComplexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C521CACDE940072823F /* ComplexType.swift */; };
-		C7B04C611CACDE940072823F /* MatrixType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C531CACDE940072823F /* MatrixType.swift */; };
-		C7B04C621CACDE940072823F /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C541CACDE940072823F /* Field.swift */; };
 		C7B04C631CACDE940072823F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C551CACDE940072823F /* Utilities.swift */; };
-		C7B04C751CAD1EAD0072823F /* MatrixArithmetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C721CAD1EAD0072823F /* MatrixArithmetics.swift */; };
-		C7B04C761CAD1EAD0072823F /* MatrixOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C731CAD1EAD0072823F /* MatrixOptions.swift */; };
-		C7B04C771CAD1EAD0072823F /* MatrixUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C741CAD1EAD0072823F /* MatrixUtils.swift */; };
-		C7B04C811CAD3F090072823F /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04C801CAD3F090072823F /* MatrixTests.swift */; };
 		C7B04C831CAD3F090072823F /* NumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C733B6191C58BD2500B7DC04 /* NumSwift.framework */; };
-		C7E0ABBF1CAE5699005A44EB /* MatrixUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0ABBE1CAE5699005A44EB /* MatrixUtilsTests.swift */; };
 		C7E0ABC11CAE7848005A44EB /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0ABC01CAE7848005A44EB /* UtilsTests.swift */; };
 		C7E0ABC31CAE7C2C005A44EB /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0ABC21CAE7C2C005A44EB /* HelperFunctions.swift */; };
 		C7F36B1F1CAD7656006B8F9E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C7F36B1E1CAD7656006B8F9E /* LICENSE */; };
@@ -44,6 +37,7 @@
 		C733B6191C58BD2500B7DC04 /* NumSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C733B61C1C58BD2500B7DC04 /* NumSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumSwift.h; sourceTree = "<group>"; };
 		C733B61E1C58BD2500B7DC04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C75DC91C1D90D4E300324DBF /* ComplexType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexType.swift; sourceTree = "<group>"; };
 		C7B04C451CACDE940072823F /* Convolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convolution.swift; sourceTree = "<group>"; };
 		C7B04C461CACDE940072823F /* Exponential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exponential.swift; sourceTree = "<group>"; };
 		C7B04C471CACDE940072823F /* FFT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFT.swift; sourceTree = "<group>"; };
@@ -51,17 +45,9 @@
 		C7B04C4E1CACDE940072823F /* Hilbert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hilbert.swift; sourceTree = "<group>"; };
 		C7B04C4F1CACDE940072823F /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		C7B04C501CACDE940072823F /* Trigonometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigonometry.swift; sourceTree = "<group>"; };
-		C7B04C521CACDE940072823F /* ComplexType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexType.swift; sourceTree = "<group>"; };
-		C7B04C531CACDE940072823F /* MatrixType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixType.swift; sourceTree = "<group>"; };
-		C7B04C541CACDE940072823F /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		C7B04C551CACDE940072823F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		C7B04C721CAD1EAD0072823F /* MatrixArithmetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixArithmetics.swift; sourceTree = "<group>"; };
-		C7B04C731CAD1EAD0072823F /* MatrixOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixOptions.swift; sourceTree = "<group>"; };
-		C7B04C741CAD1EAD0072823F /* MatrixUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixUtils.swift; sourceTree = "<group>"; };
 		C7B04C7E1CAD3F080072823F /* iOSNumSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSNumSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7B04C801CAD3F090072823F /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		C7B04C821CAD3F090072823F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7E0ABBE1CAE5699005A44EB /* MatrixUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixUtilsTests.swift; sourceTree = "<group>"; };
 		C7E0ABC01CAE7848005A44EB /* UtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		C7E0ABC21CAE7C2C005A44EB /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C7F36B1E1CAD7656006B8F9E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -115,12 +101,19 @@
 			path = NumSwift;
 			sourceTree = "<group>";
 		};
+		C75DC91B1D90D4E300324DBF /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				C75DC91C1D90D4E300324DBF /* ComplexType.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		C7B04C441CACDE940072823F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C7B04C711CAD1EAD0072823F /* Arithmetics */,
+				C75DC91B1D90D4E300324DBF /* Types */,
 				C7B04C4D1CACDE940072823F /* Signal */,
-				C7B04C511CACDE940072823F /* TypeSystem */,
 				C7B04C451CACDE940072823F /* Convolution.swift */,
 				C7B04C461CACDE940072823F /* Exponential.swift */,
 				C7B04C471CACDE940072823F /* FFT.swift */,
@@ -140,31 +133,9 @@
 			path = Signal;
 			sourceTree = "<group>";
 		};
-		C7B04C511CACDE940072823F /* TypeSystem */ = {
-			isa = PBXGroup;
-			children = (
-				C7B04C521CACDE940072823F /* ComplexType.swift */,
-				C7B04C531CACDE940072823F /* MatrixType.swift */,
-				C7B04C541CACDE940072823F /* Field.swift */,
-			);
-			path = TypeSystem;
-			sourceTree = "<group>";
-		};
-		C7B04C711CAD1EAD0072823F /* Arithmetics */ = {
-			isa = PBXGroup;
-			children = (
-				C7B04C721CAD1EAD0072823F /* MatrixArithmetics.swift */,
-				C7B04C731CAD1EAD0072823F /* MatrixOptions.swift */,
-				C7B04C741CAD1EAD0072823F /* MatrixUtils.swift */,
-			);
-			path = Arithmetics;
-			sourceTree = "<group>";
-		};
 		C7B04C7F1CAD3F090072823F /* iOSNumSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				C7E0ABBE1CAE5699005A44EB /* MatrixUtilsTests.swift */,
-				C7B04C801CAD3F090072823F /* MatrixTests.swift */,
 				C7E0ABC21CAE7C2C005A44EB /* HelperFunctions.swift */,
 				C7E0ABC01CAE7848005A44EB /* UtilsTests.swift */,
 				C7B04C821CAD3F090072823F /* Info.plist */,
@@ -235,9 +206,12 @@
 				TargetAttributes = {
 					C733B6181C58BD2500B7DC04 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					C7B04C7D1CAD3F080072823F = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 45ZLH78369;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -299,19 +273,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7B04C751CAD1EAD0072823F /* MatrixArithmetics.swift in Sources */,
 				C7B04C5F1CACDE940072823F /* Trigonometry.swift in Sources */,
-				C7B04C611CACDE940072823F /* MatrixType.swift in Sources */,
 				C7B04C631CACDE940072823F /* Utilities.swift in Sources */,
-				C7B04C771CAD1EAD0072823F /* MatrixUtils.swift in Sources */,
 				C7B04C561CACDE940072823F /* Convolution.swift in Sources */,
 				C7B04C5E1CACDE940072823F /* Sort.swift in Sources */,
+				C75DC91F1D90D4E300324DBF /* ComplexType.swift in Sources */,
 				C7B04C5D1CACDE940072823F /* Hilbert.swift in Sources */,
 				C7B04C571CACDE940072823F /* Exponential.swift in Sources */,
-				C7B04C621CACDE940072823F /* Field.swift in Sources */,
-				C7B04C601CACDE940072823F /* ComplexType.swift in Sources */,
 				C7B04C5C1CACDE940072823F /* Power.swift in Sources */,
-				C7B04C761CAD1EAD0072823F /* MatrixOptions.swift in Sources */,
 				C7B04C581CACDE940072823F /* FFT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,9 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7E0ABBF1CAE5699005A44EB /* MatrixUtilsTests.swift in Sources */,
 				C7E0ABC31CAE7C2C005A44EB /* HelperFunctions.swift in Sources */,
-				C7B04C811CAD3F090072823F /* MatrixTests.swift in Sources */,
 				C7E0ABC11CAE7848005A44EB /* UtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.spe3d.NumSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -458,6 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.spe3d.NumSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -465,11 +434,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				DEVELOPMENT_TEAM = 45ZLH78369;
 				INFOPLIST_FILE = iOSNumSwiftTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dboyliao.iOSNumSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -477,11 +448,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				DEVELOPMENT_TEAM = 45ZLH78369;
 				INFOPLIST_FILE = iOSNumSwiftTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dboyliao.iOSNumSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

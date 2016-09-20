@@ -30,7 +30,7 @@ import Foundation
  
  - Returns: The result of x convolving y.
 */
-public func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
+public func convolve(_ x:[Double], y:[Double], mode:String = "full") -> [Double] {
 
     var longArray:[Double]
     var shortArray:[Double]
@@ -50,14 +50,14 @@ public func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
     let N = longArray.count
     let M = shortArray.count
     let convN = N+M-1
-    let output = [Double](count:convN, repeatedValue:0.0)
+    let output = [Double](repeating: 0.0, count: convN)
 
     // padding leading zeros
-    longArray = [Double](count:(convN-N), repeatedValue:0.0) + longArray
+    longArray = [Double](repeating: 0.0, count: (convN-N)) + longArray
 
     let ptr_longArrayFirstElement = UnsafePointer<Double>(longArray)
-    let ptr_shortArrayLastElement = UnsafePointer<Double>(shortArray).advancedBy(shortArray.count - 1)
-    let ptr_output = UnsafeMutablePointer<Double>(output)
+    let ptr_shortArrayLastElement = UnsafePointer<Double>(shortArray).advanced(by:shortArray.count - 1)
+    let ptr_output = UnsafeMutablePointer<Double>(mutating: output)
 
     vDSP_convD(ptr_longArrayFirstElement, 1, ptr_shortArrayLastElement, -1, 
                ptr_output, 1, vDSP_Length(convN), vDSP_Length(M))
@@ -99,7 +99,7 @@ public func convolve(x:[Double], y:[Double], mode:String = "full") -> [Double] {
  
  - Returns: The result of x convolving y.
  */
-public func convolve(x:[Float], y:[Float], mode: String = "full") -> [Float] {
+public func convolve(_ x:[Float], y:[Float], mode: String = "full") -> [Float] {
 
     var longArray:[Float]
     var shortArray:[Float]
@@ -119,14 +119,14 @@ public func convolve(x:[Float], y:[Float], mode: String = "full") -> [Float] {
     let N = longArray.count
     let M = shortArray.count
     let convN = N+M-1
-    let output = [Float](count:convN, repeatedValue:0.0)
+    let output = [Float](repeating: 0.0, count: convN)
 
     // padding leading zeros
-    longArray = [Float](count:(convN-N), repeatedValue:0.0) + longArray
+    longArray = [Float](repeating: 0.0, count: (convN-N)) + longArray
 
     let ptr_longArrayFirstElement = UnsafePointer<Float>(longArray)
-    let ptr_shortArrayLastElement = UnsafePointer<Float>(shortArray).advancedBy(shortArray.count - 1)
-    let ptr_output = UnsafeMutablePointer<Float>(output)
+    let ptr_shortArrayLastElement = UnsafePointer<Float>(shortArray).advanced(by:shortArray.count - 1)
+    let ptr_output = UnsafeMutablePointer<Float>(mutating: output)
 
     vDSP_conv(ptr_longArrayFirstElement, 1, ptr_shortArrayLastElement, -1, 
                ptr_output, 1, vDSP_Length(convN), vDSP_Length(M))

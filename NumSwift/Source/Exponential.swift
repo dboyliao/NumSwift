@@ -24,9 +24,9 @@ import Accelerate
  
  - Returns: An array of single precision floating number where its i-th element is e^(x[i]).
 */
-public func exp(x:[Float]) -> [Float] {
+public func exp(_ x:[Float]) -> [Float] {
     
-     var y = [Float](count: x.count, repeatedValue: 0.0)
+     var y = [Float](repeating: 0.0, count: x.count)
      var N = Int32(x.count)
      vvexpf(&y, x, &N)
      return y
@@ -41,9 +41,9 @@ public func exp(x:[Float]) -> [Float] {
  
  - Returns: An array of double precision floating number where its i-th element is e^(x[i]).
 */
-public func exp(x: [Double]) -> [Double] {
+public func exp(_ x: [Double]) -> [Double] {
     
-    var y = [Double](count: x.count, repeatedValue: 0.0)
+    var y = [Double](repeating: 0.0, count: x.count)
     var N = Int32(x.count)
 
     vvexp(&y, x, &N)
@@ -61,9 +61,9 @@ public func exp(x: [Double]) -> [Double] {
  - Returns: An array of single precision floating numbers. Its i-th element is the logrithm of x[i]
             with base as given by `base`.
 */
-public func log(x: [Float], base: Float? = nil) -> [Float] {
+public func log(_ x: [Float], base: Float? = nil) -> [Float] {
 
-    var y = [Float](count: x.count, repeatedValue: 0.0)
+    var y = [Float](repeating: 0.0, count: x.count)
     var N = Int32(x.count)
 
     vvlogf(&y, x, &N)
@@ -72,7 +72,7 @@ public func log(x: [Float], base: Float? = nil) -> [Float] {
         var base = base!
         var scale:Float = 0.0
         var one = Int32(1)
-        var tempArray = [Float](count: y.count, repeatedValue: 0.0)
+        var tempArray = [Float](repeating: 0.0, count: y.count)
 
         vvlogf(&scale, &base, &one)
         vDSP_vsdiv(&y, 1, &scale, &tempArray, 1, vDSP_Length(y.count))
@@ -92,9 +92,9 @@ public func log(x: [Float], base: Float? = nil) -> [Float] {
     - Returns: An array of double precision floating numbers. Its i-th element is the logrithm of x[i]
                with base as given by `base`.
 */
-public func log(x: [Double], base: Double? = nil) -> [Double] {
+public func log(_ x: [Double], base: Double? = nil) -> [Double] {
 
-    var y = [Double](count: x.count, repeatedValue: 0.0)
+    var y = [Double](repeating: 0.0, count: x.count)
     var N = Int32(x.count)
 
     vvlog(&y, x, &N)
@@ -102,7 +102,7 @@ public func log(x: [Double], base: Double? = nil) -> [Double] {
         var base = base!
         var scale: Double = 0.0
         var one = Int32(1)
-        var tempArray = [Double](count: y.count, repeatedValue: 0.0)
+        var tempArray = [Double](repeating: 0.0, count: y.count)
 
         vvlog(&scale, &base, &one)
         vDSP_vsdivD(&y, 1, &scale, &tempArray, 1, vDSP_Length(y.count))
